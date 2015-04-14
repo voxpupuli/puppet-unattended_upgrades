@@ -1,0 +1,47 @@
+APT::Periodic::Enable "<%= @enable %>";
+#  - Enable the update/upgrade script (0=disable)
+#
+APT::Periodic::BackupArchiveInterval "<%= @_backup['archive_interval'] %>";
+#  - Backup after n-days if archive contents changed.(0=disable)
+#
+APT::Periodic::BackupLevel "<%= @_backup['level'] %>";
+#  - Backup level.(0=disable), 1 is invalid.
+#
+APT::Periodic::MaxAge "<%= @_age['max'] %>";
+#  - Set maximum allowed age of a cache package file. If a cache
+#    package file is older it is deleted (0=disable)
+#
+APT::Periodic::MinAge "<%= @_age['min'] %>";
+#  - Set minimum age of a package file. If a file is younger it
+#    will not be deleted (0=disable). Usefull to prevent races
+#    and to keep backups of the packages for emergency.
+#
+APT::Periodic::MaxSize "<%= @_size['max'] %>";
+#  - Set maximum size of the cache in MB (0=disable). If the cache
+#    is bigger, cached package files are deleted until the size
+#    requirement is met (the biggest packages will be deleted
+#    first).
+#
+APT::Periodic::Update-Package-Lists "<%= @update %>";
+#  - Do "apt-get update" automatically every n-days (0=disable)
+#
+APT::Periodic::Download-Upgradeable-Packages "<%= @_upgradeable_packages['downlaod_only'] %>";
+#  - Do "apt-get upgrade --download-only" every n-days (0=disable)
+#
+#  APT::Periodic::Download-Upgradeable-Packages-Debdelta "<%= @_upgradeable_packages['debdelta'] %>";
+#  - Use debdelta-upgrade to download updates if available (0=disable)
+APT::Periodic::Unattended-Upgrade "<%= @upgrade %>";
+#  - Run the "unattended-upgrade" security upgrade script
+#    every n-days (0=disabled)
+#    Requires the package "unattended-upgrades" and will write
+#    a log in /var/log/unattended-upgrades
+#
+APT::Periodic::AutocleanInterval "<%= @_auto['clean'] %>";
+#  - Do "apt-get autoclean" every n-days (0=disable)
+#
+APT::Periodic::Verbose "<%= @verbose %>";
+#  - Send report mail to root
+#      0:  no report             (or null string)
+#      1:  progress report       (actually any string)
+#      2:  + command outputs     (remove -qq, remove 2>/dev/null, add -d)
+#      3:  + trace on
