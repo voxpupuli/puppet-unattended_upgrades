@@ -12,12 +12,21 @@ describe 'unattended_upgrades' do
 
   it { should contain_package("unattended-upgrades") }
 
+  it { should contain_apt__conf('unattended-upgrades').with({
+      "require" => "Package[unattended-upgrades]",
+  })
+  }
+
+  it { should contain_apt__conf('periodic').with({
+      "require" => "Package[unattended-upgrades]",
+  })
+  }
+
   it {
     should create_file(file_unattended).with({
       "owner"   => "root",
       "group"   => "root",
       "mode"    => "0644",
-      "require" => "Package[unattended-upgrades]",
     })
   }
 
@@ -26,7 +35,6 @@ describe 'unattended_upgrades' do
       "owner"   => "root",
       "group"   => "root",
       "mode"    => "0644",
-      "require" => "Package[unattended-upgrades]",
     })
   }
 end
