@@ -33,16 +33,16 @@ Unattended-Upgrade::MinimalSteps "<%= @minimal_steps.to_s %>";
 // This will (obviously) make shutdown slower
 Unattended-Upgrade::InstallOnShutdown "<%= @install_on_shutdown.to_s %>";
 
-<% unless @mail_to.nil? %>
+<% unless @mail['to'].nil? %>
 // Send email to this address for problems or packages upgrades
 // If empty or unset then no email is sent, make sure that you
 // have a working mail setup on your system. A package that provides
 // 'mailx' must be installed.
-Unattended-Upgrade::Mail "<%= @mail_to %>";
+Unattended-Upgrade::Mail "<%= @mail['to'] %>";
 
 // Set this value to "true" to get emails only on errors. Default
 // is to always send a mail if Unattended-Upgrade::Mail is set
-Unattended-Upgrade::MailOnlyOnError "<%= @mail_only_on_error.to_s %>";
+Unattended-Upgrade::MailOnlyOnError "<%= @mail['only_on_error'].to_s %>";
 <% end %>
 
 // Do automatic removal of new unused dependencies after the upgrade
