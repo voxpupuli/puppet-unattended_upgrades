@@ -25,7 +25,7 @@ APT::Periodic::MaxSize "<%= @_size['max'] %>";
 APT::Periodic::Update-Package-Lists "<%= @update %>";
 #  - Do "apt-get update" automatically every n-days (0=disable)
 #
-APT::Periodic::Download-Upgradeable-Packages "<%= @_upgradeable_packages['downlaod_only'] %>";
+APT::Periodic::Download-Upgradeable-Packages "<%= @_upgradeable_packages['download_only'] %>";
 #  - Do "apt-get upgrade --download-only" every n-days (0=disable)
 #
 APT::Periodic::Download-Upgradeable-Packages-Debdelta "<%= @_upgradeable_packages['debdelta'] %>";
