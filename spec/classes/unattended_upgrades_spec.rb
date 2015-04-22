@@ -10,7 +10,7 @@ describe 'unattended_upgrades' do
     :lsbrelease => '7.0.3',
   } }
 
-  context 'with defaults' do
+  context 'with defaults on Debian' do
     it { should contain_package('unattended-upgrades') }
 
     it { should contain_apt__conf('unattended-upgrades').with({
@@ -28,7 +28,27 @@ describe 'unattended_upgrades' do
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      })
+      }).with_content(
+        /Unattended-Upgrade::Origins-Pattern {/
+      ).with_content(
+        /Unattended-Upgrade::Package-Blacklist {\n};/
+      ).with_content(
+        /Unattended-Upgrade::AutoFixInterruptedDpkg "true";/
+      ).with_content(
+        /Unattended-Upgrade::MinimalSteps "true";/
+      ).with_content(
+        /Unattended-Upgrade::InstallOnShutdown "false";/
+      ).with_content(
+        /Unattended-Upgrade::Remove-Unused-Dependencies "true";/
+      ).with_content(
+        /Unattended-Upgrade::Automatic-Reboot "false";/
+      ).without_content(
+        /Unattended-Upgrade::Mail/
+      ).without_content(
+        /Unattended-Upgrade::MailOnlyOnError/
+      ).without_content(
+        /Acquire::http::Dl-Limit/
+      )
     }
 
     it {
@@ -36,7 +56,31 @@ describe 'unattended_upgrades' do
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      })
+      }).with_content(
+        /APT::Periodic::Enable "1";/
+      ).with_content(
+        /APT::Periodic::BackupArchiveInterval "0";/
+      ).with_content(
+        /APT::Periodic::BackupLevel "3";/
+      ).with_content(
+        /APT::Periodic::MaxAge "0";/
+      ).with_content(
+        /APT::Periodic::MinAge "2";/
+      ).with_content(
+        /APT::Periodic::MaxSize "0";/
+      ).with_content(
+        /APT::Periodic::Update-Package-Lists "1";/
+      ).with_content(
+        /APT::Periodic::Download-Upgradeable-Packages "0";/
+      ).with_content(
+        /APT::Periodic::Download-Upgradeable-Packages-Debdelta "1";/
+      ).with_content(
+        /APT::Periodic::Unattended-Upgrade "1";/
+      ).with_content(
+        /APT::Periodic::AutocleanInterval "0";/
+      ).with_content(
+        /APT::Periodic::Verbose "0";/
+      )
     }
 
     it { should contain_apt__conf('auto-upgrades').with({
@@ -45,10 +89,28 @@ describe 'unattended_upgrades' do
     }
   end
 
+  context 'with defaults on ubuntu' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Ubuntu',
+      :lsbistcodename => 'truste',
+      :lsbrelease => '14.04',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This is the only line that's different for Ubuntu compared to Debian
+        /Unattended-Upgrade::Allowed-Origins {/
+      )}
+  end
+
   context 'set all the things' do
     let :params do
       {
-        :age                  => { 'min' => 1 },
+        :age                  => { 'min' => 1, 'max' => 20 },
         :size                 => { 'max' => 1000 },
         :update               => 5,
         :upgradeable_packages => {
@@ -60,7 +122,7 @@ describe 'unattended_upgrades' do
           'clean'                => '5',
           'fix_interrupted_dpkg' => false,
           'remove'               => false,
-          'reboot'               => false,
+          'reboot'               => true,
         },
         :verbose              => 1,
         :legacy_origin        => true,
@@ -92,7 +154,27 @@ describe 'unattended_upgrades' do
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      })
+      }).with_content(
+        /Unattended-Upgrade::Allowed-Origins {\n\t"bananas";\n};/
+      ).with_content(
+        /Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};/
+      ).with_content(
+        /Unattended-Upgrade::AutoFixInterruptedDpkg "false";/
+      ).with_content(
+        /Unattended-Upgrade::MinimalSteps "false";/
+      ).with_content(
+        /Unattended-Upgrade::InstallOnShutdown "true";/
+      ).with_content(
+        /Unattended-Upgrade::Remove-Unused-Dependencies "false";/
+      ).with_content(
+        /Unattended-Upgrade::Automatic-Reboot "true";/
+      ).with_content(
+        /Unattended-Upgrade::Mail "root@localhost";/
+      ).with_content(
+        /Unattended-Upgrade::MailOnlyOnError "true";/
+      ).with_content(
+        /Acquire::http::Dl-Limit "70";/
+      )
     }
 
     it {
@@ -100,7 +182,31 @@ describe 'unattended_upgrades' do
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      })
+      }).with_content(
+        /APT::Periodic::Enable "1";/
+      ).with_content(
+        /APT::Periodic::BackupArchiveInterval "0";/
+      ).with_content(
+        /APT::Periodic::BackupLevel "3";/
+      ).with_content(
+        /APT::Periodic::MaxAge "20";/
+      ).with_content(
+        /APT::Periodic::MinAge "1";/
+      ).with_content(
+        /APT::Periodic::MaxSize "1000";/
+      ).with_content(
+        /APT::Periodic::Update-Package-Lists "5";/
+      ).with_content(
+        /APT::Periodic::Download-Upgradeable-Packages "5";/
+      ).with_content(
+        /APT::Periodic::Download-Upgradeable-Packages-Debdelta "5";/
+      ).with_content(
+        /APT::Periodic::Unattended-Upgrade "5";/
+      ).with_content(
+        /APT::Periodic::AutocleanInterval "5";/
+      ).with_content(
+        /APT::Periodic::Verbose "1";/
+      )
     }
 
     it { should contain_apt__conf('auto-upgrades').with({
