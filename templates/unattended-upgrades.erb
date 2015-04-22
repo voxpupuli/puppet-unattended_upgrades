@@ -40,9 +40,11 @@ Unattended-Upgrade::InstallOnShutdown "<%= @install_on_shutdown.to_s %>";
 // 'mailx' must be installed.
 Unattended-Upgrade::Mail "<%= @_mail['to'] %>";
 
+<%- if @_mail['only_on_error'] -%>
 // Set this value to "true" to get emails only on errors. Default
 // is to always send a mail if Unattended-Upgrade::Mail is set
 Unattended-Upgrade::MailOnlyOnError "<%= @_mail['only_on_error'].to_s %>";
+<%- end -%>
 <%- end -%>
 
 // Do automatic removal of new unused dependencies after the upgrade
