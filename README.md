@@ -1,7 +1,7 @@
 # unattended\_upgrades
 
 [![Build Status](https://travis-ci.org/puppet-community/puppet-unattended_upgrades.svg?branch=master)](https://travis-ci.org/puppet-community/puppet-unattended_upgrades)
-[![Puppet Forge](https://img.shields.io/puppetforge/dt/puppet/unattended_upgrades.svg)](hhttps://forge.puppetlabs.com/puppet/unattended_upgrades)
+[![Puppet Forge](https://img.shields.io/puppetforge/dt/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
 
 ## Overview
 
