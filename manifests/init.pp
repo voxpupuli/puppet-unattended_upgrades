@@ -11,7 +11,7 @@ class unattended_upgrades (
   $minimal_steps        = true,
   $origins              = $::unattended_upgrades::params::origins,
   $package_ensure       = installed,
-  $size                 = {},
+  $size                 = 0,
   $update               = 1,
   $upgrade              = 1,
   $upgradeable_packages = {},
@@ -38,8 +38,7 @@ class unattended_upgrades (
   $_backup = merge($::unattended_upgrades::default_backup, $backup)
   validate_hash($age)
   $_age = merge($::unattended_upgrades::default_age, $age)
-  validate_hash($size)
-  $_size = merge($::unattended_upgrades::default_size, $size)
+  validate_integer($size)
   validate_hash($upgradeable_packages)
   $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
 

@@ -111,7 +111,7 @@ describe 'unattended_upgrades' do
     let :params do
       {
         :age                  => { 'min' => 1, 'max' => 20 },
-        :size                 => { 'max' => 1000 },
+        :size                 => 1000,
         :update               => 5,
         :upgradeable_packages => {
           'download_only' => 5,
@@ -334,7 +334,7 @@ describe 'unattended_upgrades' do
       it do
         expect {
           subject.call
-        }.to raise_error(Puppet::Error, /not a Hash/)
+        }.to raise_error(Puppet::Error, /to be an Integer/)
       end
     end
     context 'bad upgradeable_packages' do

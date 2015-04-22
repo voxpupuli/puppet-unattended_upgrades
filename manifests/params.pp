@@ -8,7 +8,6 @@ class unattended_upgrades::params {
   $default_mail                 = { 'only_on_error'        => true, }
   $default_backup               = { 'archive_interval'     => 0, 'level'     => 3, }
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
-  $default_size                 = { 'max'                  => 0, }
   $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
 
   # Strict variables facts lookup compatibility

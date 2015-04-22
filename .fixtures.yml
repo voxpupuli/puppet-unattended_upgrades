@@ -2,7 +2,7 @@ fixtures:
   forge_modules:
     stdlib:
       repo: "puppetlabs-stdlib"
-      ref: "4.5.1"
+      ref: "4.6.0"
   repositories:
     apt:
       repo: "https://github.com/puppetlabs/puppetlabs-apt.git"

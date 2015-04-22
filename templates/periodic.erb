@@ -16,7 +16,7 @@ APT::Periodic::MinAge "<%= @_age['min'] %>";
 #    will not be deleted (0=disable). Usefull to prevent races
 #    and to keep backups of the packages for emergency.
 #
-APT::Periodic::MaxSize "<%= @_size['max'] %>";
+APT::Periodic::MaxSize "<%= @size %>";
 #  - Set maximum size of the cache in MB (0=disable). If the cache
 #    is bigger, cached package files are deleted until the size
 #    requirement is met (the biggest packages will be deleted
