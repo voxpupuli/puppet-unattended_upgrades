@@ -30,4 +30,5 @@ deploy:
     secure: "PzzvPB326Yx0hheLbusZGYCGW4i1jOOMjwJMC/7QpbN4+gvMdmHpmQP3XeQ5tm+YYXqLPMyr1he1viTln8GPqLk1qpzF55H5mTakPxMjWZfRYvM+Q7lmtOEsBEXXSJk0ZYwMHXGVd8ouDrhaRzS2JqnhCAhLat0HeLcERWZx6Ok="
   on:
     tags: true
+    all_branches: true
     rvm: 2.1
