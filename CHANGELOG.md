@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+
+## [1.0.2] - 2015-04-22
+### Changed
+- Resolve some Travis related packaging issues.
+
 ## [1.0.1] - 2015-04-22
 ### Changed
 - Resolve some Travis related packaging issues.
@@ -16,4 +21,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Boilerplate such as Gemfile, Travis configuration, LICENSE and so on.
 
 [unreleased]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.1...HEAD
+[1.0.2]: https://github.com/olivierlacan/keep-a-changelog/compare/1.0.2...1.0.1
 [1.0.1]: https://github.com/olivierlacan/keep-a-changelog/compare/1.0.1...1.0.0
