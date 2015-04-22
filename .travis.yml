@@ -11,11 +11,11 @@ script: "bundle exec rake test SPEC_OPTS='--format documentation'"
 matrix:
   fast_finish: true
   include:
-    - rvm: 2.1.6
+    - rvm: 2.1
       env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" ORDERING="random"
-    - rvm: 2.1.6
+    - rvm: 2.1
       env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" ORDERING="random" FUTURE_PARSER="yes"
-    - rvm: 2.1.6
+    - rvm: 2.1
       env: PUPPET_VERSION="~> 4.0" ORDERING="random"
   allow_failures:
     - env: PUPPET_VERSION="~> 4.0" ORDERING="random"
