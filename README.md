@@ -34,29 +34,50 @@ Using unattended\_upgrades simply consists of including the module and if needed
 
 #### unattended\_upgrades
 
-* `auto`: A hash of settings with three possible keys:
-  * `fix_interrupted_dpkg`(`true`): Try to fix package installation state
-  * `reboot`(`false`): Reboot system after package update installation
-  * `remove`(`true`): Remove unneeded dependencies after update installation
+* `age` (`{}`): A hash of settings with two possible keys:
+  * `min` (`2`): Minimum age of a cache package file. File younger than `min` will not be deleted.
+  * `max` (`0`): Maximum allowed age of a cache package file. File older than `max` will be deleted.
 
-  Any of these keys can be specified and will be merged into the defaults, so if you only want to   change the `reboot` behaviour the following is enough:
+  Any of these keys can be specified and will be merged into the defaults:
+  ```puppet
+  class { 'unattended_upgrades':
+    age => { 'max' => 10 },
+  }
+  ```
+* `auto` `({}`): A hash of settings with three possible keys:
+  * `fix_interrupted_dpkg`(`true`): Try to fix package installation state.
+  * `reboot`(`false`): Reboot system after package update installation.
+  * `remove`(`true`): Remove unneeded dependencies after update installation.
+
+  Any of these keys can be specified and will be merged into the defaults:
 
   ```puppet
   class { 'unattended_upgrades':
     auto => { 'reboot' => true },
   }
   ```
-* `blacklist`(`[]`): A list of packages to **not** automatically upgrade. This list is empty by default.
+* `backup` (`{}`): A hash with two possible keys:
+  * `archive_internal` (`0`): Backup after n-days if archive contents changed.
+  * `level` (`3`): Backup level.
+
+  Any of these keys can be specified and will be merged into the defaults:
+  ```puppet
+  class { 'unattended_upgrades':
+    backup => { 'level' => 5 },
+  }
+  ```
+* `blacklist`(`[]`): A list of packages to **not** automatically upgrade.
 * `dl_limit`(`undef`): Use a bandwidth limit for downloading, specified in kb/sec.
 * `enable` (`1`): Enable the automatic installation of updates.
 * `install_on_shutdown` (`false`): Install updates on shutdown instead of in the background.
 * `legacy_origin` (`false`): Use the legacy `Unattended-Upgrade::Allowed-Origins` setting or the modern `Unattended-Upgrade::Origins-Pattern`.
-* `mail`: A hash to configure email behaviour. The possible keys are:
+* `mail`: A hash to configure email behaviour with two possible keys:
   * `only_on_error` (`true`): Only send mail when something went wrong
   * `to` (`undef`): Email address to send email too
 
-  If the default for `to` is kept you will not receive any mail at all. You'll likely want to set this parameter:
+  If the default for `to` is kept you will not receive any mail at all. You'll likely want to set this parameter.
 
+  Any of these keys can be specified and will be merged into the defaults:
   ```puppet
   class { 'unattended_upgrades':
     mail => { 'to' => 'admin@domain.tld', },
@@ -65,7 +86,20 @@ Using unattended\_upgrades simply consists of including the module and if needed
 * `minimal_steps` (`true`): Split the upgrade process into sections to allow shutdown during upgrade.
 * `origins`: The repositories from which to automatically upgrade included packages.
 * `package_ensure` (`installed`): The ensure state for the 'unattended-upgrades' package.
+* `size` (`0`): Maximum size of the cache in MB.
+* `update` (`1`): Do "apt-get update" automatically every n-days.
+* `upgrade` (`1`): Run the "unattended-upgrade" security upgrade script every n-days.
+* `upgradeable_packages` (`{}`): A hash with two possible keys:
+  * `download_only` (`0`): Do "apt-get upgrade --download-only" every n-days.
+  * `debdelta` (`1`): Use debdelta-upgrade to download updates if available.
 
+  Any of these keys can be specified and will be merged into the defaults:
+  ```puppet
+  class { 'unattended_upgrades':
+    upgradeable_packages => { 'debdelta' => 1, },
+  }
+  ```
+* `verbose` (`0`): Send report mail to root.
 
 ## Limitations
 
