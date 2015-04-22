@@ -9,14 +9,3 @@ group :test do
   gem "metadata-json-lint"
   gem "rspec-puppet-facts"
 end
-
-group :development do
-  gem "travis"
-  gem "travis-lint"
-  gem "puppet-blacksmith"
-end
-
-group :system_tests do
-  gem "beaker"
-  gem "beaker-rspec"
-end
