@@ -1,5 +1,8 @@
 # unattended\_upgrades
 
+[![Build Status](https://img.shields.io/travis/puppet-community/puppet-unattended_upgrades.svg)](https://travis-ci.org/puppet-community/puppet-unattended_upgrades)
+[![Puppet Forge](https://img.shields.io/puppetforge/dt/puppet/unattended_upgrades.svg)](hhttps://forge.puppetlabs.com/puppet/unattended_upgrades)
+
 ## Overview
 
 The unattended\_upgrades module allows for the installation and configuration of automatic security (and other) updates through apt.
