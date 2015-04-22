@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [1.0.1] - 2015-04-22
+### Changed
+- Resolve some Travis related packaging issues.
+
 ## [1.0.0] - 2015-04-22
 ### Added
 - Full configuration of unattended-upgrades and all possible options for `APT::Periodic`.
@@ -11,4 +15,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - README with full documentation.
 - Boilerplate such as Gemfile, Travis configuration, LICENSE and so on.
 
-[unreleased]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.0...HEAD
+[unreleased]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/olivierlacan/keep-a-changelog/compare/1.0.1...1.0.0
