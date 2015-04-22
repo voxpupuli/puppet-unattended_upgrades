@@ -33,7 +33,7 @@ Unattended-Upgrade::MinimalSteps "<%= @minimal_steps.to_s %>";
 // This will (obviously) make shutdown slower
 Unattended-Upgrade::InstallOnShutdown "<%= @install_on_shutdown.to_s %>";
 
-<% unless @mail['to'].nil? %>
+<%- unless @mail['to'].nil? -%>
 // Send email to this address for problems or packages upgrades
 // If empty or unset then no email is sent, make sure that you
 // have a working mail setup on your system. A package that provides
@@ -43,7 +43,7 @@ Unattended-Upgrade::Mail "<%= @mail['to'] %>";
 // Set this value to "true" to get emails only on errors. Default
 // is to always send a mail if Unattended-Upgrade::Mail is set
 Unattended-Upgrade::MailOnlyOnError "<%= @mail['only_on_error'].to_s %>";
-<% end %>
+<%- end -%>
 
 // Do automatic removal of new unused dependencies after the upgrade
 // (equivalent to apt-get autoremove)
@@ -53,8 +53,8 @@ Unattended-Upgrade::Remove-Unused-Dependencies "<%= @_auto['remove'].to_s %>";
 // the file /var/run/reboot-required is found after the upgrade
 Unattended-Upgrade::Automatic-Reboot "<%= @_auto['reboot'].to_s %>";
 
-<% unless @dl_limit.nil? %>
+<%- unless @dl_limit.nil? -%>
 // Use apt bandwidth limit feature, this example limits the download
 // speed to 70kb/sec
 Acquire::http::Dl-Limit "<%= @dl_limit %>";
-<% end %>
+<%- end -%>
