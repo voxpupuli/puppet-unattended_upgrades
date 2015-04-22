@@ -19,7 +19,6 @@ class unattended_upgrades (
 ) inherits ::unattended_upgrades::params {
 
   include ::apt
-  Class['apt'] -> Class['unattended_upgrades']
 
   validate_bool(
     $install_on_shutdown,
