@@ -28,20 +28,20 @@ class unattended_upgrades (
   validate_array($blacklist)
   validate_array($origins)
   validate_hash($auto)
-  $_auto = merge($auto, $::unattended_upgrades::default_auto)
+  $_auto = merge($::unattended_upgrades::default_auto, $auto)
   validate_hash($mail)
   if $mail['only_on_error'] {
     validate_bool($mail['only_on_error'])
   }
-  $_mail = merge($mail, $::unattended_upgrades::default_mail)
+  $_mail = merge($::unattended_upgrades::default_mail, $mail)
   validate_hash($backup)
-  $_backup = merge($backup, $::unattended_upgrades::default_backup)
+  $_backup = merge($::unattended_upgrades::default_backup, $backup)
   validate_hash($age)
-  $_age = merge($age, $::unattended_upgrades::default_age)
+  $_age = merge($::unattended_upgrades::default_age, $age)
   validate_hash($size)
-  $_size = merge($size, $::unattended_upgrades::default_size)
+  $_size = merge($::unattended_upgrades::default_size, $size)
   validate_hash($upgradeable_packages)
-  $_upgradeable_packages = merge($upgradeable_packages, $::unattended_upgrades::default_upgradeable_packages)
+  $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
 
   package { 'unattended-upgrades':
     ensure => $package_ensure,
