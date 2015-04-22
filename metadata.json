@@ -1,6 +1,6 @@
 {
   "name": "puppet-unattended_upgrades",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "Puppet Community",
   "summary": "Provides an interface for managing Apt unattended_upgrades with Puppet",
   "license": "Apache-2.0",
