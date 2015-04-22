@@ -30,6 +30,7 @@ APT::Periodic::Download-Upgradeable-Packages "<%= @_upgradeable_packages['downla
 #
 APT::Periodic::Download-Upgradeable-Packages-Debdelta "<%= @_upgradeable_packages['debdelta'] %>";
 #  - Use debdelta-upgrade to download updates if available (0=disable)
+#
 APT::Periodic::Unattended-Upgrade "<%= @upgrade %>";
 #  - Run the "unattended-upgrade" security upgrade script
 #    every n-days (0=disabled)
