@@ -5,6 +5,7 @@ sudo: false
 branches:
   only:
     - master
+    - /\d.\d.x/
 
 script: "bundle exec rake test SPEC_OPTS='--format documentation'"
 
