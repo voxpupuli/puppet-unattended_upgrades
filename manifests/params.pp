@@ -5,7 +5,7 @@ class unattended_upgrades::params {
   }
 
   $default_auto                 = { 'fix_interrupted_dpkg' => true, 'remove' => true, 'reboot' => false, 'clean' => 0, }
-  $default_mail                 = { 'only_on_error'        => true, 'to'     => undef, }
+  $default_mail                 = { 'only_on_error'        => true, }
   $default_backup               = { 'archive_interval'     => 0, 'level'     => 3, }
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
   $default_size                 = { 'max'                  => 0, }
