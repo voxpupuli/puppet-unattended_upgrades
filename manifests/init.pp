@@ -41,7 +41,7 @@ class unattended_upgrades (
   validate_hash($size)
   $_size = merge($size, $::unattended_upgrades::default_size)
   validate_hash($upgradeable_packages)
-  $_upgradeable_packages = merge($upgradeable_packages, $::unattended_upgrades::upgradeable_packages)
+  $_upgradeable_packages = merge($upgradeable_packages, $::unattended_upgrades::default_upgradeable_packages)
 
   package { 'unattended-upgrades':
     ensure => $package_ensure,
