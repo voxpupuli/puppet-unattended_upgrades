@@ -28,7 +28,7 @@ APT::Periodic::Update-Package-Lists "<%= @update %>";
 APT::Periodic::Download-Upgradeable-Packages "<%= @_upgradeable_packages['downlaod_only'] %>";
 #  - Do "apt-get upgrade --download-only" every n-days (0=disable)
 #
-#  APT::Periodic::Download-Upgradeable-Packages-Debdelta "<%= @_upgradeable_packages['debdelta'] %>";
+APT::Periodic::Download-Upgradeable-Packages-Debdelta "<%= @_upgradeable_packages['debdelta'] %>";
 #  - Use debdelta-upgrade to download updates if available (0=disable)
 APT::Periodic::Unattended-Upgrade "<%= @upgrade %>";
 #  - Run the "unattended-upgrade" security upgrade script
