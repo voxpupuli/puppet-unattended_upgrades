@@ -9,6 +9,9 @@ describe 'unattended_upgrades' do
     :lsbistcodename => 'wheezy',
     :lsbrelease => '7.0.3',
   } }
+  let(:pre_condition) {
+    'include ::apt'
+  }
 
   context 'with defaults on Debian' do
     it { should contain_package('unattended-upgrades') }

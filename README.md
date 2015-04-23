@@ -22,7 +22,9 @@ The unattended\_upgrades module automates the configuration of apt package updat
 
 ### Beginning with unattended\_upgrades
 
-All you need to do is include the module `include unattended_upgrades`.
+All you need to do is include the apt module, `include apt`, and this module, `include unattended_upgrades` for it to work.
+
+This module relies on the [apt](https://forge.puppetlabs.com/puppetlabs/apt) module and will not work without it.
 
 ## Usage
 

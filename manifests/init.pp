@@ -18,8 +18,6 @@ class unattended_upgrades (
   $verbose              = 0,
 ) inherits ::unattended_upgrades::params {
 
-  include ::apt
-
   validate_bool(
     $install_on_shutdown,
     $legacy_origin,

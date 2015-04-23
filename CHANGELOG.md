@@ -4,7 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 ## Changed
-- Tested on Puppet 4
+- Tested on Puppet 4.
+- Remove inclusion of `apt` class.
 
 ## [1.0.2] - 2015-04-22
 ### Changed
