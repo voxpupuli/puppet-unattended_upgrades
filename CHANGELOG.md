@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-
+## Changed
+- Tested on Puppet 4
 
 ## [1.0.2] - 2015-04-22
 ### Changed
@@ -20,6 +21,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - README with full documentation.
 - Boilerplate such as Gemfile, Travis configuration, LICENSE and so on.
 
-[unreleased]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.1...HEAD
+[unreleased]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.2...HEAD
 [1.0.2]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.2...1.0.1
 [1.0.1]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.1...1.0.0
