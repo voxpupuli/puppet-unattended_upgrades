@@ -39,8 +39,8 @@ class unattended_upgrades::params {
     }
     'ubuntu': {
       $legacy_origin = true
-      $origins       = ['${distro_id} {$distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-                        '${distro_id} {$distro_codename}-updates',] #lint:ignore:single_quote_string_with_variables
+      $origins       = ['${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+                        '${distro_id} ${distro_codename}-updates',] #lint:ignore:single_quote_string_with_variables
     }
     default: {
       fail('Please explicitly specify unattended_upgrades::legacy_origin and unattended_upgrades::origins')
