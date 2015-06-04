@@ -105,8 +105,11 @@ describe 'unattended_upgrades' do
         'group'   => 'root',
         'mode'    => '0644',
       }).with_content(
-        # This is the only line that's different for Ubuntu compared to Debian
-        /Unattended-Upgrade::Allowed-Origins {/
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\ \${distro_codename}-security";\n
+        \t"\${distro_id}\ \${distro_codename}-updates";\n
+        };/x
       )}
   end
 
