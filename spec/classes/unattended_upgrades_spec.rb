@@ -96,7 +96,7 @@ describe 'unattended_upgrades' do
     let(:facts) { {
       :osfamily => 'Debian',
       :lsbdistid => 'Ubuntu',
-      :lsbistcodename => 'truste',
+      :lsbistcodename => 'trusty',
       :lsbrelease => '14.04',
     } }
     it {
