@@ -10,16 +10,25 @@ class unattended_upgrades::params {
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
   $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
 
-  # Strict variables facts lookup compatibility
-  $xfacts = {
-    'lsbdistid' => defined('$lsbdistid') ? {
-      true    => $::lsbdistid,
-      default => undef,
-    },
-    'lsbdistcodename' => defined('$lsbdistcodename') ? {
-      true    => $::lsbdistcodename,
-      default => undef,
-    },
+  # prior to puppet 3.5.0, defined couldn't test if a variable was defined
+  # strict variables wasn't added until 3.5.0, so this should be fine.
+  if ! $::settings::strict_variables {
+    $xfacts = {
+      'lsbdistid'           => $::lsbdistid,
+      'lsbdistcodename'     => $::lsbdistcodename,
+    }
+  } else {
+    # Strict variables facts lookup compatibility
+    $xfacts = {
+      'lsbdistid' => defined('$lsbdistid') ? {
+        true    => $::lsbdistid,
+        default => undef,
+      },
+      'lsbdistcodename' => defined('$lsbdistcodename') ? {
+        true    => $::lsbdistcodename,
+        default => undef,
+      },
+    }
   }
 
   case $xfacts['lsbdistid'] {
