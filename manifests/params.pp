@@ -1,3 +1,4 @@
+#
 class unattended_upgrades::params {
 
   if $::osfamily != 'Debian' {
@@ -35,21 +36,48 @@ class unattended_upgrades::params {
     'debian', 'raspbian': {
       case $xfacts['lsbdistcodename'] {
         'squeeze': {
-          $legacy_origin = true
-          $origins       = ['${distro_id} oldstable', #lint:ignore:single_quote_string_with_variables
-                            '${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-                            '${distro_id} ${distro_codename}-lts',] #lint:ignore:single_quote_string_with_variables
+          $legacy_origin       = true
+          $origins             = ['${distro_id} oldoldstable', #lint:ignore:single_quote_string_with_variables
+                                  '${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+                                  '${distro_id} ${distro_codename}-lts',] #lint:ignore:single_quote_string_with_variables
+        }
+        'wheezy': {
+          $legacy_origin      = false
+          $origins            = ['origin=Debian,archive=stable,label=Debian-Security',
+                                 'origin=Debian,archive=oldstable,label=Debian-Security',]
         }
         default: {
-          $legacy_origin = false
-          $origins       = ['origin=Debian,archive=stable,label=Debian-Security']
+          $legacy_origin      = false
+          $origins            = ['origin=Debian,codename=${distro_codename},label=Debian-Security',] #lint:ignore:single_quote_string_with_variables
         }
       }
     }
     'ubuntu': {
-      $legacy_origin = true
-      $origins       = ['${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-                        '${distro_id} ${distro_codename}-updates',] #lint:ignore:single_quote_string_with_variables
+      # TODO do we really want to pull in ${distro_codename}-updates by default?
+      case $distcodename {
+        'precise': {
+          $legacy_origin      = true
+          $origins            = [
+                                 '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+                                 #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
+                                ]
+
+        }
+        'trusty', 'utopic', 'vivid', 'wily': {
+          $legacy_origin      = true
+          $origins            = [
+                                 '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+                                 #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
+                                ]
+        }
+        default: {
+          $legacy_origin      = true
+          $origins            = [
+                                 '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+                                 #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
+                                ]
+        }
+      }
     }
     default: {
       fail('Please explicitly specify unattended_upgrades::legacy_origin and unattended_upgrades::origins')
