@@ -110,6 +110,22 @@ describe 'unattended_upgrades' do
       )}
   end
 
+  context 'with defaults on Raspbian' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Raspbian',
+      :lsbistcodename => 'jessie',
+      :lsbrelease => '8.0',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      })
+    }
+  end
+
   context 'set all the things' do
     let :params do
       {

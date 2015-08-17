@@ -32,7 +32,7 @@ class unattended_upgrades::params {
   }
 
   case $xfacts['lsbdistid'] {
-    'debian': {
+    'debian', 'raspbian': {
       case $xfacts['lsbdistcodename'] {
         'squeeze': {
           $legacy_origin = true
