@@ -38,8 +38,8 @@ class unattended_upgrades (
   validate_hash($age)
   $_age = merge($::unattended_upgrades::default_age, $age)
   validate_integer(
-    $size,
     $random_sleep,
+    $size,
   )
   validate_hash($upgradeable_packages)
   $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
