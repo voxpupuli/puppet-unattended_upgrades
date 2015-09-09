@@ -195,6 +195,46 @@ describe 'unattended_upgrades' do
       )}
   end
 
+  context 'with defaults on Ubuntu 15.04 Vivid Vervet' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Ubuntu',
+      :lsbdistcodename => 'vivid',
+      :lsbrelease => '15.04',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
+        };/x
+      )}
+  end
+
+  context 'with defaults on Ubuntu 15.10 Wily Werewolf' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Ubuntu',
+      :lsbdistcodename => 'wily',
+      :lsbrelease => '15.10',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
+        };/x
+      )}
+  end
+
   context 'with defaults on Raspbian' do
     let(:facts) { {
       :osfamily => 'Debian',
