@@ -50,7 +50,8 @@ Using unattended\_upgrades simply consists of including the module and if needed
     age => { 'max' => 10 },
   }
   ```
-* `auto` `({}`): A hash of settings with three possible keys:
+* `auto` (`{}`): A hash of settings with these possible keys:
+  * `clean`(`0`): Remove packages that can no longer be downloaded from cache every X days (`0` = disabled).
   * `fix_interrupted_dpkg`(`true`): Try to fix package installation state.
   * `reboot`(`false`): Reboot system after package update installation.
   * `remove`(`true`): Remove unneeded dependencies after update installation.
