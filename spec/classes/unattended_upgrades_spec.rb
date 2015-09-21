@@ -6,7 +6,7 @@ describe 'unattended_upgrades' do
   let(:facts) { {
     :osfamily => 'Debian',
     :lsbdistid => 'Debian',
-    :lsbistcodename => 'wheezy',
+    :lsbdistcodename => 'wheezy',
     :lsbrelease => '7.0.3',
   } }
   let(:pre_condition) {
@@ -92,11 +92,94 @@ describe 'unattended_upgrades' do
     }
   end
 
-  context 'with defaults on ubuntu' do
+  context 'with defaults on Debian 6 Squeeze' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Debian',
+      :lsbdistcodename => 'squeeze',
+      :lsbdistrelease => '6.0.10',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This section varies for different releases
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\ oldoldstable";\n
+        \t"\${distro_id}\ \${distro_codename}-security";\n
+        \t"\${distro_id}\ \${distro_codename}-lts";\n
+        };/x
+      )}
+  end
+
+  context 'with defaults on Debian 7 Wheezy' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Debian',
+      :lsbdistcodename => 'wheezy',
+      :lsbdistrelease => '7.1',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This section varies for different releases
+        /\Unattended-Upgrade::Origins-Pattern\ {\n
+        \t"origin=Debian,archive=stable,label=Debian-Security";\n
+        \t"origin=Debian,archive=oldstable,label=Debian-Security";\n
+        };/x
+      )}
+  end
+
+  context 'with defaults on Debian 8 Jessie' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Debian',
+      :lsbdistcodename => 'jessie',
+      :lsbdistrelease => '8.2',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This section varies for different releases
+        /\Unattended-Upgrade::Origins-Pattern\ {\n
+        \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
+        };/x
+      )}
+  end
+
+  context 'with defaults on Ubuntu 12.04LTS Precise Pangolin' do
     let(:facts) { {
       :osfamily => 'Debian',
       :lsbdistid => 'Ubuntu',
-      :lsbistcodename => 'trusty',
+      :lsbdistcodename => 'precise',
+      :lsbrelease => '12.04',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
+        };/x
+      )}
+  end
+
+  context 'with defaults on Ubuntu 14.04LTS Trusty Tahr' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Ubuntu',
+      :lsbdistcodename => 'trusty',
       :lsbrelease => '14.04',
     } }
     it {
@@ -107,8 +190,47 @@ describe 'unattended_upgrades' do
       }).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
-        \t"\${distro_id}\ \${distro_codename}-security";\n
-        \t"\${distro_id}\ \${distro_codename}-updates";\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
+        };/x
+      )}
+  end
+
+  context 'with defaults on Ubuntu 15.04 Vivid Vervet' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Ubuntu',
+      :lsbdistcodename => 'vivid',
+      :lsbrelease => '15.04',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
+        };/x
+      )}
+  end
+
+  context 'with defaults on Ubuntu 15.10 Wily Werewolf' do
+    let(:facts) { {
+      :osfamily => 'Debian',
+      :lsbdistid => 'Ubuntu',
+      :lsbdistcodename => 'wily',
+      :lsbrelease => '15.10',
+    } }
+    it {
+      should create_file(file_unattended).with({
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
       )}
   end
@@ -117,7 +239,7 @@ describe 'unattended_upgrades' do
     let(:facts) { {
       :osfamily => 'Debian',
       :lsbdistid => 'Raspbian',
-      :lsbistcodename => 'jessie',
+      :lsbdistcodename => 'jessie',
       :lsbrelease => '8.0',
     } }
     it {
