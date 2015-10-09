@@ -51,8 +51,8 @@ Unattended-Upgrade::MailOnlyOnError "<%= @_mail['only_on_error'].to_s %>";
 // (equivalent to apt-get autoremove)
 Unattended-Upgrade::Remove-Unused-Dependencies "<%= @_auto['remove'].to_s %>";
 
-// Automatically reboot *WITHOUT CONFIRMATION* if a
-// the file /var/run/reboot-required is found after the upgrade
+// Automatically reboot *WITHOUT CONFIRMATION*
+// if the file /var/run/reboot-required is found after the upgrade
 Unattended-Upgrade::Automatic-Reboot "<%= @_auto['reboot'].to_s %>";
 
 <%- unless @dl_limit.nil? -%>
