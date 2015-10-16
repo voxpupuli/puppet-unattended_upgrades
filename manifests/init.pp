@@ -16,6 +16,7 @@ class unattended_upgrades (
   $upgrade              = 1,
   $upgradeable_packages = {},
   $verbose              = 0,
+  $notify_update        = undef,
 ) inherits ::unattended_upgrades::params {
 
   validate_bool(
@@ -45,21 +46,24 @@ class unattended_upgrades (
   }
 
   apt::conf { 'unattended-upgrades':
-    priority => 50,
-    content  => template("${module_name}/unattended-upgrades.erb"),
-    require  => Package['unattended-upgrades'],
+    priority      => 50,
+    content       => template("${module_name}/unattended-upgrades.erb"),
+    require       => Package['unattended-upgrades'],
+    notify_update => $notify_update,
   }
 
   apt::conf { 'periodic':
-    priority => 10,
-    content  => template("${module_name}/periodic.erb"),
-    require  => Package['unattended-upgrades'],
+    priority      => 10,
+    content       => template("${module_name}/periodic.erb"),
+    require       => Package['unattended-upgrades'],
+    notify_update => $notify_update,
   }
 
   apt::conf { 'auto-upgrades':
-    ensure   => absent,
-    priority => 20,
-    require  => Package['unattended-upgrades'],
+    ensure        => absent,
+    priority      => 20,
+    require       => Package['unattended-upgrades'],
+    notify_update => $notify_update,
   }
 
 }
