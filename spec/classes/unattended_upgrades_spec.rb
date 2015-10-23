@@ -279,6 +279,7 @@ describe 'unattended_upgrades' do
           'only_on_error' => true,
         },
         :dl_limit             => 70,
+        :random_sleep         => 300,
       }
     end
     it { should contain_package('unattended-upgrades') }
@@ -350,6 +351,8 @@ describe 'unattended_upgrades' do
         /APT::Periodic::AutocleanInterval "5";/
       ).with_content(
         /APT::Periodic::Verbose "1";/
+      ).with_content(
+        /APT::Periodic::RandomSleep "300";/
       )
     }
 
