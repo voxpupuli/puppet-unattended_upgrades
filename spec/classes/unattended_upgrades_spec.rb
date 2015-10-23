@@ -385,17 +385,5 @@ describe 'unattended_upgrades' do
         }.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
-    context 'bad random_sleep' do
-      let :params do
-        {
-          :random_sleep => 'foo',
-        }
-      end
-      it do
-        expect {
-	  subject.call
-	 }.to raise_error(Puppet::Error, /to be an Integer/)
-      end
-    end
   end
 end
