@@ -46,6 +46,7 @@ APT::Periodic::Verbose "<%= @verbose %>";
 #      1:  progress report       (actually any string)
 #      2:  + command outputs     (remove -qq, remove 2>/dev/null, add -d)
 #      3:  + trace on
+<%- unless @random_sleep.nil? -%>
 #
 APT::Periodic::RandomSleep "<%= @random_sleep %>";
 #  - The apt cron job will delay its execution by a random
@@ -58,3 +59,4 @@ APT::Periodic::RandomSleep "<%= @random_sleep %>";
 #    do not care about the load spikes.
 #    Note that sleeping in the apt job will be delaying the
 #    execution of all subsequent cron.daily jobs.
+<%- end -%>
