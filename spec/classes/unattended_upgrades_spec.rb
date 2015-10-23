@@ -352,7 +352,7 @@ describe 'unattended_upgrades' do
       ).with_content(
         /APT::Periodic::Verbose "1";/
       ).with_content(
-	    /APT::Periodic::RandomSleep "300";/
+        /APT::Periodic::RandomSleep "300";/
       )
     }
 
