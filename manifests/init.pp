@@ -11,6 +11,7 @@ class unattended_upgrades (
   $minimal_steps        = true,
   $origins              = $::unattended_upgrades::params::origins,
   $package_ensure       = installed,
+  $random_sleep         = undef,
   $size                 = 0,
   $update               = 1,
   $upgrade              = 1,
