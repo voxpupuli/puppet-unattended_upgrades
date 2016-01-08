@@ -1,12 +1,12 @@
 {
   "name": "puppet-unattended_upgrades",
-  "version": "1.0.3",
-  "author": "Puppet Community",
+  "version": "1.1.0",
+  "author": "voxpupuli",
   "summary": "Provides an interface for managing Apt unattended_upgrades with Puppet",
   "license": "Apache-2.0",
-  "source": "https://github.com/puppet-community/puppet-unattended_upgrades",
-  "project_page": "https://github.com/puppet-community/puppet-unattended_upgrades",
-  "issues_url": "https://github.com/puppet-community/puppet-unattended_upgrades/issues",
+  "source": "https://github.com/voxpupuli/puppet-unattended_upgrades",
+  "project_page": "https://github.com/voxpupuli/puppet-unattended_upgrades",
+  "issues_url": "https://github.com/voxpupuli/puppet-unattended_upgrades/issues",
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
