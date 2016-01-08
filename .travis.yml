@@ -1,21 +1,26 @@
 ---
-language: ruby
 sudo: false
-
-script: "bundle exec rake test SPEC_OPTS='--format documentation'"
-
+language: ruby
+cache: bundler
+bundler_args: --without system_tests
+before_install: rm Gemfile.lock || true
+script:
+  - 'bundle exec rake $CHECK'
 matrix:
   fast_finish: true
   include:
-    - rvm: 2.1
-      env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" ORDERING="random"
-    - rvm: 2.1
-      env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" ORDERING="random" FUTURE_PARSER="yes"
-    - rvm: 2.1
-      env: PUPPET_VERSION="~> 4.0" ORDERING="random"
+  - rvm: 1.9.3
+    env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" CHECK=test
+  - rvm: 2.1.7
+    env: PUPPET_VERSION="~> 3.0" STRICT_VARIABLES="yes" CHECK=test
+  - rvm: 2.1.7
+    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=test
+  - rvm: 2.2.3
+    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=test
+  - rvm: 2.2.3
+    env: PUPPET_VERSION="~> 4.0" STRICT_VARIABLES="yes" CHECK=rubocop
 notifications:
   email: false
-
 deploy:
   provider: puppetforge
   user: puppet
@@ -23,5 +28,7 @@ deploy:
     secure: "PzzvPB326Yx0hheLbusZGYCGW4i1jOOMjwJMC/7QpbN4+gvMdmHpmQP3XeQ5tm+YYXqLPMyr1he1viTln8GPqLk1qpzF55H5mTakPxMjWZfRYvM+Q7lmtOEsBEXXSJk0ZYwMHXGVd8ouDrhaRzS2JqnhCAhLat0HeLcERWZx6Ok="
   on:
     tags: true
+    # all_branches is required to use tags
     all_branches: true
-    rvm: 2.1
+    # Only publish if our main Ruby target builds
+    rvm: 1.9.3
