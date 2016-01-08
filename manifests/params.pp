@@ -82,7 +82,8 @@ class unattended_upgrades::params {
       }
     }
     default: {
-      fail('Please explicitly specify unattended_upgrades::legacy_origin and unattended_upgrades::origins')
+      $legacy_origin = undef
+      $origins       = undef
     }
   }
 }

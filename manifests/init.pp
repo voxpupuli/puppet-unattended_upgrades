@@ -20,6 +20,10 @@ class unattended_upgrades (
   $notify_update        = undef,
 ) inherits ::unattended_upgrades::params {
 
+  if $legacy_origin == undef or $origins == undef {
+    fail('Please explicitly specify unattended_upgrades::legacy_origin and unattended_upgrades::origins.')
+  }
+
   validate_bool(
     $install_on_shutdown,
     $legacy_origin,
