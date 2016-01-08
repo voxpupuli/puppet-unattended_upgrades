@@ -16,22 +16,24 @@ describe 'unattended_upgrades' do
   context 'with defaults on Debian' do
     it { should contain_package('unattended-upgrades') }
 
-    it { should contain_apt__conf('unattended-upgrades').with({
-      'require' => 'Package[unattended-upgrades]',
-    })
-    }
-
-    it { should contain_apt__conf('periodic').with({
-      'require' => 'Package[unattended-upgrades]',
-    })
+    it {
+      should contain_apt__conf('unattended-upgrades').with(
+        'require' => 'Package[unattended-upgrades]',
+      )
     }
 
     it {
-      should create_file(file_unattended).with({
+      should contain_apt__conf('periodic').with(
+        'require' => 'Package[unattended-upgrades]',
+      )
+    }
+
+    it {
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         /Unattended-Upgrade::Origins-Pattern {/
       ).with_content(
         /Unattended-Upgrade::Package-Blacklist {\n};/
@@ -55,11 +57,11 @@ describe 'unattended_upgrades' do
     }
 
     it {
-      should create_file(file_periodic).with({
+      should create_file(file_periodic).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         /APT::Periodic::Enable "1";/
       ).with_content(
         /APT::Periodic::BackupArchiveInterval "0";/
@@ -86,9 +88,9 @@ describe 'unattended_upgrades' do
       )
     }
 
-    it { should contain_apt__conf('auto-upgrades').with({
+    it { should contain_apt__conf('auto-upgrades').with(
       'ensure' => 'absent',
-    })
+    )
     }
   end
 
@@ -100,18 +102,19 @@ describe 'unattended_upgrades' do
       :lsbdistrelease => '6.0.10',
     } }
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         # This section varies for different releases
         /\Unattended-Upgrade::Allowed-Origins\ {\n
         \t"\${distro_id}\ oldoldstable";\n
         \t"\${distro_id}\ \${distro_codename}-security";\n
         \t"\${distro_id}\ \${distro_codename}-lts";\n
         };/x
-      )}
+      )
+    }
   end
 
   context 'with defaults on Debian 7 Wheezy' do
@@ -122,17 +125,18 @@ describe 'unattended_upgrades' do
       :lsbdistrelease => '7.1',
     } }
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         # This section varies for different releases
         /\Unattended-Upgrade::Origins-Pattern\ {\n
         \t"origin=Debian,archive=stable,label=Debian-Security";\n
         \t"origin=Debian,archive=oldstable,label=Debian-Security";\n
         };/x
-      )}
+      )
+    }
   end
 
   context 'with defaults on Debian 8 Jessie' do
@@ -143,16 +147,17 @@ describe 'unattended_upgrades' do
       :lsbdistrelease => '8.2',
     } }
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         # This section varies for different releases
         /\Unattended-Upgrade::Origins-Pattern\ {\n
         \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
         };/x
-      )}
+      )
+    }
   end
 
   context 'with defaults on Ubuntu 12.04LTS Precise Pangolin' do
@@ -163,16 +168,17 @@ describe 'unattended_upgrades' do
       :lsbrelease => '12.04',
     } }
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
-      )}
+      )
+    }
   end
 
   context 'with defaults on Ubuntu 14.04LTS Trusty Tahr' do
@@ -183,16 +189,17 @@ describe 'unattended_upgrades' do
       :lsbrelease => '14.04',
     } }
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
-      )}
+      )
+    }
   end
 
   context 'with defaults on Ubuntu 15.04 Vivid Vervet' do
@@ -203,16 +210,17 @@ describe 'unattended_upgrades' do
       :lsbrelease => '15.04',
     } }
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
-      )}
+      )
+    }
   end
 
   context 'with defaults on Ubuntu 15.10 Wily Werewolf' do
@@ -223,16 +231,17 @@ describe 'unattended_upgrades' do
       :lsbrelease => '15.10',
     } }
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
-      )}
+      )
+    }
   end
 
   context 'with defaults on Raspbian' do
@@ -243,11 +252,11 @@ describe 'unattended_upgrades' do
       :lsbrelease => '8.0',
     } }
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      })
+      )
     }
   end
 
@@ -270,8 +279,8 @@ describe 'unattended_upgrades' do
         },
         :verbose              => 1,
         :legacy_origin        => true,
-        :origins              => [ 'bananas' ],
-        :blacklist            => [ 'foo', 'bar' ],
+        :origins              => %w(bananas),
+        :blacklist            => %w(foo bar),
         :minimal_steps        => false,
         :install_on_shutdown  => true,
         :mail                 => {
@@ -284,22 +293,22 @@ describe 'unattended_upgrades' do
     end
     it { should contain_package('unattended-upgrades') }
 
-    it { should contain_apt__conf('unattended-upgrades').with({
+    it { should contain_apt__conf('unattended-upgrades').with(
       'require' => 'Package[unattended-upgrades]',
-    })
+    )
     }
 
-    it { should contain_apt__conf('periodic').with({
+    it { should contain_apt__conf('periodic').with(
       'require' => 'Package[unattended-upgrades]',
-    })
+    )
     }
 
     it {
-      should create_file(file_unattended).with({
+      should create_file(file_unattended).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         /Unattended-Upgrade::Allowed-Origins {\n\t"bananas";\n};/
       ).with_content(
         /Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};/
@@ -323,11 +332,11 @@ describe 'unattended_upgrades' do
     }
 
     it {
-      should create_file(file_periodic).with({
+      should create_file(file_periodic).with(
         'owner'   => 'root',
         'group'   => 'root',
         'mode'    => '0644',
-      }).with_content(
+      ).with_content(
         /APT::Periodic::Enable "1";/
       ).with_content(
         /APT::Periodic::BackupArchiveInterval "0";/
@@ -356,11 +365,11 @@ describe 'unattended_upgrades' do
       )
     }
 
-    it { should contain_apt__conf('auto-upgrades').with({
-      'ensure' => 'absent',
-    })
+    it {
+      should contain_apt__conf('auto-upgrades').with(
+        'ensure' => 'absent',
+      )
     }
-
   end
 
   describe 'validation tests' do
