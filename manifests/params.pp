@@ -43,8 +43,10 @@ class unattended_upgrades::params {
         }
         'wheezy': {
           $legacy_origin      = false
-          $origins            = ['origin=Debian,archive=stable,label=Debian-Security',
-                                 'origin=Debian,archive=oldstable,label=Debian-Security',]
+          $origins            = [
+            'origin=Debian,archive=stable,label=Debian-Security',
+            'origin=Debian,archive=oldstable,label=Debian-Security',
+          ]
         }
         default: {
           $legacy_origin      = false
@@ -54,28 +56,28 @@ class unattended_upgrades::params {
     }
     'ubuntu': {
       # TODO do we really want to pull in ${distro_codename}-updates by default?
-      case $distcodename {
+      case $::distcodename {
         'precise': {
           $legacy_origin      = true
           $origins            = [
-                                 '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-                                 #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
-                                ]
+            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+            #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
+          ]
 
         }
         'trusty', 'utopic', 'vivid', 'wily': {
           $legacy_origin      = true
           $origins            = [
-                                 '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-                                 #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
-                                ]
+            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+            #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
+          ]
         }
         default: {
           $legacy_origin      = true
           $origins            = [
-                                 '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-                                 #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
-                                ]
+            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+            #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
+          ]
         }
       }
     }
