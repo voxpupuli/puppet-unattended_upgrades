@@ -5,7 +5,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Changed
 - CHANGELOG: Fixed comparison URL's for the releases
-- CHANGELOG: Fixed changed header for 1.0.3
+- CHANGELOG: Fixed changed header for 1.1.1
+
+## Release 1.1.0 - 2016-01-08
+### Added
+- Support Raspbian
+- Support for Debian Jessie and Ubuntu Wiley
+- Documentation for `clean` parameter
+- Clarification for `sleep`
+
+### Fixed
+- code is now `strict_variables` safe
+- Fix bug that prevented us from working on Ubuntu
+
+### Maintenance
+- linter clean
+- rubocop clean
+- integrate in modulesync
+
 
 ## [1.0.3] - 2015-04-23
 ### Changed
@@ -27,7 +44,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - README with full documentation.
 - Boilerplate such as Gemfile, Travis configuration, LICENSE and so on.
 
-[unreleased]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/HEAD...1.0.3
-[1.0.3]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.2...1.0.3
-[1.0.2]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.1...1.0.2
-[1.0.1]: https://github.com/puppet-community/puppet-unattended_upgrades/compare/1.0.0...1.0.1
+[unreleased]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/HEAD...1.1.0
+[1.1.0]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.1.0...1.0.2
+[1.0.3]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.2...1.0.3
+[1.0.2]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.1...1.0.2
+[1.0.1]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.0...1.0.1
