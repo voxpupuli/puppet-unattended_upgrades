@@ -2,10 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
 ## [Unreleased][unreleased]
+
+## Release 1.1.1 - 2016-01-11
 ### Changed
 - CHANGELOG: Fixed comparison URL's for the releases
 - CHANGELOG: Fixed changed header for 1.1.1
+- Fix a facts lookup issue that caused us to break on Ubuntu
 
 ## Release 1.1.0 - 2016-01-08
 ### Added
@@ -44,7 +48,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - README with full documentation.
 - Boilerplate such as Gemfile, Travis configuration, LICENSE and so on.
 
-[unreleased]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/HEAD...1.1.0
+[unreleased]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/HEAD...1.1.1
+[1.1.1]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.1.1...1.1.0
 [1.1.0]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.1.0...1.0.2
 [1.0.3]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.1...1.0.2
