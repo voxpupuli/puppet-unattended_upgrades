@@ -56,7 +56,7 @@ class unattended_upgrades::params {
     }
     'ubuntu': {
       # TODO do we really want to pull in ${distro_codename}-updates by default?
-      case $::distcodename {
+      case $::lsbdistcodename {
         'precise': {
           $legacy_origin      = true
           $origins            = [
