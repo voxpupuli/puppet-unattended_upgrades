@@ -18,6 +18,8 @@ class unattended_upgrades (
   $upgradeable_packages = {},
   $verbose              = 0,
   $notify_update        = undef,
+  $manage_package       = true,
+  $manage_aptconf       = true,
 ) inherits ::unattended_upgrades::params {
 
   if $legacy_origin == undef or $origins == undef {
@@ -28,6 +30,8 @@ class unattended_upgrades (
     $install_on_shutdown,
     $legacy_origin,
     $minimal_steps,
+    $manage_package,
+    $manage_aptconf,
   )
   validate_array($blacklist)
   validate_array($origins)
@@ -46,29 +50,33 @@ class unattended_upgrades (
   validate_hash($upgradeable_packages)
   $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
 
-  package { 'unattended-upgrades':
-    ensure => $package_ensure,
+  if $manage_package {
+    package { 'unattended-upgrades':
+      ensure => $package_ensure,
+    }
   }
 
-  apt::conf { 'unattended-upgrades':
-    priority      => 50,
-    content       => template("${module_name}/unattended-upgrades.erb"),
-    require       => Package['unattended-upgrades'],
-    notify_update => $notify_update,
-  }
+  if $manage_aptconf {
+    apt::conf { 'unattended-upgrades':
+      priority      => 50,
+      content       => template("${module_name}/unattended-upgrades.erb"),
+      require       => Package['unattended-upgrades'],
+      notify_update => $notify_update,
+    }
 
-  apt::conf { 'periodic':
-    priority      => 10,
-    content       => template("${module_name}/periodic.erb"),
-    require       => Package['unattended-upgrades'],
-    notify_update => $notify_update,
-  }
+    apt::conf { 'periodic':
+      priority      => 10,
+      content       => template("${module_name}/periodic.erb"),
+      require       => Package['unattended-upgrades'],
+      notify_update => $notify_update,
+    }
 
-  apt::conf { 'auto-upgrades':
-    ensure        => absent,
-    priority      => 20,
-    require       => Package['unattended-upgrades'],
-    notify_update => $notify_update,
+    apt::conf { 'auto-upgrades':
+      ensure        => absent,
+      priority      => 20,
+      require       => Package['unattended-upgrades'],
+      notify_update => $notify_update,
+    }
   }
 
 }
