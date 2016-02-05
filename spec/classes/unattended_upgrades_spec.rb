@@ -19,12 +19,14 @@ describe 'unattended_upgrades' do
     it {
       should contain_apt__conf('unattended-upgrades').with(
         :require => 'Package[unattended-upgrades]',
+        :notify_update => false,
       )
     }
 
     it {
       should contain_apt__conf('periodic').with(
         :require => 'Package[unattended-upgrades]',
+        :notify_update => false,
       )
     }
 
@@ -289,17 +291,20 @@ describe 'unattended_upgrades' do
         },
         :dl_limit             => 70,
         :random_sleep         => 300,
+        :notify_update        => true,
       }
     end
     it { should contain_package('unattended-upgrades') }
 
     it { should contain_apt__conf('unattended-upgrades').with(
       :require => 'Package[unattended-upgrades]',
+      :notify_update => true,
     )
     }
 
     it { should contain_apt__conf('periodic').with(
       :require => 'Package[unattended-upgrades]',
+      :notify_update => true,
     )
     }
 
