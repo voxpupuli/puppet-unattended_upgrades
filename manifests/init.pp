@@ -17,7 +17,7 @@ class unattended_upgrades (
   $upgrade              = 1,
   $upgradeable_packages = {},
   $verbose              = 0,
-  $notify_update        = undef,
+  $notify_update        = false,
 ) inherits ::unattended_upgrades::params {
 
   if $legacy_origin == undef or $origins == undef {

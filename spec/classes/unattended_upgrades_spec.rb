@@ -18,21 +18,23 @@ describe 'unattended_upgrades' do
 
     it {
       should contain_apt__conf('unattended-upgrades').with(
-        'require' => 'Package[unattended-upgrades]',
+        :require => 'Package[unattended-upgrades]',
+        :notify_update => false,
       )
     }
 
     it {
       should contain_apt__conf('periodic').with(
-        'require' => 'Package[unattended-upgrades]',
+        :require => 'Package[unattended-upgrades]',
+        :notify_update => false,
       )
     }
 
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         /Unattended-Upgrade::Origins-Pattern {/
       ).with_content(
@@ -58,9 +60,9 @@ describe 'unattended_upgrades' do
 
     it {
       should create_file(file_periodic).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         /APT::Periodic::Enable "1";/
       ).with_content(
@@ -89,7 +91,7 @@ describe 'unattended_upgrades' do
     }
 
     it { should contain_apt__conf('auto-upgrades').with(
-      'ensure' => 'absent',
+      :ensure => 'absent',
     )
     }
   end
@@ -103,9 +105,9 @@ describe 'unattended_upgrades' do
     } }
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         # This section varies for different releases
         /\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -126,9 +128,9 @@ describe 'unattended_upgrades' do
     } }
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         # This section varies for different releases
         /\Unattended-Upgrade::Origins-Pattern\ {\n
@@ -148,9 +150,9 @@ describe 'unattended_upgrades' do
     } }
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         # This section varies for different releases
         /\Unattended-Upgrade::Origins-Pattern\ {\n
@@ -169,9 +171,9 @@ describe 'unattended_upgrades' do
     } }
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -190,9 +192,9 @@ describe 'unattended_upgrades' do
     } }
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -211,9 +213,9 @@ describe 'unattended_upgrades' do
     } }
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -232,9 +234,9 @@ describe 'unattended_upgrades' do
     } }
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -253,9 +255,9 @@ describe 'unattended_upgrades' do
     } }
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       )
     }
   end
@@ -289,25 +291,28 @@ describe 'unattended_upgrades' do
         },
         :dl_limit             => 70,
         :random_sleep         => 300,
+        :notify_update        => true,
       }
     end
     it { should contain_package('unattended-upgrades') }
 
     it { should contain_apt__conf('unattended-upgrades').with(
-      'require' => 'Package[unattended-upgrades]',
+      :require => 'Package[unattended-upgrades]',
+      :notify_update => true,
     )
     }
 
     it { should contain_apt__conf('periodic').with(
-      'require' => 'Package[unattended-upgrades]',
+      :require => 'Package[unattended-upgrades]',
+      :notify_update => true,
     )
     }
 
     it {
       should create_file(file_unattended).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         /Unattended-Upgrade::Allowed-Origins {\n\t"bananas";\n};/
       ).with_content(
@@ -333,9 +338,9 @@ describe 'unattended_upgrades' do
 
     it {
       should create_file(file_periodic).with(
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
+        :owner   => 'root',
+        :group   => 'root',
+        :mode    => '0644',
       ).with_content(
         /APT::Periodic::Enable "1";/
       ).with_content(
@@ -367,7 +372,7 @@ describe 'unattended_upgrades' do
 
     it {
       should contain_apt__conf('auto-upgrades').with(
-        'ensure' => 'absent',
+        :ensure => 'absent',
       )
     }
   end
