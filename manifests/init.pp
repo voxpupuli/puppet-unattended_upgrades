@@ -18,6 +18,7 @@ class unattended_upgrades (
   $upgradeable_packages = {},
   $verbose              = 0,
   $notify_update        = false,
+  $options              = {},
 ) inherits ::unattended_upgrades::params {
 
   if $legacy_origin == undef or $origins == undef {
@@ -45,6 +46,12 @@ class unattended_upgrades (
   validate_integer($size)
   validate_hash($upgradeable_packages)
   $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
+  validate_hash($options)
+  $_options = merge($unattended_upgrades::default_options, $options)
+  validate_bool($_options['force_confdef'])
+  validate_bool($_options['force_confold'])
+  validate_bool($_options['force_confnew'])
+  validate_bool($_options['force_confmiss'])
 
   package { 'unattended-upgrades':
     ensure => $package_ensure,
@@ -67,6 +74,12 @@ class unattended_upgrades (
   apt::conf { 'auto-upgrades':
     ensure        => absent,
     priority      => 20,
+    require       => Package['unattended-upgrades'],
+    notify_update => $notify_update,
+  }
+  apt::conf { 'options':
+    priority      => 10,
+    content       => template("${module_name}/options.erb"),
     require       => Package['unattended-upgrades'],
     notify_update => $notify_update,
   }
