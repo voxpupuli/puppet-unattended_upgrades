@@ -93,7 +93,7 @@ Using unattended\_upgrades simply consists of including the module and if needed
 * `minimal_steps` (`true`): Split the upgrade process into sections to allow shutdown during upgrade.
 * `origins`: The repositories from which to automatically upgrade included packages.
 * `package_ensure` (`installed`): The ensure state for the 'unattended-upgrades' package.
-* `random_sleep` (`300`): Maximum amount of time (in seconds) that the apt cron job can sleep before the execution. The exact amount of time will be random but upto the value specified. The purpose is to avoid that servers/mirrors get hammered at exactly the same time when a lot of machines are switched on, e.g. 9:00 in the morning.
+* `random_sleep` (`undef`): Maximum amount of time (in seconds) that the apt cron job can sleep before the execution. The exact amount of time will be random but upto the value specified. The purpose is to avoid that servers/mirrors get hammered at exactly the same time when a lot of machines are switched on, e.g. 9:00 in the morning. Note: If this is left unset, the default value in the apt cron job applies, which is 1800 seconds.
 * `size` (`0`): Maximum size of the cache in MB.
 * `update` (`1`): Do "apt-get update" automatically every n-days.
 * `upgrade` (`1`): Run the "unattended-upgrade" security upgrade script every n-days.
