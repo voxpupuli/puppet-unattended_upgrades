@@ -55,6 +55,11 @@ Unattended-Upgrade::Remove-Unused-Dependencies "<%= @_auto['remove'].to_s %>";
 // if the file /var/run/reboot-required is found after the upgrade
 Unattended-Upgrade::Automatic-Reboot "<%= @_auto['reboot'].to_s %>";
 
+// If automatic reboot is enabled and needed, reboot at the specific
+// time instead of immediately
+//  Default: "now"
+Unattended-Upgrade::Automatic-Reboot-Time "<%= @_auto['reboot_time'].to_s %>";
+
 <%- unless @dl_limit.nil? -%>
 // Use apt bandwidth limit feature, this example limits the download
 // speed to 70kb/sec

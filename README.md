@@ -54,6 +54,7 @@ Using unattended\_upgrades simply consists of including the module and if needed
   * `clean`(`0`): Remove packages that can no longer be downloaded from cache every X days (`0` = disabled).
   * `fix_interrupted_dpkg`(`true`): Try to fix package installation state.
   * `reboot`(`false`): Reboot system after package update installation.
+  * `reboot_time`(`now`): If automatic reboot is enabled and needed, reboot at the specific time (instead of immediately).
   * `remove`(`true`): Remove unneeded dependencies after update installation.
 
   Any of these keys can be specified and will be merged into the defaults:
