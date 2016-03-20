@@ -1,10 +1,6 @@
 fixtures:
-  forge_modules:
-    stdlib:
-      repo: "puppetlabs-stdlib"
-      ref: "4.6.0"
-    apt:
-      repo: "puppetlabs-apt"
-      ref: "2.2.0"
+  repositories:
+    apt:    'https://github.com/puppetlabs/puppetlabs-apt.git'
+    stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
   symlinks:
     unattended_upgrades: "#{source_dir}"

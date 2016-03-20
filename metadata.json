@@ -4,7 +4,7 @@
   "author": "voxpupuli",
   "summary": "Provides an interface for managing Apt unattended_upgrades with Puppet",
   "license": "Apache-2.0",
-  "source": "https://github.com/voxpupuli/puppet-unattended_upgrades",
+  "source": "https://github.com/voxpupuli/puppet-unattended_upgrades.git",
   "project_page": "https://github.com/voxpupuli/puppet-unattended_upgrades",
   "issues_url": "https://github.com/voxpupuli/puppet-unattended_upgrades/issues",
   "operatingsystem_support": [
