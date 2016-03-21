@@ -49,6 +49,8 @@ describe 'unattended_upgrades' do
         /Unattended-Upgrade::Remove-Unused-Dependencies "true";/
       ).with_content(
         /Unattended-Upgrade::Automatic-Reboot "false";/
+      ).with_content(
+        /Unattended-Upgrade::Automatic-Reboot-Time "now";/
       ).without_content(
         /Unattended-Upgrade::Mail/
       ).without_content(
@@ -278,6 +280,7 @@ describe 'unattended_upgrades' do
           'fix_interrupted_dpkg' => false,
           'remove'               => false,
           'reboot'               => true,
+          'reboot_time'          => '03:00',
         },
         verbose: 1,
         legacy_origin: true,
@@ -327,6 +330,8 @@ describe 'unattended_upgrades' do
         /Unattended-Upgrade::Remove-Unused-Dependencies "false";/
       ).with_content(
         /Unattended-Upgrade::Automatic-Reboot "true";/
+      ).with_content(
+        /Unattended-Upgrade::Automatic-Reboot-Time "03:00";/
       ).with_content(
         /Unattended-Upgrade::Mail "root@localhost";/
       ).with_content(
