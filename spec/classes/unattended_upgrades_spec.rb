@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'unattended_upgrades' do
   let(:file_unattended) { '/etc/apt/apt.conf.d/50unattended-upgrades' }
   let(:file_periodic) { '/etc/apt/apt.conf.d/10periodic' }
+  let(:file_options) { '/etc/apt/apt.conf.d/10options' }
   let(:facts) { {
     osfamily: 'Debian',
     lsbdistid: 'Debian',
@@ -25,6 +26,13 @@ describe 'unattended_upgrades' do
 
     it {
       should contain_apt__conf('periodic').with(
+        require: 'Package[unattended-upgrades]',
+        notify_update: false,
+      )
+    }
+
+    it {
+      should contain_apt__conf('options').with(
         require: 'Package[unattended-upgrades]',
         notify_update: false,
       )
@@ -95,6 +103,23 @@ describe 'unattended_upgrades' do
     it { should contain_apt__conf('auto-upgrades').with(
       ensure: 'absent',
     )
+    }
+    it {
+      should create_file(file_options).with(
+        owner: 'root',
+        group: 'root',
+        mode:  '0644',
+      ).with_content(
+        /^Dpkg::Options\s{/
+      ).with_content(
+        /^\s+\"--force-confdef\";/
+      ).with_content(
+        /^\s+\"--force-confold\";/
+      ).without_content(
+        /\"--force-confnew\";/
+      ).without_content(
+        /\"--force-confmiss\";/
+      )
     }
   end
 
@@ -295,6 +320,12 @@ describe 'unattended_upgrades' do
         dl_limit: 70,
         random_sleep: 300,
         notify_update: true,
+        options: {
+          'force_confdef' =>  false,
+          'force_confold' =>  false,
+          'force_confnew' =>  true,
+          'force_confmiss' => true,
+        }
       }
     end
     it { should contain_package('unattended-upgrades') }
@@ -309,6 +340,13 @@ describe 'unattended_upgrades' do
       require: 'Package[unattended-upgrades]',
       notify_update: true,
     )
+    }
+
+    it {
+      should contain_apt__conf('options').with(
+        require: 'Package[unattended-upgrades]',
+        notify_update: true,
+      )
     }
 
     it {
@@ -375,6 +413,23 @@ describe 'unattended_upgrades' do
       )
     }
 
+    it {
+      should create_file(file_options).with(
+        owner: 'root',
+        group: 'root',
+        mode:  '0644',
+      ).with_content(
+        /^Dpkg::Options\s{/
+      ).without_content(
+        /"--force-confdef";/
+      ).without_content(
+        /"--force-confold";/
+      ).with_content(
+        /^\s+"--force-confnew";/
+      ).with_content(
+        /^\s+"--force-confmiss";/
+      )
+    }
     it {
       should contain_apt__conf('auto-upgrades').with(
         ensure: 'absent',
@@ -525,6 +580,66 @@ describe 'unattended_upgrades' do
         expect {
           subject.call
         }.to raise_error(Puppet::Error, /not a boolean/)
+      end
+    end
+    context 'bad options[\'force_confdef\']' do
+      let :params do
+        {
+          options: { 'force_confdef' => 'foo' },
+        }
+      end
+      it do
+        expect {
+          subject.call
+        }.to raise_error(Puppet::Error, /not a boolean/)
+      end
+    end
+    context 'bad options[\'force_confold\']' do
+      let :params do
+        {
+          options: { 'force_confold' => 'foo' },
+        }
+      end
+      it do
+        expect {
+          subject.call
+        }.to raise_error(Puppet::Error, /not a boolean/)
+      end
+    end
+    context 'bad options[\'force_confnew\']' do
+      let :params do
+        {
+          options: { 'force_confnew' => 'foo' },
+        }
+      end
+      it do
+        expect {
+          subject.call
+        }.to raise_error(Puppet::Error, /not a boolean/)
+      end
+    end
+    context 'bad options[\'force_confmiss\']' do
+      let :params do
+        {
+          options: { 'force_confmiss' => 'foo' },
+        }
+      end
+      it do
+        expect {
+          subject.call
+        }.to raise_error(Puppet::Error, /not a boolean/)
+      end
+    end
+    context 'bad options[\'invalid_key\']' do
+      let :params do
+        {
+          options: { 'invalid_key' => true },
+        }
+      end
+      it do
+        expect {
+          subject.call
+        }.to raise_error(Puppet::Error, /invalid_key not a valid key/)
       end
     end
   end

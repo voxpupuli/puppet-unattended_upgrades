@@ -1,0 +1,11 @@
+Dpkg::Options {
+<%- @_options.each_pair do |config, value| 
+  if %w(force_confdef force_confold force_confnew force_confmiss).include?(config) then
+    if value then -%>
+  "--<%= config.sub('_','-') -%>";
+    <%- end 
+  else 
+    scope.function_fail(["#{config} not a valid key for $unattended_upgrades::options"])
+  end
+end -%>
+}
