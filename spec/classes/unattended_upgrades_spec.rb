@@ -195,6 +195,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'Ubuntu',
       lsbdistcodename: 'precise',
       lsbrelease: '12.04',
+      lsbdistrelease: '12.04',
     } }
     it {
       should create_file(file_unattended).with(
@@ -216,6 +217,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'Ubuntu',
       lsbdistcodename: 'trusty',
       lsbrelease: '14.04',
+      lsbdistrelease: '14.04',
     } }
     it {
       should create_file(file_unattended).with(
@@ -237,6 +239,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'Ubuntu',
       lsbdistcodename: 'vivid',
       lsbrelease: '15.04',
+      lsbdistrelease: '15.04',
     } }
     it {
       should create_file(file_unattended).with(
@@ -258,6 +261,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'Ubuntu',
       lsbdistcodename: 'wily',
       lsbrelease: '15.10',
+      lsbdistrelease: '15.10',
     } }
     it {
       should create_file(file_unattended).with(
