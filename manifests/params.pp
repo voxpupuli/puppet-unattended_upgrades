@@ -63,13 +63,11 @@ class unattended_upgrades::params {
       }
     }
     'ubuntu': {
-      # TODO do we really want to pull in ${distro_codename}-updates by default?
       case $xfacts['lsbdistcodename'] {
         'precise': {
           $legacy_origin      = true
           $origins            = [
             '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-            #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
           ]
 
         }
@@ -77,14 +75,18 @@ class unattended_upgrades::params {
           $legacy_origin      = true
           $origins            = [
             '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-            #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
+          ]
+        }
+        'xenial', 'yakkety': {
+          $legacy_origin      = true
+          $origins            = [
+            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
           ]
         }
         default: {
           $legacy_origin      = true
           $origins            = [
             '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-            #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
           ]
         }
       }
