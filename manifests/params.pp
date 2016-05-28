@@ -20,6 +20,7 @@ class unattended_upgrades::params {
     $xfacts = {
       'lsbdistid'           => $::lsbdistid,
       'lsbdistcodename'     => $::lsbdistcodename,
+      'lsbmajdistrelease'   => $::lsbmajdistrelease,
     }
   } else {
     # Strict variables facts lookup compatibility
@@ -30,6 +31,10 @@ class unattended_upgrades::params {
       },
       'lsbdistcodename' => defined('$lsbdistcodename') ? {
         true    => $::lsbdistcodename,
+        default => undef,
+      },
+      'lsbmajdistrelease' => defined('$lsbmajdistrelease') ? {
+        true    => $::lsbmajdistrelease,
         default => undef,
       },
     }
@@ -80,6 +85,37 @@ class unattended_upgrades::params {
           $origins            = [
             '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
             #'${distro_id}:${distro_codename}-updates', #lint:ignore:single_quote_string_with_variables
+          ]
+        }
+      }
+    }
+    'LinuxMint': {
+      case $xfacts['lsbmajdistrelease'] {
+        # Linux Mint 13 is based on Ubuntu 12.04
+        '13': {
+          $legacy_origin      = true
+          $origins            = [
+            'Ubuntu:precise-security',
+          ]
+        }
+        # Linux Mint 17* is based on Ubuntu 14.04.
+        '17': {
+          $legacy_origin      = true
+          $origins            = [
+            'Ubuntu:trusty-security',
+          ]
+        }
+        # Linux Mint 18* is based on Ubuntu 16.04
+        '18': {
+          $legacy_origin      = true
+          $origins            = [
+            'Ubuntu:xenial-security',
+          ]
+        }
+        default: {
+          $legacy_origin      = true
+          $origins            = [
+            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
           ]
         }
       }

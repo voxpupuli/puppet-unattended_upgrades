@@ -293,6 +293,72 @@ describe 'unattended_upgrades' do
     }
   end
 
+  context 'with defaults on Linux Mint 13 Maya' do
+    let(:facts) { {
+      osfamily: 'Debian',
+      lsbdistid: 'LinuxMint',
+      lsbdistcodename: 'maya',
+      lsbdistrelease: '13',
+      lsbmajdistrelease: '13',
+    } }
+    it {
+      should create_file(file_unattended).with(
+        'owner' => 'root',
+        'group' => 'root',
+        'mode'  => '0644',
+      ).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"Ubuntu\:precise-security";\n
+        };/x
+      )
+    }
+  end
+
+  context 'with defaults on Linux Mint 17.3 Rosa' do
+    let(:facts) { {
+      osfamily: 'Debian',
+      lsbdistid: 'LinuxMint',
+      lsbdistcodename: 'rosa',
+      lsbdistrelease: '17.3',
+      lsbmajdistrelease: '17',
+    } }
+    it {
+      should create_file(file_unattended).with(
+        'owner' => 'root',
+        'group' => 'root',
+        'mode'  => '0644',
+      ).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"Ubuntu\:trusty-security";\n
+        };/x
+      )
+    }
+  end
+
+  context 'with defaults on Linux Mint 18 Sarah' do
+    let(:facts) { {
+      osfamily: 'Debian',
+      lsbdistid: 'LinuxMint',
+      lsbdistcodename: 'sarah',
+      lsbdistrelease: '18',
+      lsbmajdistrelease: '18',
+    } }
+    it {
+      should create_file(file_unattended).with(
+        'owner' => 'root',
+        'group' => 'root',
+        'mode'  => '0644',
+      ).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"Ubuntu\:xenial-security";\n
+        };/x
+      )
+    }
+  end
+
   context 'set all the things' do
     let :params do
       {
