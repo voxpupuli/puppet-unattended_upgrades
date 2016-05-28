@@ -21,6 +21,7 @@ class unattended_upgrades::params {
       'lsbdistid'           => $::lsbdistid,
       'lsbdistcodename'     => $::lsbdistcodename,
       'lsbmajdistrelease'   => $::lsbmajdistrelease,
+      'lsbdistrelease'      => $::lsbdistrelease,
     }
   } else {
     # Strict variables facts lookup compatibility
@@ -35,6 +36,10 @@ class unattended_upgrades::params {
       },
       'lsbmajdistrelease' => defined('$lsbmajdistrelease') ? {
         true    => $::lsbmajdistrelease,
+        default => undef,
+      },
+      'lsbdistrelease' => defined('$lsbdistrelease') ? {
+        true    => $::lsbdistrelease,
         default => undef,
       },
     }
@@ -71,7 +76,7 @@ class unattended_upgrades::params {
           ]
 
         }
-        'trusty', 'utopic', 'vivid', 'wily': {
+        'trusty', 'wily': {
           $legacy_origin      = true
           $origins            = [
             '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
@@ -84,6 +89,7 @@ class unattended_upgrades::params {
           ]
         }
         default: {
+          warning("Ubuntu ${xfacts['lsbdistrelease']} \"${xfacts['lsbdistcodename']}\" has reached End of Life - please upgrade!")
           $legacy_origin      = true
           $origins            = [
             '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables

@@ -271,6 +271,9 @@ describe 'unattended_upgrades' do
         };/x
       )
     end
+    # TODO: implement test case for "warning", similar to
+    # w = 'Ubuntu 15.04 "vivid" has reached End of Life - please upgrade!'
+    # it_behaves_like 'has_warning', pp, w
   end
 
   context 'with defaults on Ubuntu 15.10 Wily Werewolf' do
