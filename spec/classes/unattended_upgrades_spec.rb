@@ -210,7 +210,6 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'precise',
-        lsbrelease: '12.04',
         lsbdistrelease: '12.04'
       }
     end
@@ -234,7 +233,6 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'trusty',
-        lsbrelease: '14.04',
         lsbdistrelease: '14.04'
       }
     end
@@ -258,7 +256,6 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'vivid',
-        lsbrelease: '15.04',
         lsbdistrelease: '15.04'
       }
     end
@@ -282,7 +279,6 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'wily',
-        lsbrelease: '15.10',
         lsbdistrelease: '15.10'
       }
     end
@@ -306,7 +302,6 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'xenial',
-        lsbrelease: '16.04',
         lsbdistrelease: '16.04'
       }
     end
@@ -330,7 +325,6 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'yakkety',
-        lsbrelease: '16.10',
         lsbdistrelease: '16.10'
       }
     end
