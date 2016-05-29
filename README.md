@@ -119,7 +119,7 @@ Using unattended\_upgrades simply consists of including the module and if needed
 
 ## Limitations
 
-This module should work across all versions of Debian/Ubuntu.
+This module should work across all versions of Debian, Ubuntu, and Linux Mint.
 
 ## License
 
