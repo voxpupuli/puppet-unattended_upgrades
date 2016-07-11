@@ -4,15 +4,17 @@ describe 'unattended_upgrades' do
   let(:file_unattended) { '/etc/apt/apt.conf.d/50unattended-upgrades' }
   let(:file_periodic) { '/etc/apt/apt.conf.d/10periodic' }
   let(:file_options) { '/etc/apt/apt.conf.d/10options' }
-  let(:facts) { {
-    osfamily: 'Debian',
-    lsbdistid: 'Debian',
-    lsbdistcodename: 'wheezy',
-    lsbrelease: '7.0.3'
-  } }
-  let(:pre_condition) {
+  let(:facts) do
+    {
+      osfamily: 'Debian',
+      lsbdistid: 'Debian',
+      lsbdistcodename: 'wheezy',
+      lsbrelease: '7.0.3'
+    }
+  end
+  let(:pre_condition) do
     'include ::apt'
-  }
+  end
 
   context 'with defaults on Debian' do
     it do
@@ -22,28 +24,28 @@ describe 'unattended_upgrades' do
       should contain_class('unattended_upgrades')
     end
 
-    it {
+    it do
       should contain_apt__conf('unattended-upgrades').with(
         require: 'Package[unattended-upgrades]',
         notify_update: false
       )
-    }
+    end
 
-    it {
+    it do
       should contain_apt__conf('periodic').with(
         require: 'Package[unattended-upgrades]',
         notify_update: false
       )
-    }
+    end
 
-    it {
+    it do
       should contain_apt__conf('options').with(
         require: 'Package[unattended-upgrades]',
         notify_update: false
       )
-    }
+    end
 
-    it {
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -71,9 +73,9 @@ describe 'unattended_upgrades' do
       ).without_content(
         /Acquire::http::Dl-Limit/
       )
-    }
+    end
 
-    it {
+    it do
       should create_file(file_periodic).with(
         owner: 'root',
         group: 'root',
@@ -103,13 +105,14 @@ describe 'unattended_upgrades' do
       ).with_content(
         /APT::Periodic::Verbose "0";/
       )
-    }
+    end
 
-    it { should contain_apt__conf('auto-upgrades').with(
-      ensure: 'absent'
-    )
-    }
-    it {
+    it do
+      should contain_apt__conf('auto-upgrades').with(
+        ensure: 'absent'
+      )
+    end
+    it do
       should create_file(file_options).with(
         owner: 'root',
         group: 'root',
@@ -125,17 +128,19 @@ describe 'unattended_upgrades' do
       ).without_content(
         /\"--force-confmiss\";/
       )
-    }
+    end
   end
 
   context 'with defaults on Debian 6 Squeeze' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'Debian',
-      lsbdistcodename: 'squeeze',
-      lsbdistrelease: '6.0.10'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Debian',
+        lsbdistcodename: 'squeeze',
+        lsbdistrelease: '6.0.10'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -148,17 +153,19 @@ describe 'unattended_upgrades' do
         \t"\${distro_id}\ \${distro_codename}-lts";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Debian 7 Wheezy' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'Debian',
-      lsbdistcodename: 'wheezy',
-      lsbdistrelease: '7.1'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Debian',
+        lsbdistcodename: 'wheezy',
+        lsbdistrelease: '7.1'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -170,17 +177,19 @@ describe 'unattended_upgrades' do
         \t"origin=Debian,archive=oldstable,label=Debian-Security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Debian 8 Jessie' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'Debian',
-      lsbdistcodename: 'jessie',
-      lsbdistrelease: '8.2'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Debian',
+        lsbdistcodename: 'jessie',
+        lsbdistrelease: '8.2'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -191,18 +200,20 @@ describe 'unattended_upgrades' do
         \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Ubuntu 12.04LTS Precise Pangolin' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'Ubuntu',
-      lsbdistcodename: 'precise',
-      lsbrelease: '12.04',
-      lsbdistrelease: '12.04'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Ubuntu',
+        lsbdistcodename: 'precise',
+        lsbrelease: '12.04',
+        lsbdistrelease: '12.04'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -213,18 +224,20 @@ describe 'unattended_upgrades' do
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Ubuntu 14.04LTS Trusty Tahr' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'Ubuntu',
-      lsbdistcodename: 'trusty',
-      lsbrelease: '14.04',
-      lsbdistrelease: '14.04'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Ubuntu',
+        lsbdistcodename: 'trusty',
+        lsbrelease: '14.04',
+        lsbdistrelease: '14.04'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -235,18 +248,20 @@ describe 'unattended_upgrades' do
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Ubuntu 15.04 Vivid Vervet' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'Ubuntu',
-      lsbdistcodename: 'vivid',
-      lsbrelease: '15.04',
-      lsbdistrelease: '15.04'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Ubuntu',
+        lsbdistcodename: 'vivid',
+        lsbrelease: '15.04',
+        lsbdistrelease: '15.04'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -257,18 +272,20 @@ describe 'unattended_upgrades' do
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Ubuntu 15.10 Wily Werewolf' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'Ubuntu',
-      lsbdistcodename: 'wily',
-      lsbrelease: '15.10',
-      lsbdistrelease: '15.10'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Ubuntu',
+        lsbdistcodename: 'wily',
+        lsbrelease: '15.10',
+        lsbdistrelease: '15.10'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -279,34 +296,38 @@ describe 'unattended_upgrades' do
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Raspbian' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'Raspbian',
-      lsbdistcodename: 'jessie',
-      lsbrelease: '8.0'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Raspbian',
+        lsbdistcodename: 'jessie',
+        lsbrelease: '8.0'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
       )
-    }
+    end
   end
 
   context 'with defaults on Linux Mint 13 Maya' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'LinuxMint',
-      lsbdistcodename: 'maya',
-      lsbdistrelease: '13',
-      lsbmajdistrelease: '13'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'LinuxMint',
+        lsbdistcodename: 'maya',
+        lsbdistrelease: '13',
+        lsbmajdistrelease: '13'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         'owner' => 'root',
         'group' => 'root',
@@ -317,18 +338,20 @@ describe 'unattended_upgrades' do
         \t"Ubuntu\:precise-security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Linux Mint 17.3 Rosa' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'LinuxMint',
-      lsbdistcodename: 'rosa',
-      lsbdistrelease: '17.3',
-      lsbmajdistrelease: '17'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'LinuxMint',
+        lsbdistcodename: 'rosa',
+        lsbdistrelease: '17.3',
+        lsbmajdistrelease: '17'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         'owner' => 'root',
         'group' => 'root',
@@ -339,18 +362,20 @@ describe 'unattended_upgrades' do
         \t"Ubuntu\:trusty-security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'with defaults on Linux Mint 18 Sarah' do
-    let(:facts) { {
-      osfamily: 'Debian',
-      lsbdistid: 'LinuxMint',
-      lsbdistcodename: 'sarah',
-      lsbdistrelease: '18',
-      lsbmajdistrelease: '18'
-    } }
-    it {
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'LinuxMint',
+        lsbdistcodename: 'sarah',
+        lsbdistrelease: '18',
+        lsbmajdistrelease: '18'
+      }
+    end
+    it do
       should create_file(file_unattended).with(
         'owner' => 'root',
         'group' => 'root',
@@ -361,7 +386,7 @@ describe 'unattended_upgrades' do
         \t"Ubuntu\:xenial-security";\n
         };/x
       )
-    }
+    end
   end
 
   context 'set all the things' do
@@ -405,26 +430,28 @@ describe 'unattended_upgrades' do
     end
     it { should contain_package('unattended-upgrades') }
 
-    it { should contain_apt__conf('unattended-upgrades').with(
-      require: 'Package[unattended-upgrades]',
-      notify_update: true
+    it do
+      should contain_apt__conf('unattended-upgrades').with(
+        require: 'Package[unattended-upgrades]',
+        notify_update: true
     )
-    }
+    end
 
-    it { should contain_apt__conf('periodic').with(
-      require: 'Package[unattended-upgrades]',
-      notify_update: true
+    it do
+      should contain_apt__conf('periodic').with(
+        require: 'Package[unattended-upgrades]',
+        notify_update: true
     )
-    }
+    end
 
-    it {
+    it do
       should contain_apt__conf('options').with(
         require: 'Package[unattended-upgrades]',
         notify_update: true
       )
-    }
+    end
 
-    it {
+    it do
       should create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
@@ -452,9 +479,9 @@ describe 'unattended_upgrades' do
       ).with_content(
         /Acquire::http::Dl-Limit "70";/
       )
-    }
+    end
 
-    it {
+    it do
       should create_file(file_periodic).with(
         owner: 'root',
         group: 'root',
@@ -486,9 +513,9 @@ describe 'unattended_upgrades' do
       ).with_content(
         /APT::Periodic::RandomSleep "300";/
       )
-    }
+    end
 
-    it {
+    it do
       should create_file(file_options).with(
         owner: 'root',
         group: 'root',
@@ -504,12 +531,12 @@ describe 'unattended_upgrades' do
       ).with_content(
         /^\s+"--force-confmiss";/
       )
-    }
-    it {
+    end
+    it do
       should contain_apt__conf('auto-upgrades').with(
         ensure: 'absent'
       )
-    }
+    end
   end
 
   describe 'validation tests' do
@@ -520,9 +547,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
     context 'bad legacy_origin' do
@@ -532,9 +559,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
     context 'bad minimal_steps' do
@@ -544,9 +571,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
     context 'bad blacklist' do
@@ -556,9 +583,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not an Array/)
+        end.to raise_error(Puppet::Error, /not an Array/)
       end
     end
     context 'bad origins' do
@@ -568,9 +595,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not an Array/)
+        end.to raise_error(Puppet::Error, /not an Array/)
       end
     end
     context 'bad auto' do
@@ -580,9 +607,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /not a Hash/)
       end
     end
     context 'bad mail' do
@@ -592,9 +619,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /not a Hash/)
       end
     end
     context 'bad backup' do
@@ -604,9 +631,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /not a Hash/)
       end
     end
     context 'bad age' do
@@ -616,9 +643,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /not a Hash/)
       end
     end
     context 'bad size' do
@@ -628,9 +655,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /to be an Integer/)
+        end.to raise_error(Puppet::Error, /to be an Integer/)
       end
     end
     context 'bad upgradeable_packages' do
@@ -640,9 +667,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /not a Hash/)
       end
     end
     context 'bad mail[\'only_on_error\']' do
@@ -652,9 +679,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
     context 'bad options[\'force_confdef\']' do
@@ -664,9 +691,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
     context 'bad options[\'force_confold\']' do
@@ -676,9 +703,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
     context 'bad options[\'force_confnew\']' do
@@ -688,9 +715,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
     context 'bad options[\'force_confmiss\']' do
@@ -700,9 +727,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /not a boolean/)
       end
     end
     context 'bad options[\'invalid_key\']' do
@@ -712,9 +739,9 @@ describe 'unattended_upgrades' do
         }
       end
       it do
-        expect {
+        expect do
           subject.call
-        }.to raise_error(Puppet::Error, /invalid_key not a valid key/)
+        end.to raise_error(Puppet::Error, /invalid_key not a valid key/)
       end
     end
   end
