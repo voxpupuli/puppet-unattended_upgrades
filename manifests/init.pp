@@ -52,6 +52,18 @@ class unattended_upgrades (
   validate_bool($_options['force_confold'])
   validate_bool($_options['force_confnew'])
   validate_bool($_options['force_confmiss'])
+  if $dl_limit != undef {
+    validate_integer($dl_limit, undef, 0)
+  }
+  validate_integer($enable, 1, 0)
+  validate_string($package_ensure)
+  if $random_sleep != undef {
+    validate_integer($random_sleep, undef, 0)
+  }
+  validate_integer($update, undef, 0)
+  validate_integer($upgrade, undef, 0)
+  validate_integer($verbose, undef, 0)
+  validate_bool($notify_update)
 
   package { 'unattended-upgrades':
     ensure => $package_ensure,
