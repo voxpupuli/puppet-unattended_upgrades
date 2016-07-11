@@ -15,7 +15,12 @@ describe 'unattended_upgrades' do
   }
 
   context 'with defaults on Debian' do
-    it { should contain_package('unattended-upgrades') }
+    it do
+      should contain_package('unattended-upgrades')
+      should compile.with_all_deps
+      should contain_class('unattended_upgrades::params')
+      should contain_class('unattended_upgrades')
+    end
 
     it {
       should contain_apt__conf('unattended-upgrades').with(
