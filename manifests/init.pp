@@ -21,49 +21,64 @@ class unattended_upgrades (
   $options              = {},
 ) inherits ::unattended_upgrades::params {
 
+  validate_hash($age)
+  $_age = merge($::unattended_upgrades::default_age, $age)
+
+  validate_hash($auto)
+  $_auto = merge($::unattended_upgrades::default_auto, $auto)
+
+  validate_hash($backup)
+  $_backup = merge($::unattended_upgrades::default_backup, $backup)
+
+  validate_array($blacklist)
+
+  if $dl_limit != undef {
+    validate_integer($dl_limit, undef, 0)
+  }
+
+  validate_integer($enable, 1, 0)
+
+  validate_bool($install_on_shutdown)
+
+  validate_bool($legacy_origin)
+  validate_array($origins)
   if $legacy_origin == undef or $origins == undef {
     fail('Please explicitly specify unattended_upgrades::legacy_origin and unattended_upgrades::origins.')
   }
 
-  validate_bool(
-    $install_on_shutdown,
-    $legacy_origin,
-    $minimal_steps,
-  )
-  validate_array($blacklist)
-  validate_array($origins)
-  validate_hash($auto)
-  $_auto = merge($::unattended_upgrades::default_auto, $auto)
   validate_hash($mail)
   if $mail['only_on_error'] {
     validate_bool($mail['only_on_error'])
   }
   $_mail = merge($::unattended_upgrades::default_mail, $mail)
-  validate_hash($backup)
-  $_backup = merge($::unattended_upgrades::default_backup, $backup)
-  validate_hash($age)
-  $_age = merge($::unattended_upgrades::default_age, $age)
+
+  validate_bool($minimal_steps)
+
+  validate_string($package_ensure)
+
+  if $random_sleep != undef {
+    validate_integer($random_sleep, undef, 0)
+  }
+
   validate_integer($size)
+
+  validate_integer($update, undef, 0)
+
+  validate_integer($upgrade, undef, 0)
+
   validate_hash($upgradeable_packages)
   $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
+
+  validate_integer($verbose, undef, 0)
+
+  validate_bool($notify_update)
+
   validate_hash($options)
   $_options = merge($unattended_upgrades::default_options, $options)
   validate_bool($_options['force_confdef'])
   validate_bool($_options['force_confold'])
   validate_bool($_options['force_confnew'])
   validate_bool($_options['force_confmiss'])
-  if $dl_limit != undef {
-    validate_integer($dl_limit, undef, 0)
-  }
-  validate_integer($enable, 1, 0)
-  validate_string($package_ensure)
-  if $random_sleep != undef {
-    validate_integer($random_sleep, undef, 0)
-  }
-  validate_integer($update, undef, 0)
-  validate_integer($upgrade, undef, 0)
-  validate_integer($verbose, undef, 0)
-  validate_bool($notify_update)
 
   package { 'unattended-upgrades':
     ensure => $package_ensure,
