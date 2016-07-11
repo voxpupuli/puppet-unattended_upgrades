@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+# rubocop:disable Style/RegexpLiteral
 describe 'unattended_upgrades' do
   let(:file_unattended) { '/etc/apt/apt.conf.d/50unattended-upgrades' }
   let(:file_periodic) { '/etc/apt/apt.conf.d/10periodic' }
