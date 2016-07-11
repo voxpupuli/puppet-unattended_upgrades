@@ -50,16 +50,14 @@ class unattended_upgrades (
   validate_bool($install_on_shutdown)
 
   validate_bool($legacy_origin)
-  validate_array($origins)
-  if $legacy_origin == undef or $origins == undef {
-    fail('Please explicitly specify unattended_upgrades::legacy_origin and unattended_upgrades::origins.')
-  }
 
   validate_hash($mail)
   $_mail = merge($::unattended_upgrades::default_mail, $mail)
   validate_bool($_mail['only_on_error'])
 
   validate_bool($minimal_steps)
+
+  validate_array($origins)
 
   validate_string($package_ensure)
 
