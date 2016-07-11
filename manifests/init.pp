@@ -23,12 +23,21 @@ class unattended_upgrades (
 
   validate_hash($age)
   $_age = merge($::unattended_upgrades::default_age, $age)
+  validate_integer($_age['min'], undef, 0)
+  validate_integer($_age['max'], undef, 0)
 
   validate_hash($auto)
   $_auto = merge($::unattended_upgrades::default_auto, $auto)
+  validate_integer($_auto['clean'], undef, 0)
+  validate_bool($_auto['fix_interrupted_dpkg'])
+  validate_bool($_auto['reboot'])
+  validate_string($_auto['reboot_time'])
+  validate_bool($_auto['remove'])
 
   validate_hash($backup)
   $_backup = merge($::unattended_upgrades::default_backup, $backup)
+  validate_integer($_backup['archive_interval'], undef, 0)
+  validate_integer($_backup['level'], undef, 0)
 
   validate_array($blacklist)
 
@@ -47,10 +56,8 @@ class unattended_upgrades (
   }
 
   validate_hash($mail)
-  if $mail['only_on_error'] {
-    validate_bool($mail['only_on_error'])
-  }
   $_mail = merge($::unattended_upgrades::default_mail, $mail)
+  validate_bool($_mail['only_on_error'])
 
   validate_bool($minimal_steps)
 
@@ -60,7 +67,7 @@ class unattended_upgrades (
     validate_integer($random_sleep, undef, 0)
   }
 
-  validate_integer($size)
+  validate_integer($size, undef, 0)
 
   validate_integer($update, undef, 0)
 
@@ -68,6 +75,8 @@ class unattended_upgrades (
 
   validate_hash($upgradeable_packages)
   $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
+  validate_integer($_upgradeable_packages['download_only'], undef, 0)
+  validate_integer($_upgradeable_packages['debdelta'], undef, 0)
 
   validate_integer($verbose, undef, 0)
 
