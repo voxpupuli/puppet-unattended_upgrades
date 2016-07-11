@@ -8,7 +8,7 @@ describe 'unattended_upgrades' do
     osfamily: 'Debian',
     lsbdistid: 'Debian',
     lsbdistcodename: 'wheezy',
-    lsbrelease: '7.0.3',
+    lsbrelease: '7.0.3'
   } }
   let(:pre_condition) {
     'include ::apt'
@@ -133,7 +133,7 @@ describe 'unattended_upgrades' do
       osfamily: 'Debian',
       lsbdistid: 'Debian',
       lsbdistcodename: 'squeeze',
-      lsbdistrelease: '6.0.10',
+      lsbdistrelease: '6.0.10'
     } }
     it {
       should create_file(file_unattended).with(
@@ -156,7 +156,7 @@ describe 'unattended_upgrades' do
       osfamily: 'Debian',
       lsbdistid: 'Debian',
       lsbdistcodename: 'wheezy',
-      lsbdistrelease: '7.1',
+      lsbdistrelease: '7.1'
     } }
     it {
       should create_file(file_unattended).with(
@@ -178,7 +178,7 @@ describe 'unattended_upgrades' do
       osfamily: 'Debian',
       lsbdistid: 'Debian',
       lsbdistcodename: 'jessie',
-      lsbdistrelease: '8.2',
+      lsbdistrelease: '8.2'
     } }
     it {
       should create_file(file_unattended).with(
@@ -200,7 +200,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'Ubuntu',
       lsbdistcodename: 'precise',
       lsbrelease: '12.04',
-      lsbdistrelease: '12.04',
+      lsbdistrelease: '12.04'
     } }
     it {
       should create_file(file_unattended).with(
@@ -222,7 +222,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'Ubuntu',
       lsbdistcodename: 'trusty',
       lsbrelease: '14.04',
-      lsbdistrelease: '14.04',
+      lsbdistrelease: '14.04'
     } }
     it {
       should create_file(file_unattended).with(
@@ -244,7 +244,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'Ubuntu',
       lsbdistcodename: 'vivid',
       lsbrelease: '15.04',
-      lsbdistrelease: '15.04',
+      lsbdistrelease: '15.04'
     } }
     it {
       should create_file(file_unattended).with(
@@ -266,7 +266,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'Ubuntu',
       lsbdistcodename: 'wily',
       lsbrelease: '15.10',
-      lsbdistrelease: '15.10',
+      lsbdistrelease: '15.10'
     } }
     it {
       should create_file(file_unattended).with(
@@ -287,7 +287,7 @@ describe 'unattended_upgrades' do
       osfamily: 'Debian',
       lsbdistid: 'Raspbian',
       lsbdistcodename: 'jessie',
-      lsbrelease: '8.0',
+      lsbrelease: '8.0'
     } }
     it {
       should create_file(file_unattended).with(
@@ -304,7 +304,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'LinuxMint',
       lsbdistcodename: 'maya',
       lsbdistrelease: '13',
-      lsbmajdistrelease: '13',
+      lsbmajdistrelease: '13'
     } }
     it {
       should create_file(file_unattended).with(
@@ -326,7 +326,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'LinuxMint',
       lsbdistcodename: 'rosa',
       lsbdistrelease: '17.3',
-      lsbmajdistrelease: '17',
+      lsbmajdistrelease: '17'
     } }
     it {
       should create_file(file_unattended).with(
@@ -348,7 +348,7 @@ describe 'unattended_upgrades' do
       lsbdistid: 'LinuxMint',
       lsbdistcodename: 'sarah',
       lsbdistrelease: '18',
-      lsbmajdistrelease: '18',
+      lsbmajdistrelease: '18'
     } }
     it {
       should create_file(file_unattended).with(
@@ -372,7 +372,7 @@ describe 'unattended_upgrades' do
         update: 5,
         upgradeable_packages: {
           'download_only' => 5,
-          'debdelta'      => 5,
+          'debdelta'      => 5
         },
         upgrade: 5,
         auto: {
@@ -380,7 +380,7 @@ describe 'unattended_upgrades' do
           'fix_interrupted_dpkg' => false,
           'remove'               => false,
           'reboot'               => true,
-          'reboot_time'          => '03:00',
+          'reboot_time'          => '03:00'
         },
         verbose: 1,
         legacy_origin: true,
@@ -390,7 +390,7 @@ describe 'unattended_upgrades' do
         install_on_shutdown: true,
         mail: {
           'to'            => 'root@localhost',
-          'only_on_error' => true,
+          'only_on_error' => true
         },
         dl_limit: 70,
         random_sleep: 300,
@@ -399,7 +399,7 @@ describe 'unattended_upgrades' do
           'force_confdef' =>  false,
           'force_confold' =>  false,
           'force_confnew' =>  true,
-          'force_confmiss' => true,
+          'force_confmiss' => true
         }
       }
     end
@@ -516,7 +516,7 @@ describe 'unattended_upgrades' do
     context 'bad install_on_shutdown' do
       let :params do
         {
-          install_on_shutdown: 'foo',
+          install_on_shutdown: 'foo'
         }
       end
       it do
@@ -528,7 +528,7 @@ describe 'unattended_upgrades' do
     context 'bad legacy_origin' do
       let :params do
         {
-          legacy_origin: 'foo',
+          legacy_origin: 'foo'
         }
       end
       it do
@@ -540,7 +540,7 @@ describe 'unattended_upgrades' do
     context 'bad minimal_steps' do
       let :params do
         {
-          minimal_steps: 'foo',
+          minimal_steps: 'foo'
         }
       end
       it do
@@ -552,7 +552,7 @@ describe 'unattended_upgrades' do
     context 'bad blacklist' do
       let :params do
         {
-          blacklist: 'foo',
+          blacklist: 'foo'
         }
       end
       it do
@@ -564,7 +564,7 @@ describe 'unattended_upgrades' do
     context 'bad origins' do
       let :params do
         {
-          origins: 'foo',
+          origins: 'foo'
         }
       end
       it do
@@ -576,7 +576,7 @@ describe 'unattended_upgrades' do
     context 'bad auto' do
       let :params do
         {
-          auto: 'foo',
+          auto: 'foo'
         }
       end
       it do
@@ -588,7 +588,7 @@ describe 'unattended_upgrades' do
     context 'bad mail' do
       let :params do
         {
-          mail: 'foo',
+          mail: 'foo'
         }
       end
       it do
@@ -600,7 +600,7 @@ describe 'unattended_upgrades' do
     context 'bad backup' do
       let :params do
         {
-          backup: 'foo',
+          backup: 'foo'
         }
       end
       it do
@@ -612,7 +612,7 @@ describe 'unattended_upgrades' do
     context 'bad age' do
       let :params do
         {
-          age: 'foo',
+          age: 'foo'
         }
       end
       it do
@@ -624,7 +624,7 @@ describe 'unattended_upgrades' do
     context 'bad size' do
       let :params do
         {
-          size: 'foo',
+          size: 'foo'
         }
       end
       it do
@@ -636,7 +636,7 @@ describe 'unattended_upgrades' do
     context 'bad upgradeable_packages' do
       let :params do
         {
-          upgradeable_packages: 'foo',
+          upgradeable_packages: 'foo'
         }
       end
       it do
@@ -648,7 +648,7 @@ describe 'unattended_upgrades' do
     context 'bad mail[\'only_on_error\']' do
       let :params do
         {
-          mail: { 'only_on_error' => 'foo' },
+          mail: { 'only_on_error' => 'foo' }
         }
       end
       it do
@@ -660,7 +660,7 @@ describe 'unattended_upgrades' do
     context 'bad options[\'force_confdef\']' do
       let :params do
         {
-          options: { 'force_confdef' => 'foo' },
+          options: { 'force_confdef' => 'foo' }
         }
       end
       it do
@@ -672,7 +672,7 @@ describe 'unattended_upgrades' do
     context 'bad options[\'force_confold\']' do
       let :params do
         {
-          options: { 'force_confold' => 'foo' },
+          options: { 'force_confold' => 'foo' }
         }
       end
       it do
@@ -684,7 +684,7 @@ describe 'unattended_upgrades' do
     context 'bad options[\'force_confnew\']' do
       let :params do
         {
-          options: { 'force_confnew' => 'foo' },
+          options: { 'force_confnew' => 'foo' }
         }
       end
       it do
@@ -696,7 +696,7 @@ describe 'unattended_upgrades' do
     context 'bad options[\'force_confmiss\']' do
       let :params do
         {
-          options: { 'force_confmiss' => 'foo' },
+          options: { 'force_confmiss' => 'foo' }
         }
       end
       it do
@@ -708,7 +708,7 @@ describe 'unattended_upgrades' do
     context 'bad options[\'invalid_key\']' do
       let :params do
         {
-          options: { 'invalid_key' => true },
+          options: { 'invalid_key' => true }
         }
       end
       it do
