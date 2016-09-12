@@ -210,7 +210,6 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'precise',
-        lsbrelease: '12.04',
         lsbdistrelease: '12.04'
       }
     end
@@ -234,7 +233,6 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'trusty',
-        lsbrelease: '14.04',
         lsbdistrelease: '14.04'
       }
     end
@@ -258,8 +256,33 @@ describe 'unattended_upgrades' do
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
         lsbdistcodename: 'vivid',
-        lsbrelease: '15.04',
         lsbdistrelease: '15.04'
+      }
+    end
+    it do
+      should create_file(file_unattended).with(
+        owner: 'root',
+        group: 'root',
+        mode: '0644'
+      ).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
+        };/x
+      )
+    end
+    # TODO: implement test case for "warning", similar to
+    # w = 'Ubuntu 15.04 "vivid" has reached End of Life - please upgrade!'
+    # it_behaves_like 'has_warning', pp, w
+  end
+
+  context 'with defaults on Ubuntu 15.10 Wily Werewolf' do
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Ubuntu',
+        lsbdistcodename: 'wily',
+        lsbdistrelease: '15.10'
       }
     end
     it do
@@ -276,14 +299,36 @@ describe 'unattended_upgrades' do
     end
   end
 
-  context 'with defaults on Ubuntu 15.10 Wily Werewolf' do
+  context 'with defaults on Ubuntu 16.04 Xenial Xerus' do
     let(:facts) do
       {
         osfamily: 'Debian',
         lsbdistid: 'Ubuntu',
-        lsbdistcodename: 'wily',
-        lsbrelease: '15.10',
-        lsbdistrelease: '15.10'
+        lsbdistcodename: 'xenial',
+        lsbdistrelease: '16.04'
+      }
+    end
+    it do
+      should create_file(file_unattended).with(
+        owner: 'root',
+        group: 'root',
+        mode: '0644'
+      ).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
+        };/x
+      )
+    end
+  end
+
+  context 'with defaults on Ubuntu 16.10 Yakkety Yak' do
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Ubuntu',
+        lsbdistcodename: 'yakkety',
+        lsbdistrelease: '16.10'
       }
     end
     it do

@@ -78,7 +78,7 @@ Using unattended\_upgrades simply consists of including the module and if needed
 * `dl_limit`(`undef`): Use a bandwidth limit for downloading, specified in kb/sec.
 * `enable` (`1`): Enable the automatic installation of updates.
 * `install_on_shutdown` (`false`): Install updates on shutdown instead of in the background.
-* `legacy_origin` (`true` for Debian (squeeze), Ubuntu (precise, trusty, utopic, vivid, wily and default), `false`for Debian (wheezy and default)): Use the legacy `Unattended-Upgrade::Allowed-Origins` setting or the modern `Unattended-Upgrade::Origins-Pattern`.
+* `legacy_origin` (`true` for Debian (squeeze), Ubuntu (precise, trusty, utopic, vivid, wily, xenial, yakkety, and default), `false` for Debian (wheezy and default)): Use the legacy `Unattended-Upgrade::Allowed-Origins` setting or the modern `Unattended-Upgrade::Origins-Pattern`.
 * `mail`: A hash to configure email behaviour with two possible keys:
   * `only_on_error` (`true`): Only send mail when something went wrong
   * `to` (`undef`): Email address to send email too
