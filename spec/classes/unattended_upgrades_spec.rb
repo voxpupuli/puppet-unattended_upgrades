@@ -480,14 +480,14 @@ describe 'unattended_upgrades' do
       should contain_apt__conf('unattended-upgrades').with(
         require: 'Package[unattended-upgrades]',
         notify_update: true
-    )
+      )
     end
 
     it do
       should contain_apt__conf('periodic').with(
         require: 'Package[unattended-upgrades]',
         notify_update: true
-    )
+      )
     end
 
     it do
