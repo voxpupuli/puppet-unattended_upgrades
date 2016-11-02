@@ -1,8 +1,11 @@
 # Unattended Upgrades module for Puppet
 
-[![Build Status](https://travis-ci.org/voxpupuli/puppet-unattended_upgrades.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-unattended_upgrades)
-[![Puppet Forge Version](http://img.shields.io/puppetforge/v/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
-[![Puppet Forge Total Downloads](https://img.shields.io/puppetforge/dt/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
+[![Build Status](https://travis-ci.org/voxpupuli/puppet-unattended_upgrades.png?branch=master)](https://travis-ci.org/voxpupuli/puppet-unattended_upgrades)
+[![Code Coverage](https://coveralls.io/repos/github/voxpupuli/puppet-unattended_upgrades/badge.svg?branch=master)](https://coveralls.io/github/voxpupuli/puppet-unattended_upgrades)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
+[![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
+[![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
+[![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
 
 ## Overview
 
