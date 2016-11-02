@@ -19,35 +19,35 @@ describe 'unattended_upgrades' do
 
   context 'with defaults on Debian' do
     it do
-      should contain_package('unattended-upgrades')
-      should compile.with_all_deps
-      should contain_class('unattended_upgrades::params')
-      should contain_class('unattended_upgrades')
+      is_expected.to contain_package('unattended-upgrades')
+      is_expected.to compile.with_all_deps
+      is_expected.to contain_class('unattended_upgrades::params')
+      is_expected.to contain_class('unattended_upgrades')
     end
 
     it do
-      should contain_apt__conf('unattended-upgrades').with(
+      is_expected.to contain_apt__conf('unattended-upgrades').with(
         require: 'Package[unattended-upgrades]',
         notify_update: false
       )
     end
 
     it do
-      should contain_apt__conf('periodic').with(
+      is_expected.to contain_apt__conf('periodic').with(
         require: 'Package[unattended-upgrades]',
         notify_update: false
       )
     end
 
     it do
-      should contain_apt__conf('options').with(
+      is_expected.to contain_apt__conf('options').with(
         require: 'Package[unattended-upgrades]',
         notify_update: false
       )
     end
 
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -77,7 +77,7 @@ describe 'unattended_upgrades' do
     end
 
     it do
-      should create_file(file_periodic).with(
+      is_expected.to create_file(file_periodic).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -109,12 +109,12 @@ describe 'unattended_upgrades' do
     end
 
     it do
-      should contain_apt__conf('auto-upgrades').with(
+      is_expected.to contain_apt__conf('auto-upgrades').with(
         ensure: 'absent'
       )
     end
     it do
-      should create_file(file_options).with(
+      is_expected.to create_file(file_options).with(
         owner: 'root',
         group: 'root',
         mode:  '0644'
@@ -142,7 +142,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -167,7 +167,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -191,7 +191,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -214,7 +214,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -237,7 +237,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -260,7 +260,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -286,7 +286,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -309,7 +309,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -332,7 +332,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -355,7 +355,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -374,7 +374,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
         'group' => 'root',
         'mode'  => '0644'
@@ -398,7 +398,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
         'group' => 'root',
         'mode'  => '0644'
@@ -422,7 +422,7 @@ describe 'unattended_upgrades' do
       }
     end
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
         'group' => 'root',
         'mode'  => '0644'
@@ -474,31 +474,31 @@ describe 'unattended_upgrades' do
         }
       }
     end
-    it { should contain_package('unattended-upgrades') }
+    it { is_expected.to contain_package('unattended-upgrades') }
 
     it do
-      should contain_apt__conf('unattended-upgrades').with(
+      is_expected.to contain_apt__conf('unattended-upgrades').with(
         require: 'Package[unattended-upgrades]',
         notify_update: true
       )
     end
 
     it do
-      should contain_apt__conf('periodic').with(
+      is_expected.to contain_apt__conf('periodic').with(
         require: 'Package[unattended-upgrades]',
         notify_update: true
       )
     end
 
     it do
-      should contain_apt__conf('options').with(
+      is_expected.to contain_apt__conf('options').with(
         require: 'Package[unattended-upgrades]',
         notify_update: true
       )
     end
 
     it do
-      should create_file(file_unattended).with(
+      is_expected.to create_file(file_unattended).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -528,7 +528,7 @@ describe 'unattended_upgrades' do
     end
 
     it do
-      should create_file(file_periodic).with(
+      is_expected.to create_file(file_periodic).with(
         owner: 'root',
         group: 'root',
         mode: '0644'
@@ -562,7 +562,7 @@ describe 'unattended_upgrades' do
     end
 
     it do
-      should create_file(file_options).with(
+      is_expected.to create_file(file_options).with(
         owner: 'root',
         group: 'root',
         mode:  '0644'
@@ -579,7 +579,7 @@ describe 'unattended_upgrades' do
       )
     end
     it do
-      should contain_apt__conf('auto-upgrades').with(
+      is_expected.to contain_apt__conf('auto-upgrades').with(
         ensure: 'absent'
       )
     end
