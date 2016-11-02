@@ -1,5 +1,5 @@
 Dpkg::Options {
-<%- @_options.each_pair do |config, value| 
+<%- @_options.sort_by{|key,value| key}.each do |config, value|
   if %w(force_confdef force_confold force_confnew force_confmiss).include?(config) then
     if value then -%>
   "--<%= config.sub('_','-') -%>";
