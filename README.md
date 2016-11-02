@@ -7,6 +7,18 @@
 [![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
 [![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/unattended_upgrades.svg)](https://forge.puppetlabs.com/puppet/unattended_upgrades)
 
+#### Table of Contents
+
+1. [Overview](#overview)
+1. [Module Description - What the module does and why it is useful](#module-description)
+1. [Setup - The basics of getting started with splunk](#setup)
+    * [What splunk affects](#what-splunk-affects)
+    * [Beginning with splunk](#beginning-with-splunk)
+1. [Usage - Configuration options and additional functionality](#usage)
+1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+1. [Limitations - OS compatibility, etc.](#limitations)
+1. [License](#license)
+
 ## Overview
 
 The unattended\_upgrades module allows for the installation and configuration
