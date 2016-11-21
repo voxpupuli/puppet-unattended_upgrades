@@ -316,6 +316,7 @@ describe 'unattended_upgrades' do
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}";\n
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
       )
@@ -339,6 +340,7 @@ describe 'unattended_upgrades' do
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}";\n
         \t"\${distro_id}\:\${distro_codename}-security";\n
         };/x
       )
