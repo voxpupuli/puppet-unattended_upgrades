@@ -10,12 +10,12 @@
 #### Table of Contents
 
 1. [Overview](#overview)
-1. [Module Description - What the module does and why it is useful](#module-description)
-1. [Setup - The basics of getting started with splunk](#setup)
-    * [What splunk affects](#what-splunk-affects)
-    * [Beginning with splunk](#beginning-with-splunk)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+1. [Module Description](#module-description)
+1. [Setup](#setup)
+1. [Usage](#usage)
+1. [Reference](#reference)
+    * [Classes](#classes)
+    * [Parameters](#parameters)
 1. [Limitations - OS compatibility, etc.](#limitations)
 1. [License](#license)
 
@@ -134,7 +134,7 @@ altering some of the default settings.
   package.
 * `random_sleep` (`undef`): Maximum amount of time (in seconds) that the apt cron
   job can sleep before the execution. The exact amount of time will be random but
-  upto the value specified. The purpose is to avoid that servers/mirrors get
+  up to the value specified. The purpose is to avoid that servers/mirrors get
   hammered at exactly the same time when a lot of machines are switched on, e.g.
   9:00 in the morning. Note: If this is left unset, the default value in the apt
   cron job applies, which is 1800 seconds.
