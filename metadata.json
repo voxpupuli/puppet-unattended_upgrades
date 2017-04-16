@@ -32,8 +32,8 @@
       "operatingsystem": "Linux Mint",
       "operatingsystemrelease": [
         "13",
-        "17*",
-        "18*"
+        "17.x",
+        "18.x"
       ]
     }
   ],
