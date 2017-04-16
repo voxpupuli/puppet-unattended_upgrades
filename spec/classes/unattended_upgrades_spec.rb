@@ -141,6 +141,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '6.0.10'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -166,6 +167,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '7.1'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -190,6 +192,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '8.2'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -213,6 +216,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '12.04'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -236,6 +240,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '14.04'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -259,6 +264,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '15.04'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -285,6 +291,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '15.10'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -308,6 +315,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '16.04'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -332,6 +340,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '16.10'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -356,6 +365,7 @@ describe 'unattended_upgrades' do
         lsbrelease: '8.0'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
@@ -375,6 +385,7 @@ describe 'unattended_upgrades' do
         lsbmajdistrelease: '13'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
@@ -399,6 +410,7 @@ describe 'unattended_upgrades' do
         lsbmajdistrelease: '17'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
@@ -423,6 +435,7 @@ describe 'unattended_upgrades' do
         lsbmajdistrelease: '18'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
@@ -457,8 +470,8 @@ describe 'unattended_upgrades' do
         },
         verbose: 1,
         legacy_origin: true,
-        origins: %w(bananas),
-        blacklist: %w(foo bar),
+        origins: %w[bananas],
+        blacklist: %w[foo bar],
         minimal_steps: false,
         install_on_shutdown: true,
         mail: {
@@ -476,6 +489,7 @@ describe 'unattended_upgrades' do
         }
       }
     end
+
     it { is_expected.to contain_package('unattended-upgrades') }
 
     it do
@@ -594,6 +608,7 @@ describe 'unattended_upgrades' do
           install_on_shutdown: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -606,6 +621,7 @@ describe 'unattended_upgrades' do
           legacy_origin: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -618,6 +634,7 @@ describe 'unattended_upgrades' do
           minimal_steps: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -630,6 +647,7 @@ describe 'unattended_upgrades' do
           blacklist: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -642,6 +660,7 @@ describe 'unattended_upgrades' do
           origins: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -654,6 +673,7 @@ describe 'unattended_upgrades' do
           auto: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -666,6 +686,7 @@ describe 'unattended_upgrades' do
           mail: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -678,6 +699,7 @@ describe 'unattended_upgrades' do
           backup: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -690,6 +712,7 @@ describe 'unattended_upgrades' do
           age: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -702,6 +725,7 @@ describe 'unattended_upgrades' do
           size: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -714,6 +738,7 @@ describe 'unattended_upgrades' do
           upgradeable_packages: 'foo'
         }
       end
+
       it do
         expect do
           subject.call
@@ -726,6 +751,7 @@ describe 'unattended_upgrades' do
           mail: { 'only_on_error' => 'foo' }
         }
       end
+
       it do
         expect do
           subject.call
@@ -738,6 +764,7 @@ describe 'unattended_upgrades' do
           options: { 'force_confdef' => 'foo' }
         }
       end
+
       it do
         expect do
           subject.call
@@ -750,6 +777,7 @@ describe 'unattended_upgrades' do
           options: { 'force_confold' => 'foo' }
         }
       end
+
       it do
         expect do
           subject.call
@@ -762,6 +790,7 @@ describe 'unattended_upgrades' do
           options: { 'force_confnew' => 'foo' }
         }
       end
+
       it do
         expect do
           subject.call
@@ -774,6 +803,7 @@ describe 'unattended_upgrades' do
           options: { 'force_confmiss' => 'foo' }
         }
       end
+
       it do
         expect do
           subject.call
@@ -786,6 +816,7 @@ describe 'unattended_upgrades' do
           options: { 'invalid_key' => true }
         }
       end
+
       it do
         expect do
           subject.call
