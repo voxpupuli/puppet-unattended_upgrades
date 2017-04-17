@@ -356,6 +356,7 @@ describe 'unattended_upgrades' do
         lsbdistrelease: '17.04'
       }
     end
+
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
