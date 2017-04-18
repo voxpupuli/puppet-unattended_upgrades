@@ -487,7 +487,7 @@ describe 'unattended_upgrades' do
         },
         upgrade: 5,
         auto: {
-          'clean'                => '5',
+          'clean'                => 5,
           'fix_interrupted_dpkg' => false,
           'remove'               => false,
           'reboot'               => true,
@@ -637,7 +637,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad legacy_origin' do
@@ -650,7 +650,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad minimal_steps' do
@@ -663,7 +663,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad blacklist' do
@@ -676,7 +676,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not an Array/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad origins' do
@@ -689,7 +689,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not an Array/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad auto' do
@@ -702,7 +702,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad mail' do
@@ -715,7 +715,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad backup' do
@@ -728,7 +728,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad age' do
@@ -741,7 +741,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad size' do
@@ -754,7 +754,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /to be an Integer/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad upgradeable_packages' do
@@ -767,7 +767,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a Hash/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad mail[\'only_on_error\']' do
@@ -780,7 +780,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad options[\'force_confdef\']' do
@@ -793,7 +793,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad options[\'force_confold\']' do
@@ -806,7 +806,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad options[\'force_confnew\']' do
@@ -819,7 +819,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad options[\'force_confmiss\']' do
@@ -832,7 +832,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /not a boolean/)
+        end.to raise_error(Puppet::Error, /got String/)
       end
     end
     context 'bad options[\'invalid_key\']' do
@@ -845,7 +845,7 @@ describe 'unattended_upgrades' do
       it do
         expect do
           subject.call
-        end.to raise_error(Puppet::Error, /invalid_key not a valid key/)
+        end.to raise_error(Puppet::Error, /unrecognized key 'invalid_key'/)
       end
     end
   end
