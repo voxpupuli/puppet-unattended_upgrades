@@ -356,6 +356,31 @@ describe 'unattended_upgrades' do
     end
   end
 
+  context 'with defaults on Ubuntu 17.04 Zesty Zapus' do
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        lsbdistid: 'Ubuntu',
+        lsbdistcodename: 'zesty',
+        lsbdistrelease: '17.04'
+      }
+    end
+
+    it do
+      is_expected.to create_file(file_unattended).with(
+        owner: 'root',
+        group: 'root',
+        mode: '0644'
+      ).with_content(
+        # This is the only section that's different for Ubuntu compared to Debian
+        /\Unattended-Upgrade::Allowed-Origins\ {\n
+        \t"\${distro_id}\:\${distro_codename}";\n
+        \t"\${distro_id}\:\${distro_codename}-security";\n
+        };/x
+      )
+    end
+  end
+
   context 'with defaults on Raspbian' do
     let(:facts) do
       {

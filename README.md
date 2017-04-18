@@ -110,7 +110,7 @@ altering some of the default settings.
 * `install_on_shutdown` (`false`): Install updates on shutdown instead of in the
   background.
 * `legacy_origin` (`true` for Debian (squeeze), Ubuntu (precise, trusty, utopic,
-  vivid, wily, xenial, yakkety, and default), `false` for Debian (wheezy and default)):
+  vivid, wily, xenial, yakkety, zesty, and default), `false` for Debian (wheezy and default)):
   Use the legacy `Unattended-Upgrade::Allowed-Origins` setting or the modern `Unattended-Upgrade::Origins-Pattern`.
 * `mail`: A hash to configure email behaviour with two possible keys:
   * `only_on_error` (`true`): Only send mail when something went wrong
