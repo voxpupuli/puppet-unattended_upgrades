@@ -20,6 +20,9 @@ class unattended_upgrades (
   Boolean                                   $notify_update        = false,
   Unattended_upgrades::Options              $options              = {},
 ) inherits ::unattended_upgrades::params {
+    
+  contain apt
+
   $_age = merge($::unattended_upgrades::default_age, $age)
   assert_type(Unattended_upgrades::Age, $_age)
 
