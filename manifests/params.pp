@@ -50,7 +50,7 @@ class unattended_upgrades::params {
       case $xfacts['lsbdistcodename'] {
         'squeeze': {
           $legacy_origin       = true
-          $origins             =  '${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+          $origins             =  ['${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
                                   '${distro_id} ${distro_codename}-lts',] #lint:ignore:single_quote_string_with_variables
         }
         'wheezy': {
