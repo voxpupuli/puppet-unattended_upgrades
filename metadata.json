@@ -27,14 +27,6 @@
         "16.10",
         "17.04"
       ]
-    },
-    {
-      "operatingsystem": "Linux Mint",
-      "operatingsystemrelease": [
-        "13",
-        "17.x",
-        "18.x"
-      ]
     }
   ],
   "requirements": [
