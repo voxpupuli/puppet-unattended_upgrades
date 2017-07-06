@@ -7,6 +7,14 @@
   "source": "https://github.com/voxpupuli/puppet-unattended_upgrades.git",
   "project_page": "https://github.com/voxpupuli/puppet-unattended_upgrades",
   "issues_url": "https://github.com/voxpupuli/puppet-unattended_upgrades/issues",
+  "tags": [
+    "unattended-upgrades",
+    "unattended_upgrades",
+    "apt",
+    "patching",
+    "security",
+    "debian"
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
