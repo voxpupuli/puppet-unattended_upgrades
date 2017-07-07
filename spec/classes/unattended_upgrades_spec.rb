@@ -6,10 +6,6 @@ describe 'unattended_upgrades' do
   let(:file_periodic) { '/etc/apt/apt.conf.d/10periodic' }
   let(:file_options) { '/etc/apt/apt.conf.d/10options' }
 
-  let(:pre_condition) do
-    'include ::apt'
-  end
-
   shared_examples 'basic specs' do
     let(:params) { {} }
 
@@ -21,6 +17,7 @@ describe 'unattended_upgrades' do
         is_expected.to compile.with_all_deps
         is_expected.to contain_class('unattended_upgrades::params')
         is_expected.to contain_class('unattended_upgrades')
+        is_expected.to contain_class('apt')
       end
 
       it do
