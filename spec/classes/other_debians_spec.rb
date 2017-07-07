@@ -4,10 +4,6 @@ describe 'unattended_upgrades' do
   let(:file_periodic) { '/etc/apt/apt.conf.d/10periodic' }
   let(:file_options) { '/etc/apt/apt.conf.d/10options' }
 
-  let(:pre_condition) do
-    'include ::apt'
-  end
-
   context 'with defaults on Raspbian' do
     let(:facts) do
       {
