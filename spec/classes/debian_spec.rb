@@ -92,7 +92,6 @@ describe 'unattended_upgrades' do
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Allowed-Origins\ {\n
-                \t"\${distro_id}\ oldoldstable";\n
                 \t"\${distro_id}\ \${distro_codename}-security";\n
                 \t"\${distro_id}\ \${distro_codename}-lts";\n
                 };/x
@@ -109,8 +108,7 @@ describe 'unattended_upgrades' do
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
-                \t"origin=Debian,archive=stable,label=Debian-Security";\n
-                \t"origin=Debian,archive=oldstable,label=Debian-Security";\n
+                \t"origin=Debian,archive=oldoldstable,label=Debian-Security";\n
                 };/x
               )
             end
@@ -125,10 +123,25 @@ describe 'unattended_upgrades' do
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
-                  \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
-                  };/x
+                \t"origin=Debian,archive=oldstable,label=Debian-Security";\n
+                };/x
               )
             end
+          end
+        end
+      when 'stretch'
+        context 'with defaults on Debian 9 Stretch' do
+          it do
+            is_expected.to create_file(file_unattended).with(
+              owner: 'root',
+              group: 'root',
+              mode: '0644'
+            ).with_content(
+              # This section varies for different releases
+              /\Unattended-Upgrade::Origins-Pattern\ {\n
+              \t"origin=Debian,archive=oldstable,label=Debian-Security";\n
+              };/x
+            )
           end
         end
       end
