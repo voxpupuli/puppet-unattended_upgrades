@@ -22,7 +22,7 @@ class unattended_upgrades (
 ) inherits ::unattended_upgrades::params {
 
   # apt::conf settings require the apt class to work
-  contain ::apt
+  include apt
 
   $_age = merge($::unattended_upgrades::default_age, $age)
   assert_type(Unattended_upgrades::Age, $_age)
