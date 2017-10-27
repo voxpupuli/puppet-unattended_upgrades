@@ -124,7 +124,6 @@ describe 'unattended_upgrades' do
               )
             end
           end
-        # Won't work until FacterDB adds Stretch support
         when 'stretch'
           context 'with defaults on Debian 9 Stretch' do
             it do
@@ -135,47 +134,13 @@ describe 'unattended_upgrades' do
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
-                \t"origin=Debian,archive=oldstable,label=Debian-Security";\n
+                \t"origin=Debian,archive=stable,label=Debian-Security";\n
                 };/x
               )
             end
           end
         end
       end
-    end
-  end
-
-  # Adding Stretch Spec until FacterDB adds Stretch
-  context 'with defaults on Debian 9 Stretch' do
-    let(:facts) do
-      {
-        osfamily: 'Debian',
-        lsbdistid: 'Debian',
-        os: {
-          name: 'Debian',
-          family: 'Debian',
-          release: {
-            full: '9.0'
-          }
-        },
-        lsbdistcodename: 'stretch',
-        lsbrelease: '9.0'
-      }
-    end
-
-    it_behaves_like 'Debian specs'
-
-    it do
-      is_expected.to create_file(file_unattended).with(
-        owner: 'root',
-        group: 'root',
-        mode: '0644'
-      ).with_content(
-        # This section varies for different releases
-        /\Unattended-Upgrade::Origins-Pattern\ {\n
-        \t"origin=Debian,archive=stable,label=Debian-Security";\n
-        };/x
-      )
     end
   end
 end
