@@ -1,16 +1,33 @@
-# Change log
+# Changelog
 
 All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
-These should not impact the functionality of the module.
+These should not affect the functionality of the module.
+
+## [v3.0.1](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.0.1) (2017-10-28)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v3.0.0...v3.0.1)
+
+**Closed issues:**
+
+- Allowed-Origins contains ${distro\_id}:${distro\_codename} [\#107](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/107)
+
+**Merged pull requests:**
+
+- Don't `contain` `apt` but `include` instead [\#111](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/111) ([alexjfisher](https://github.com/alexjfisher))
+- Release 3.0.0 [\#104](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/104) ([bastelfreak](https://github.com/bastelfreak))
 
 ## [v3.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.0.0) (2017-07-07)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v2.2.0...v3.0.0)
+
+**Breaking changes:**
+
+- Use Data Types instead of validate\_\* functions [\#90](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/90) ([raphink](https://github.com/raphink))
 
 **Implemented enhancements:**
 
 - Add Debian 9 - Stretch Support [\#102](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/102) ([petems](https://github.com/petems))
-- Use Data Types instead of validate\_\* functions [\#90](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/90) ([raphink](https://github.com/raphink))
 - Ubuntu: Add 17.04 Zesty Zapus. [\#89](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/89) ([raoulbhatia](https://github.com/raoulbhatia))
 
 **Fixed bugs:**
@@ -32,6 +49,7 @@ These should not impact the functionality of the module.
 - Modulesync 0.18.0 [\#82](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/82) ([bastelfreak](https://github.com/bastelfreak))
 
 ## [v2.2.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v2.2.0) (2017-01-12)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v2.1.0...v2.2.0)
 
 **Merged pull requests:**
@@ -43,6 +61,7 @@ These should not impact the functionality of the module.
 - Fix order of options to prevent swapping of lines [\#72](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/72) ([leonkoens](https://github.com/leonkoens))
 
 ## [v2.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v2.1.0) (2016-10-05)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v2.0.0...v2.1.0)
 
 **Implemented enhancements:**
@@ -62,6 +81,7 @@ These should not impact the functionality of the module.
 - LinuxMint: Add support for Linux Mint [\#61](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/61) ([raoulbhatia](https://github.com/raoulbhatia))
 
 ## [v2.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v2.0.0) (2016-05-26)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v1.1.1...v2.0.0)
 
 **Implemented enhancements:**
@@ -84,6 +104,7 @@ These should not impact the functionality of the module.
 - Default `notify\_update` to false [\#51](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/51) ([daenney](https://github.com/daenney))
 
 ## [v1.1.1](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v1.1.1) (2016-01-11)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v1.1.0...v1.1.1)
 
 **Merged pull requests:**
@@ -92,6 +113,7 @@ These should not impact the functionality of the module.
 - Fix typo [\#46](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/46) ([mcanevet](https://github.com/mcanevet))
 
 ## [v1.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v1.1.0) (2016-01-09)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.3...v1.1.0)
 
 **Fixed bugs:**
@@ -128,6 +150,7 @@ These should not impact the functionality of the module.
 - unattended-upgrades are broken on Ubuntu by default due to origins typo [\#14](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/14) ([cpick](https://github.com/cpick))
 
 ## [1.0.3](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/1.0.3) (2015-04-23)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.2...1.0.3)
 
 **Closed issues:**
@@ -139,12 +162,17 @@ These should not impact the functionality of the module.
 - Gemfile: Upgrade to rspec-puppet 2.1.0 [\#11](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/11) ([daenney](https://github.com/daenney))
 
 ## [1.0.2](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/1.0.2) (2015-04-22)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.1...1.0.2)
 
 ## [1.0.1](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/1.0.1) (2015-04-22)
+
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/1.0.0...1.0.1)
 
 ## [1.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/1.0.0) (2015-04-22)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/886245f2cb7614a8c749d34e6f08ee17b92c970f...1.0.0)
+
 **Closed issues:**
 
 - Add a contributing.md [\#6](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/6)
