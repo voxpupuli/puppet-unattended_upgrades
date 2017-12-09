@@ -92,7 +92,7 @@ class unattended_upgrades::params {
             '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
           ]
         }
-        'xenial', 'yakkety', 'zesty': {
+        'xenial', 'yakkety', 'zesty', 'artful': {
           $legacy_origin      = true
           $origins            = [
             '${distro_id}:${distro_codename}', #lint:ignore:single_quote_string_with_variables
