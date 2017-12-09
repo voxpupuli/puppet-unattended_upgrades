@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.1.0) (2017-12-09)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v3.0.1...v3.1.0)
+
+**Closed issues:**
+
+- Duplicate declaration due to contain ::apt [\#110](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/110)
+
+**Merged pull requests:**
+
+- Add Ubuntu artful [\#115](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/115) ([danielhoherd](https://github.com/danielhoherd))
+- Release 3.0.1 [\#113](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/113) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v3.0.1](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.0.1) (2017-10-28)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v3.0.0...v3.0.1)
