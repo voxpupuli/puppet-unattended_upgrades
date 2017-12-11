@@ -158,7 +158,7 @@ altering some of the default settings.
     is available, don't prompt. If no default can be found, you will be prompted
     unless one of the confold or confnew options is also given
   * `force_confold` (`true`): Always use the old config files, don't prompt
-  * `force_connew` (`false`): Always use the new config files, don't prompt
+  * `force_confnew` (`false`): Always use the new config files, don't prompt
   * `force_conmiss` (`false`): Always install missing config files
 
 ## Limitations
