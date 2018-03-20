@@ -70,6 +70,7 @@ describe 'unattended_upgrades' do
             'to'            => 'root@localhost',
             'only_on_error' => true
           },
+          sender: 'root@server.example.com',
           dl_limit: 70,
           random_sleep: 300,
           notify_update: true,
@@ -128,6 +129,8 @@ describe 'unattended_upgrades' do
           /Unattended-Upgrade::Automatic-Reboot-Time "03:00";/
         ).with_content(
           /Unattended-Upgrade::Mail "root@localhost";/
+        ).with_content(
+          /Unattended-Upgrade::Sender "root@server.example.com";/
         ).with_content(
           /Unattended-Upgrade::MailOnlyOnError "true";/
         ).with_content(
