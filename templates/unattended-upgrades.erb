@@ -52,12 +52,12 @@ Unattended-Upgrade::MailOnlyOnError "<%= @_mail['only_on_error'].to_s %>";
 <%- end -%>
 <%- end -%>
 
-<%- unless @sender.nil? -%>
+<%- if @sender -%>
 // Use the specified value in the "From" field of outgoing mails.
 // Defaults to "root"
 Unattended-Upgrade::Sender "<%= @sender %>";
-<%- end -%>
 
+<%- end -%>
 // Do automatic removal of new unused dependencies after the upgrade
 // (equivalent to apt-get autoremove)
 Unattended-Upgrade::Remove-Unused-Dependencies "<%= @_auto['remove'].to_s %>";
