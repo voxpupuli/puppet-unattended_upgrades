@@ -40,6 +40,8 @@ describe 'unattended_upgrades' do
           notify_update: false
         )
       end
+
+      it { is_expected.to create_file(file_unattended).without_content(/Unattended-Upgrade::Sender/) }
     end
 
     context 'set all the things' do
