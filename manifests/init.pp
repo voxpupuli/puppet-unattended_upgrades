@@ -12,6 +12,7 @@ class unattended_upgrades (
   Array                                     $origins              = $::unattended_upgrades::params::origins,
   String                                    $package_ensure       = installed,
   Optional[Integer[0]]                      $random_sleep         = undef,
+  Optional[String]                          $sender               = undef,
   Integer[0]                                $size                 = 0,
   Integer[0]                                $update               = 1,
   Integer[0]                                $upgrade              = 1,
