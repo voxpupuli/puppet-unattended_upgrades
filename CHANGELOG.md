@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.2.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.2.0) (2018-06-12)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v3.1.0...v3.2.0)
+
+**Implemented enhancements:**
+
+- Allow configuration of Unattended-Upgrade::Sender parameter [\#119](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/119)
+- Optional argument for specifing the Unattended-Upgrade::Sender config flag [\#120](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/120) ([LarsErikP](https://github.com/LarsErikP))
+
+**Closed issues:**
+
+- \(Confirm\) Ubuntu 18.04 support [\#124](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/124)
+- Typo - README.md - Reference/options "force\_connew" [\#109](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/109)
+
+**Merged pull requests:**
+
+- Add Ubuntu 18.04 LTS "bionic" to the list of supported OSes \(fixes \#124\) [\#125](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/125) ([mpdude](https://github.com/mpdude))
+- Remove docker nodesets [\#123](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/123) ([bastelfreak](https://github.com/bastelfreak))
+- drop EOL OSs; fix puppet version range [\#121](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/121) ([bastelfreak](https://github.com/bastelfreak))
+- Fix typo [\#117](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/117) ([6uhrmittag](https://github.com/6uhrmittag))
+
 ## [v3.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.1.0) (2017-12-09)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v3.0.1...v3.1.0)
@@ -14,8 +35,8 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
+- release 3.1.0 [\#116](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/116) ([bastelfreak](https://github.com/bastelfreak))
 - Add Ubuntu artful [\#115](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/115) ([danielhoherd](https://github.com/danielhoherd))
-- Release 3.0.1 [\#113](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/113) ([alexjfisher](https://github.com/alexjfisher))
 
 ## [v3.0.1](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.0.1) (2017-10-28)
 
@@ -28,7 +49,6 @@ These should not affect the functionality of the module.
 **Merged pull requests:**
 
 - Don't `contain` `apt` but `include` instead [\#111](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/111) ([alexjfisher](https://github.com/alexjfisher))
-- Release 3.0.0 [\#104](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/104) ([bastelfreak](https://github.com/bastelfreak))
 
 ## [v3.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.0.0) (2017-07-07)
 
@@ -67,7 +87,6 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- release 2.2.0 [\#81](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/81) ([bastelfreak](https://github.com/bastelfreak))
 - Bump min version\_requirement for Puppet [\#79](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/79) ([juniorsysadmin](https://github.com/juniorsysadmin))
 - Include the release pocket on Ubuntu Xenial and Yakkety. [\#75](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/75) ([MichaelGooden](https://github.com/MichaelGooden))
 - Add missing badges [\#73](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/73) ([dhoppe](https://github.com/dhoppe))
@@ -122,7 +141,6 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- release: 1.1.1 [\#47](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/47) ([daenney](https://github.com/daenney))
 - Fix typo [\#46](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/46) ([mcanevet](https://github.com/mcanevet))
 
 ## [v1.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v1.1.0) (2016-01-09)
@@ -147,7 +165,6 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- prepare release of 1.1.0 [\#45](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/45) ([igalic](https://github.com/igalic))
 - Doc and implementation fixes [\#44](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/44) ([daenney](https://github.com/daenney))
 - Remediate rubocop offenses [\#43](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/43) ([rnelson0](https://github.com/rnelson0))
 - cleanup\(params\) make linter happy [\#42](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/42) ([igalic](https://github.com/igalic))
@@ -202,4 +219,4 @@ These should not affect the functionality of the module.
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
