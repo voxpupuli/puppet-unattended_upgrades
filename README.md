@@ -80,7 +80,7 @@ altering some of the default settings.
   * `fix_interrupted_dpkg`(`true`): Try to fix package installation state.
   * `reboot`(`false`): Reboot system after package update installation.
   * `reboot_time`(`now`): If automatic reboot is enabled and needed, reboot at the
-    specific time (instead of immediately).
+    specific time (instead of immediately). Expects a string in the format "HH:MM", using the 24 hour clock with leading zeros. Examples:  "16:37" for 37 minutes past 4PM, or "02:03" for 3 minutes past 2AM.
   * `remove`(`true`): Remove unneeded dependencies after update installation.
 
   Any of these keys can be specified and will be merged into the defaults:
