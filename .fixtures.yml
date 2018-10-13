@@ -2,5 +2,3 @@ fixtures:
   repositories:
     apt:    'https://github.com/puppetlabs/puppetlabs-apt.git'
     stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
-  symlinks:
-    unattended_upgrades: "#{source_dir}"
