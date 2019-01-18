@@ -77,7 +77,7 @@ class unattended_upgrades::params {
         }
       }
     }
-    'ubuntu': {
+    'ubuntu', 'neon': {
       case $xfacts['lsbdistcodename'] {
         'precise': {
           $legacy_origin      = true
