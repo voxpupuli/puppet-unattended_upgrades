@@ -20,6 +20,16 @@ Unattended-Upgrade::Package-Blacklist {
 <% end -%>
 };
 
+// List of days in the week that updates should be applied.
+// The days can be specified as localized abbreviated or full names.
+// Or as integers where "0" is Sunday, "1" is Monday etc.
+// Require Unattended-upgrades version >=0.91 to work, else it is ignored
+Unattended-Upgrade::Update-Days {
+<% @days.each do |day| -%>
+	"<%= day.capitalize %>";
+<% end -%>
+};
+
 // This option allows you to control if on a unclean dpkg exit
 // unattended-upgrades will automatically run
 //   dpkg --force-confold --configure -a

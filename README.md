@@ -140,6 +140,7 @@ altering some of the default settings.
 * `size` (`0`): Maximum size of the cache in MB.
 * `update` (`1`): Do "apt-get update" automatically every n-days.
 * `upgrade` (`1`): Run the "unattended-upgrade" security upgrade script every n-days.
+* `days` (`[]`): Set the days of the week that updates should be applied. The days can be specified as localized abbreviated or full names. Or as integers where "0" is Sunday, "1" is Monday etc.
 * `upgradeable_packages` (`{}`): A hash with two possible keys:
   * `download_only` (`0`): Do "apt-get upgrade --download-only" every n-days.
   * `debdelta` (`1`): Use debdelta-upgrade to download updates if available.

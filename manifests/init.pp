@@ -20,6 +20,7 @@ class unattended_upgrades (
   Integer[0]                                $verbose              = 0,
   Boolean                                   $notify_update        = false,
   Unattended_upgrades::Options              $options              = {},
+  Array[String[1]]                          $days                 = [],
 ) inherits ::unattended_upgrades::params {
 
   # apt::conf settings require the apt class to work

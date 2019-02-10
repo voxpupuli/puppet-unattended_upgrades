@@ -55,6 +55,7 @@ describe 'unattended_upgrades' do
             'debdelta'      => 5
           },
           upgrade: 5,
+          days: %w[tuesday Thursday 5],
           auto: {
             'clean'                => 5,
             'fix_interrupted_dpkg' => false,
@@ -117,6 +118,8 @@ describe 'unattended_upgrades' do
           /Unattended-Upgrade::Allowed-Origins {\n\t"bananas";\n};/
         ).with_content(
           /Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};/
+        ).with_content(
+          /Unattended-Upgrade::Update-Days {\n\t"Tuesday";\n\t"Thursday";\n\t"5";\n};/
         ).with_content(
           /Unattended-Upgrade::AutoFixInterruptedDpkg "false";/
         ).with_content(
@@ -203,6 +206,19 @@ describe 'unattended_upgrades' do
         let :params do
           {
             install_on_shutdown: 'foo'
+          }
+        end
+
+        it do
+          expect do
+            subject.call
+          end.to raise_error(Puppet::Error, /got String/)
+        end
+      end
+      context 'bad days' do
+        let :params do
+          {
+            days: 'foo'
           }
         end
 
