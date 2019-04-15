@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v4.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v4.0.0) (2019-04-15)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v3.2.1...v4.0.0)
+
+**Breaking changes:**
+
+- modulesync 2.7.0 and drop puppet 4 [\#140](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/140) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add support for Unattended-Upgrade::Update-Days [\#139](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/139) ([ostavnaas](https://github.com/ostavnaas))
+- Support support for the KDE Neon distribution [\#138](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/138) ([smortex](https://github.com/smortex))
+
+**Closed issues:**
+
+- Support puppetlabs-apt \> 5 [\#133](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/133)
+
 ## [v3.2.1](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v3.2.1) (2018-10-14)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v3.2.0...v3.2.1)
