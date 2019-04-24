@@ -10,6 +10,7 @@ class unattended_upgrades (
   Unattended_upgrades::Mail                 $mail                 = {},
   Boolean                                   $minimal_steps        = true,
   Array                                     $origins              = $::unattended_upgrades::params::origins,
+  Array                                     $extra_origins        = {},
   String                                    $package_ensure       = installed,
   Optional[Integer[0]]                      $random_sleep         = undef,
   Optional[String]                          $sender               = undef,
