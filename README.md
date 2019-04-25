@@ -129,6 +129,7 @@ altering some of the default settings.
 * `minimal_steps` (`true`): Split the upgrade process into sections to allow
   shutdown during upgrade.
 * `origins`: The repositories from which to automatically upgrade included packages.
+* `extra_origins`: Additional repositories from which upgrades should be included. Can be used, if the default `origins` should be kept.
 * `package_ensure` (`installed`): The ensure state for the 'unattended-upgrades'
   package.
 * `random_sleep` (`undef`): Maximum amount of time (in seconds) that the apt cron

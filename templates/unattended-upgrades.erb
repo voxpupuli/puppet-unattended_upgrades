@@ -11,6 +11,9 @@ Unattended-Upgrade::Origins-Pattern {
 <% @origins.each do |origin| -%>
 	"<%= origin %>";
 <% end -%>
+<% @extra_origins.each do |origin| -%>
+	"<%= origin %>";
+<% end -%>
 };
 
 // List of packages to not update (regexp are supported)
