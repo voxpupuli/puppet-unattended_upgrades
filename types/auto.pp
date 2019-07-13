@@ -5,5 +5,7 @@ type Unattended_upgrades::Auto = Struct[
     Optional['reboot']               => Boolean,
     Optional['reboot_time']          => String,
     Optional['remove']               => Boolean,
+    Optional['remove-new']           => Boolean,
+    Optional['remove-unused-kernel'] => Boolean,
   }
 ]

@@ -139,6 +139,20 @@ describe 'unattended_upgrades' do
               )
             end
           end
+        when 'buster'
+          context 'with defaults on Debian 10 Buster' do
+            it do
+              is_expected.to create_file(file_unattended).with(
+                owner: 'root',
+                group: 'root',
+                mode: '0644'
+              ).with_content(
+                /Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";/
+              ).with_content(
+                /Unattended-Upgrade::Remove-New-Unused-Dependencies "true";/
+              )
+            end
+          end
         end
       end
     end

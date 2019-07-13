@@ -5,15 +5,6 @@ class unattended_upgrades::params {
     fail('This module only works on Debian or derivatives like Ubuntu')
   }
 
-  $default_auto                 = { 'fix_interrupted_dpkg' => true, 'remove' => true, 'reboot' => false, 'clean' => 0, 'reboot_time' => 'now', }
-  $default_mail                 = { 'only_on_error'        => true, }
-  $default_backup               = { 'archive_interval'     => 0, 'level'     => 3, }
-  $default_age                  = { 'min'                  => 2, 'max'       => 0, }
-  $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
-  $default_options              = { 'force_confdef'        => true,
-                                    'force_confold'        => true,
-                                    'force_confnew'        => false,
-                                    'force_confmiss'       => false, }
   # prior to puppet 3.5.0, defined couldn't test if a variable was defined
   # strict variables wasn't added until 3.5.0, so this should be fine.
   if ! $::settings::strict_variables {
@@ -28,25 +19,26 @@ class unattended_upgrades::params {
     $xfacts = {
       'lsbdistid' => defined('$lsbdistid') ? {
         true    => $::lsbdistid,
-        default => undef,
+        default => $facts['os']['name'],
       },
       'lsbdistcodename' => defined('$lsbdistcodename') ? {
         true    => $::lsbdistcodename,
-        default => undef,
+        default => $facts['os']['lsb']['distcodename'],
       },
       'lsbmajdistrelease' => defined('$lsbmajdistrelease') ? {
         true    => $::lsbmajdistrelease,
-        default => undef,
+        default => $facts['os']['release']['major'],
       },
       'lsbdistrelease' => defined('$lsbdistrelease') ? {
         true    => $::lsbdistrelease,
-        default => undef,
+        default => $facts['os']['release']['full'],
       },
     }
   }
 
   case $xfacts['lsbdistid'] {
-    'debian', 'raspbian': {
+    'Debian', 'Raspbian': {
+      $package_version_greater_1_0 = '10'
       case $xfacts['lsbdistcodename'] {
         'squeeze': {
           $legacy_origin       = true
@@ -77,7 +69,8 @@ class unattended_upgrades::params {
         }
       }
     }
-    'ubuntu', 'neon': {
+    'Ubuntu', 'Neon': {
+      $package_version_greater_1_0 = '18.04'
       case $xfacts['lsbdistcodename'] {
         'precise': {
           $legacy_origin      = true
@@ -109,6 +102,7 @@ class unattended_upgrades::params {
       }
     }
     'LinuxMint': {
+      $package_version_greater_1_0 = '19'
       case $xfacts['lsbmajdistrelease'] {
         # Linux Mint 13 is based on Ubuntu 12.04
         '13': {
@@ -142,6 +136,32 @@ class unattended_upgrades::params {
     default: {
       $legacy_origin = undef
       $origins       = undef
+      # Settings which are not supported by installed version do not prevent unattended-upgrades from running
+      $package_version_greater_1_0 = '0'
     }
   }
+
+  if $xfacts['lsbmajdistrelease'] != undef and versioncmp($xfacts['lsbmajdistrelease'], $package_version_greater_1_0) >=0 {
+    $remove_new = true
+    $remove_unused_kernel = true
+  } else {
+    $remove_new = false
+    $remove_unused_kernel = false
+  }
+
+  $default_auto                 = { 'fix_interrupted_dpkg' => true,
+                                    'remove'               => true,
+                                    'remove-new'           => $remove_new,
+                                    'remove-unused-kernel' => $remove_unused_kernel,
+                                    'reboot'               => false,
+                                    'clean'                => 0,
+                                    'reboot_time'          => 'now', }
+  $default_mail                 = { 'only_on_error'        => true, }
+  $default_backup               = { 'archive_interval'     => 0, 'level'     => 3, }
+  $default_age                  = { 'min'                  => 2, 'max'       => 0, }
+  $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
+  $default_options              = { 'force_confdef'        => true,
+                                    'force_confold'        => true,
+                                    'force_confnew'        => false,
+                                    'force_confmiss'       => false, }
 }
