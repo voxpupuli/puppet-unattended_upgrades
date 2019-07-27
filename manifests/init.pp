@@ -6,10 +6,10 @@ class unattended_upgrades (
   Optional[Integer[0]]                      $dl_limit             = undef,
   Integer[0, 1]                             $enable               = 1,
   Boolean                                   $install_on_shutdown  = false,
-  Boolean                                   $legacy_origin        = $::unattended_upgrades::params::legacy_origin,
+  Boolean                                   $legacy_origin        = $unattended_upgrades::params::legacy_origin,
   Unattended_upgrades::Mail                 $mail                 = {},
   Boolean                                   $minimal_steps        = true,
-  Array[String[1]]                          $origins              = $::unattended_upgrades::params::origins,
+  Array[String[1]]                          $origins              = $unattended_upgrades::params::origins,
   String[1]                                 $package_ensure       = installed,
   Array[String[1]]                          $extra_origins        = [],
   Optional[Integer[0]]                      $random_sleep         = undef,
@@ -27,19 +27,19 @@ class unattended_upgrades (
   # apt::conf settings require the apt class to work
   include apt
 
-  $_age = merge($::unattended_upgrades::default_age, $age)
+  $_age = merge($unattended_upgrades::default_age, $age)
   assert_type(Unattended_upgrades::Age, $_age)
 
-  $_auto = merge($::unattended_upgrades::default_auto, $auto)
+  $_auto = merge($unattended_upgrades::default_auto, $auto)
   assert_type(Unattended_upgrades::Auto, $_auto)
 
-  $_backup = merge($::unattended_upgrades::default_backup, $backup)
+  $_backup = merge($unattended_upgrades::default_backup, $backup)
   assert_type(Unattended_upgrades::Backup, $_backup)
 
-  $_mail = merge($::unattended_upgrades::default_mail, $mail)
+  $_mail = merge($unattended_upgrades::default_mail, $mail)
   assert_type(Unattended_upgrades::Mail, $_mail)
 
-  $_upgradeable_packages = merge($::unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
+  $_upgradeable_packages = merge($unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
   assert_type(Unattended_upgrades::Upgradeable_packages, $_upgradeable_packages)
 
   $_options = merge($unattended_upgrades::default_options, $options)
