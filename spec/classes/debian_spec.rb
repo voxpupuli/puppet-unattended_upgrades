@@ -120,7 +120,7 @@ describe 'unattended_upgrades' do
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
-                \t"origin=Debian,codename=jessie,label=Debian-Security";\n
+                \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
                 };/x
               )
             end
@@ -135,7 +135,7 @@ describe 'unattended_upgrades' do
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
-                \t"origin=Debian,codename=stretch,label=Debian-Security";\n
+                \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
                 };/x
               )
             end
@@ -150,7 +150,7 @@ describe 'unattended_upgrades' do
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
-                \t"origin=Debian,codename=buster,label=Debian-Security";\n
+                \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
                 };/x
               )
             end
