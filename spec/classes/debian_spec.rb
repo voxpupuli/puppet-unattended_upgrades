@@ -140,7 +140,6 @@ describe 'unattended_upgrades' do
               )
             end
           end
-        end
         when 'buster'
           context 'with defaults on Debian 10 Buster' do
             it do
