@@ -150,6 +150,7 @@ describe 'unattended_upgrades' do
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
+                \t"origin=Debian,codename=\${distro_codename},label=Debian";\n
                 \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
                 };/x
               )
