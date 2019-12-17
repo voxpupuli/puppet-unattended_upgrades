@@ -1,7 +1,7 @@
 #
 class unattended_upgrades::params {
 
-  if $::osfamily != 'Debian' {
+  if $facts['os']['family'] != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
   }
 
@@ -18,28 +18,28 @@ class unattended_upgrades::params {
   # strict variables wasn't added until 3.5.0, so this should be fine.
   if ! $::settings::strict_variables {
     $xfacts = {
-      'lsbdistid'           => $::lsbdistid,
-      'lsbdistcodename'     => $::lsbdistcodename,
-      'lsbmajdistrelease'   => $::lsbmajdistrelease,
-      'lsbdistrelease'      => $::lsbdistrelease,
+      'lsbdistid'           => $facts['os']['distro']['id'],
+      'lsbdistcodename'     => $facts['os']['distro']['codename'],
+      'lsbmajdistrelease'   => $facts['os']['distro']['release']['major'],
+      'lsbdistrelease'      => $facts['os']['distro']['release']['full'],
     }
   } else {
     # Strict variables facts lookup compatibility
     $xfacts = {
       'lsbdistid' => defined('$lsbdistid') ? {
-        true    => $::lsbdistid,
+        true    => $facts['os']['distro']['id'],
         default => undef,
       },
       'lsbdistcodename' => defined('$lsbdistcodename') ? {
-        true    => $::lsbdistcodename,
+        true    => $facts['os']['distro']['codename'],
         default => undef,
       },
       'lsbmajdistrelease' => defined('$lsbmajdistrelease') ? {
-        true    => $::lsbmajdistrelease,
+        true    => $facts['os']['distro']['release']['major'],
         default => undef,
       },
       'lsbdistrelease' => defined('$lsbdistrelease') ? {
-        true    => $::lsbdistrelease,
+        true    => $facts['os']['distro']['release']['full'],
         default => undef,
       },
     }
