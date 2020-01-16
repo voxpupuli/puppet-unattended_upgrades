@@ -92,7 +92,7 @@ altering some of the default settings.
   ```
 
 * `backup` (`{}`): A hash with two possible keys:
-  * `archive_internal` (`0`): Backup after n-days if archive contents changed.
+  * `archive_interval` (`0`): Backup after n-days if archive contents changed.
   * `level` (`3`): Backup level.
 
   Any of these keys can be specified and will be merged into the defaults:
