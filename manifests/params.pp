@@ -48,32 +48,25 @@ class unattended_upgrades::params {
   case $xfacts['lsbdistid'] {
     'debian', 'raspbian': {
       case $xfacts['lsbdistcodename'] {
-        'squeeze': {
-          $legacy_origin       = true
-          $origins             =  ['${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-                                  '${distro_id} ${distro_codename}-lts',] #lint:ignore:single_quote_string_with_variables
-        }
-        'wheezy': {
-          $legacy_origin      = false
+        'squeeze', 'wheezy': {
+          $legacy_origin      = true
           $origins            = [
-            'origin=Debian,archive=oldoldstable,label=Debian-Security',
+            '${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+            '${distro_id} ${distro_codename}-lts', #lint:ignore:single_quote_string_with_variables
           ]
         }
-        'jessie': {
+        'buster': {
           $legacy_origin      = false
           $origins            = [
-            'origin=Debian,archive=oldstable,label=Debian-Security',
-          ]
-        }
-        'stretch': {
-          $legacy_origin      = false
-          $origins            = [
-            'origin=Debian,archive=stable,label=Debian-Security',
+            'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
+            'origin=Debian,codename=${distro_codename},label=Debian-Security', #lint:ignore:single_quote_string_with_variables
           ]
         }
         default: {
           $legacy_origin      = false
-          $origins            = ['origin=Debian,codename=${distro_codename},label=Debian-Security',] #lint:ignore:single_quote_string_with_variables
+          $origins            = [
+            'origin=Debian,codename=${distro_codename},label=Debian-Security', #lint:ignore:single_quote_string_with_variables
+          ]
         }
       }
     }
