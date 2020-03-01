@@ -15,7 +15,7 @@ describe 'unattended_upgrades' do
       is_expected.to create_file(file_periodic).with(
         owner: 'root',
         group: 'root',
-        mode: '0644'
+        mode: '0444'
       ).with_content(
         /APT::Periodic::Enable "1";/
       ).with_content(
@@ -52,7 +52,7 @@ describe 'unattended_upgrades' do
       is_expected.to create_file(file_options).with(
         owner: 'root',
         group: 'root',
-        mode:  '0644'
+        mode:  '0444'
       ).with_content(
         /^Dpkg::Options\s{/
       ).with_content(
@@ -84,7 +84,7 @@ describe 'unattended_upgrades' do
               is_expected.to create_file(file_unattended).with(
                 owner: 'root',
                 group: 'root',
-                mode: '0644'
+                mode: '0444'
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -100,7 +100,7 @@ describe 'unattended_upgrades' do
               is_expected.to create_file(file_unattended).with(
                 owner: 'root',
                 group: 'root',
-                mode: '0644'
+                mode: '0444'
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -116,7 +116,7 @@ describe 'unattended_upgrades' do
               is_expected.to create_file(file_unattended).with(
                 owner: 'root',
                 group: 'root',
-                mode: '0644'
+                mode: '0444'
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
@@ -131,7 +131,7 @@ describe 'unattended_upgrades' do
               is_expected.to create_file(file_unattended).with(
                 owner: 'root',
                 group: 'root',
-                mode: '0644'
+                mode: '0444'
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
@@ -146,7 +146,7 @@ describe 'unattended_upgrades' do
               is_expected.to create_file(file_unattended).with(
                 owner: 'root',
                 group: 'root',
-                mode: '0644'
+                mode: '0444'
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
