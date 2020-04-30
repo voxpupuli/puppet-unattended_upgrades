@@ -14,8 +14,7 @@ describe 'unattended_upgrades' do
     it do
       is_expected.to create_file(file_periodic).with(
         owner: 'root',
-        group: 'root',
-        mode: '0444'
+        group: 'root'
       ).with_content(
         /APT::Periodic::Enable "1";/
       ).with_content(
@@ -51,8 +50,7 @@ describe 'unattended_upgrades' do
     it do
       is_expected.to create_file(file_options).with(
         owner: 'root',
-        group: 'root',
-        mode:  '0444'
+        group: 'root'
       ).with_content(
         /^Dpkg::Options\s{/
       ).with_content(
@@ -115,8 +113,7 @@ describe 'unattended_upgrades' do
             it do
               is_expected.to create_file(file_unattended).with(
                 owner: 'root',
-                group: 'root',
-                mode: '0444'
+                group: 'root'
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n
@@ -130,8 +127,7 @@ describe 'unattended_upgrades' do
             it do
               is_expected.to create_file(file_unattended).with(
                 owner: 'root',
-                group: 'root',
-                mode: '0444'
+                group: 'root'
               ).with_content(
                 # This section varies for different releases
                 /\Unattended-Upgrade::Origins-Pattern\ {\n

@@ -24,8 +24,7 @@ describe 'unattended_upgrades' do
     it do
       is_expected.to create_file(file_unattended).with(
         owner: 'root',
-        group: 'root',
-        mode: '0444'
+        group: 'root'
       )
     end
   end
@@ -51,8 +50,7 @@ describe 'unattended_upgrades' do
     it do
       is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
-        'group' => 'root',
-        'mode'  => '0444'
+        'group' => 'root'
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         %r{\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -83,8 +81,7 @@ describe 'unattended_upgrades' do
     it do
       is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
-        'group' => 'root',
-        'mode'  => '0444'
+        'group' => 'root'
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         %r{\Unattended-Upgrade::Allowed-Origins\ {\n
@@ -115,8 +112,7 @@ describe 'unattended_upgrades' do
     it do
       is_expected.to create_file(file_unattended).with(
         'owner' => 'root',
-        'group' => 'root',
-        'mode'  => '0444'
+        'group' => 'root'
       ).with_content(
         # This is the only section that's different for Ubuntu compared to Debian
         %r{\Unattended-Upgrade::Allowed-Origins\ {\n
