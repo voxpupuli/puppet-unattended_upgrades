@@ -14,47 +14,10 @@ class unattended_upgrades::params {
                                     'force_confold'        => true,
                                     'force_confnew'        => false,
                                     'force_confmiss'       => false, }
-  # prior to puppet 3.5.0, defined couldn't test if a variable was defined
-  # strict variables wasn't added until 3.5.0, so this should be fine.
-  if ! $::settings::strict_variables {
-    $xfacts = {
-      'lsbdistid'           => $::lsbdistid,
-      'lsbdistcodename'     => $::lsbdistcodename,
-      'lsbmajdistrelease'   => $::lsbmajdistrelease,
-      'lsbdistrelease'      => $::lsbdistrelease,
-    }
-  } else {
-    # Strict variables facts lookup compatibility
-    $xfacts = {
-      'lsbdistid' => defined('$lsbdistid') ? {
-        true    => $::lsbdistid,
-        default => undef,
-      },
-      'lsbdistcodename' => defined('$lsbdistcodename') ? {
-        true    => $::lsbdistcodename,
-        default => undef,
-      },
-      'lsbmajdistrelease' => defined('$lsbmajdistrelease') ? {
-        true    => $::lsbmajdistrelease,
-        default => undef,
-      },
-      'lsbdistrelease' => defined('$lsbdistrelease') ? {
-        true    => $::lsbdistrelease,
-        default => undef,
-      },
-    }
-  }
 
-  case $xfacts['lsbdistid'] {
+  case fact('lsbdistid') {
     'debian', 'raspbian': {
-      case $xfacts['lsbdistcodename'] {
-        'squeeze', 'wheezy': {
-          $legacy_origin      = true
-          $origins            = [
-            '${distro_id} ${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-            '${distro_id} ${distro_codename}-lts', #lint:ignore:single_quote_string_with_variables
-          ]
-        }
+      case fact('lsbdistcodename') {
         'buster': {
           $legacy_origin      = false
           $origins            = [
@@ -79,7 +42,7 @@ class unattended_upgrades::params {
       ]
     }
     'LinuxMint': {
-      case $xfacts['lsbmajdistrelease'] {
+      case fact('lsbmajdistrelease') {
         # Linux Mint 13 is based on Ubuntu 12.04
         '13': {
           $legacy_origin      = true
