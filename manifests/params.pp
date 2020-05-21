@@ -43,20 +43,6 @@ class unattended_upgrades::params {
     }
     'LinuxMint': {
       case fact('lsbmajdistrelease') {
-        # Linux Mint 13 is based on Ubuntu 12.04
-        '13': {
-          $legacy_origin      = true
-          $origins            = [
-            'Ubuntu:precise-security',
-          ]
-        }
-        # Linux Mint 17* is based on Ubuntu 14.04.
-        '17': {
-          $legacy_origin      = true
-          $origins            = [
-            'Ubuntu:trusty-security',
-          ]
-        }
         # Linux Mint 18* is based on Ubuntu 16.04
         '18': {
           $legacy_origin      = true
