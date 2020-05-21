@@ -72,46 +72,11 @@ class unattended_upgrades::params {
     }
     'ubuntu', 'neon': {
       # Ubuntu: https://ubuntu.com/about/release-cycle and https://wiki.ubuntu.com/Releases
-      case $xfacts['lsbdistcodename'] {
-        # Ubuntu 12.04 LTS in ESM
-        'precise': {
-          $legacy_origin      = true
-          $origins            = [
-            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-          ]
-
-        }
-        # Ubuntu 14.04 LTS in ESM
-        'trusty': {
-          $legacy_origin      = true
-          $origins            = [
-            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-          ]
-        }
-        # Ubuntu 16.04 LTS, 18.04 LTS, 20.04 LTS in Standard Support
-        'xenial', 'bionic', 'focal': {
-          $legacy_origin      = true
-          $origins            = [
-            '${distro_id}:${distro_codename}', #lint:ignore:single_quote_string_with_variables
-            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-          ]
-        }
-        # Ubuntu Interim Releases
-        'eoan': {
-          $legacy_origin      = true
-          $origins            = [
-            '${distro_id}:${distro_codename}', #lint:ignore:single_quote_string_with_variables
-            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-          ]
-        }
-        default: {
-          warning("Ubuntu ${xfacts['lsbdistrelease']} \"${xfacts['lsbdistcodename']}\" has reached End of Life - please upgrade!")
-          $legacy_origin      = true
-          $origins            = [
-            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-          ]
-        }
-      }
+      $legacy_origin      = true
+      $origins            = [
+        '${distro_id}:${distro_codename}', #lint:ignore:single_quote_string_with_variables
+        '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+      ]
     }
     'LinuxMint': {
       case $xfacts['lsbmajdistrelease'] {
