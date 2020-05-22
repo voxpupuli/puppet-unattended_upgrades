@@ -206,11 +206,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad days' do
         let :params do
@@ -219,11 +215,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad legacy_origin' do
         let :params do
@@ -232,11 +224,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad minimal_steps' do
         let :params do
@@ -245,11 +233,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad blacklist' do
         let :params do
@@ -258,11 +242,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad origins' do
         let :params do
@@ -271,11 +251,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad auto' do
         let :params do
@@ -284,11 +260,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad mail' do
         let :params do
@@ -297,11 +269,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad backup' do
         let :params do
@@ -310,11 +278,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad age' do
         let :params do
@@ -323,11 +287,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad size' do
         let :params do
@@ -336,11 +296,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad upgradeable_packages' do
         let :params do
@@ -349,11 +305,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad mail[\'only_on_error\']' do
         let :params do
@@ -362,11 +314,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad options[\'force_confdef\']' do
         let :params do
@@ -375,11 +323,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad options[\'force_confold\']' do
         let :params do
@@ -388,11 +332,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad options[\'force_confnew\']' do
         let :params do
@@ -401,11 +341,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad options[\'force_confmiss\']' do
         let :params do
@@ -414,11 +350,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /got String/)
-        end
+        it { is_expected.to compile.and_raise_error(/got String/) }
       end
       context 'bad options[\'invalid_key\']' do
         let :params do
@@ -427,11 +359,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it do
-          expect do
-            subject.call
-          end.to raise_error(Puppet::Error, /unrecognized key 'invalid_key'/)
-        end
+        it { is_expected.to compile.and_raise_error(/unrecognized key 'invalid_key'/) }
       end
     end
   end
