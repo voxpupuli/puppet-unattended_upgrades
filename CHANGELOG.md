@@ -4,6 +4,47 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v5.0.0) (2020-05-22)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v4.0.0...v5.0.0)
+
+**Breaking changes:**
+
+- Drop EOL Linux Mint versions 13 and 17 [\#168](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/168) ([ekohl](https://github.com/ekohl))
+- Drop Ubuntu 14.04 [\#164](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/164) ([ekohl](https://github.com/ekohl))
+- Update Ubuntu releases per official support/EOL list [\#160](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/160) ([raoulbhatia](https://github.com/raoulbhatia))
+- drop Ubuntu 14.04 support [\#149](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/149) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Allow additional origins without replacing the default one. [\#142](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/142) ([fetzerms](https://github.com/fetzerms))
+
+**Fixed bugs:**
+
+- incorrect Debian OS origin string [\#145](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/145)
+
+**Closed issues:**
+
+- new release [\#158](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/158)
+- Typo in Readme [\#155](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/155)
+- License in metadata.json doesn't match the dual licensing documented in the README. [\#93](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/93)
+
+**Merged pull requests:**
+
+- Unify specs for all supported operating systems [\#170](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/170) ([ekohl](https://github.com/ekohl))
+- Correct tests for catalog compilation failure [\#169](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/169) ([ekohl](https://github.com/ekohl))
+- Remove the $xfacts variable [\#165](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/165) ([ekohl](https://github.com/ekohl))
+- Drop file mode checking [\#163](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/163) ([mmoll](https://github.com/mmoll))
+- Add Puppet management headers in the config files [\#162](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/162) ([arthurbarton](https://github.com/arthurbarton))
+- Spec: Follow puppetlabs-apt "MODULES-10548: make files readonly" [\#161](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/161) ([raoulbhatia](https://github.com/raoulbhatia))
+- Fixed README typo.  `archive_internal` to `archive_interval` [\#156](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/156) ([jhawz](https://github.com/jhawz))
+- Allow puppetlabs/stdlib 6.x [\#154](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/154) ([dhoppe](https://github.com/dhoppe))
+- Remove duplicate CONTRIBUTING.md file [\#152](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/152) ([dhoppe](https://github.com/dhoppe))
+- Update README.md [\#151](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/151) ([thepro101](https://github.com/thepro101))
+-  \* fix: debian origins since archive name changes, moved to codename … [\#148](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/148) ([deubert-it](https://github.com/deubert-it))
+- Allow puppetlabs/apt 7.x [\#147](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/147) ([scoopex](https://github.com/scoopex))
+- Additional sanitization of params [\#143](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/143) ([fetzerms](https://github.com/fetzerms))
+
 ## [v4.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v4.0.0) (2019-04-15)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v3.2.1...v4.0.0)
@@ -161,7 +202,7 @@ These should not affect the functionality of the module.
 - Add parameter to control reboot time [\#56](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/56) ([mpdude](https://github.com/mpdude))
 - Small fix for random\_sleep documentation. The value is set to undef i… [\#55](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/55) ([spoofedpacket](https://github.com/spoofedpacket))
 - add options support [\#52](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/52) ([b4ldr](https://github.com/b4ldr))
-- Default `notify\_update` to false [\#51](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/51) ([daenney](https://github.com/daenney))
+- Default `notify_update` to false [\#51](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/51) ([daenney](https://github.com/daenney))
 
 ## [v1.1.1](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v1.1.1) (2016-01-11)
 
