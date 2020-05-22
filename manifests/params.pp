@@ -1,7 +1,7 @@
 #
 class unattended_upgrades::params {
 
-  if $::osfamily != 'Debian' {
+  if $facts['os']['family'] != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
   }
 
