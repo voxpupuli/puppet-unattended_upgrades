@@ -23,7 +23,6 @@ class unattended_upgrades (
   Unattended_upgrades::Options              $options              = {},
   Array[String[1]]                          $days                 = [],
 ) inherits ::unattended_upgrades::params {
-
   # apt::conf settings require the apt class to work
   include apt
 
@@ -75,5 +74,4 @@ class unattended_upgrades (
     require       => Package['unattended-upgrades'],
     notify_update => $notify_update,
   }
-
 }
