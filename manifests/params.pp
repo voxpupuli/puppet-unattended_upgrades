@@ -1,6 +1,5 @@
 #
 class unattended_upgrades::params {
-
   if $facts['os']['family'] != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
   }
@@ -10,10 +9,12 @@ class unattended_upgrades::params {
   $default_backup               = { 'archive_interval'     => 0, 'level'     => 3, }
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
   $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
-  $default_options              = { 'force_confdef'        => true,
-                                    'force_confold'        => true,
-                                    'force_confnew'        => false,
-                                    'force_confmiss'       => false, }
+  $default_options              = {
+    'force_confdef'        => true,
+    'force_confold'        => true,
+    'force_confnew'        => false,
+    'force_confmiss'       => false,
+  }
 
   case fact('lsbdistid') {
     'debian', 'raspbian': {
