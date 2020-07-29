@@ -83,8 +83,7 @@ describe 'unattended_upgrades' do
             'force_confnew' =>  true,
             'force_confmiss' => true
           },
-          remove_unused_kernel: true,
-          remove_new_unused_deps: true
+          remove_new_unused_deps: false
         }
       end
 
@@ -142,9 +141,9 @@ describe 'unattended_upgrades' do
         ).with_content(
           /Acquire::http::Dl-Limit "70";/
         ).with_content(
-          /Unattended-Upgrade::Remove-New-Unused-Dependencies "true";/
-        ).with_content(
-          /Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";/
+          /Unattended-Upgrade::Remove-New-Unused-Dependencies "false";/
+        ).without_content(
+          /Unattended-Upgrade::Remove-Unused-Kernel-Packages/
         )
       end
 
