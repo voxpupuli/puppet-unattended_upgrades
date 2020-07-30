@@ -71,6 +71,17 @@ Unattended-Upgrade::MailOnlyOnError "<%= @_mail['only_on_error'].to_s %>";
 Unattended-Upgrade::Sender "<%= @sender %>";
 
 <%- end -%>
+<%- unless @remove_unused_kernel.nil? -%>
+// Remove unused automatically installed kernel-related packages
+// (kernel images, kernel headers and kernel version locked tools).
+Unattended-Upgrade::Remove-Unused-Kernel-Packages "<%= @remove_unused_kernel %>";
+<%- end -%>
+
+<%- unless @remove_new_unused_deps.nil? -%>
+// Do automatic removal of newly unused dependencies after the upgrade
+Unattended-Upgrade::Remove-New-Unused-Dependencies "<%= @remove_new_unused_deps %>";
+<%- end -%>
+
 // Do automatic removal of new unused dependencies after the upgrade
 // (equivalent to apt-get autoremove)
 Unattended-Upgrade::Remove-Unused-Dependencies "<%= @_auto['remove'].to_s %>";

@@ -82,7 +82,8 @@ describe 'unattended_upgrades' do
             'force_confold' =>  false,
             'force_confnew' =>  true,
             'force_confmiss' => true
-          }
+          },
+          remove_new_unused_deps: false
         }
       end
 
@@ -139,6 +140,10 @@ describe 'unattended_upgrades' do
           /Unattended-Upgrade::MailOnlyOnError "true";/
         ).with_content(
           /Acquire::http::Dl-Limit "70";/
+        ).with_content(
+          /Unattended-Upgrade::Remove-New-Unused-Dependencies "false";/
+        ).without_content(
+          /Unattended-Upgrade::Remove-Unused-Kernel-Packages/
         )
       end
 
