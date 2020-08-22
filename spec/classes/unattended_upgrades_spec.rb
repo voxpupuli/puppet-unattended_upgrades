@@ -83,7 +83,9 @@ describe 'unattended_upgrades' do
             'force_confnew' =>  true,
             'force_confmiss' => true
           },
-          remove_new_unused_deps: false
+          remove_new_unused_deps: false,
+          syslog_enable: true,
+          syslog_facility: 'daemon',
         }
       end
 
@@ -144,6 +146,10 @@ describe 'unattended_upgrades' do
           /Unattended-Upgrade::Remove-New-Unused-Dependencies "false";/
         ).without_content(
           /Unattended-Upgrade::Remove-Unused-Kernel-Packages/
+        ).with_content(
+          /Unattended-Upgrade::SyslogEnable "true";/
+        ).with_content(
+          /Unattended-Upgrade::SyslogFacility "daemon";/
         )
       end
 

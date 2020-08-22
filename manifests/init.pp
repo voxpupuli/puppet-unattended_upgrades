@@ -24,6 +24,8 @@ class unattended_upgrades (
   Array[String[1]]                          $days                   = [],
   Optional[Boolean]                         $remove_unused_kernel   = undef,
   Optional[Boolean]                         $remove_new_unused_deps = undef,
+  Optional[Boolean]                         $syslog_enable          = undef,
+  Optional[String]                          $syslog_facility        = undef,
 ) inherits ::unattended_upgrades::params {
   # apt::conf settings require the apt class to work
   include apt
