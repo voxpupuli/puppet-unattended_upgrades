@@ -71,7 +71,8 @@ describe 'unattended_upgrades' do
           install_on_shutdown: true,
           mail: {
             'to'            => 'root@localhost',
-            'only_on_error' => true
+            'only_on_error' => true,
+            'report'        => 'on-change',
           },
           sender: 'root@server.example.com',
           dl_limit: 70,
@@ -138,6 +139,8 @@ describe 'unattended_upgrades' do
           /Unattended-Upgrade::Sender "root@server.example.com";/
         ).with_content(
           /Unattended-Upgrade::MailOnlyOnError "true";/
+        ).with_content(
+          /Unattended-Upgrade::MailReport "on-change";/
         ).with_content(
           /Acquire::http::Dl-Limit "70";/
         ).with_content(
