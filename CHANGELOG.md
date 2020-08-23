@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v5.1.0) (2020-08-21)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v5.0.0...v5.1.0)
+
+**Implemented enhancements:**
+
+- Add support for Debian 10  [\#150](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/150)
+- Support Remove-New-Unused-Dependencies [\#106](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/106)
+- Add new options remove\_new\_unused\_deps and remove\_unused\_kernel [\#177](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/177) ([gfa](https://github.com/gfa))
+
+**Closed issues:**
+
+- No version of 'puppet-unattended\_upgrades' can satisfy all dependencies [\#167](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/167)
+
+**Merged pull requests:**
+
+- unattended-upgrades.erb: update signal comment [\#178](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/178) ([kenyon](https://github.com/kenyon))
+- Revert "Add Puppet management headers in the config files" [\#173](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/173) ([smortex](https://github.com/smortex))
+- Add Debian 10 support [\#172](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/172) ([ekohl](https://github.com/ekohl))
+
 ## [v5.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v5.0.0) (2020-05-22)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v4.0.0...v5.0.0)
