@@ -69,6 +69,8 @@ describe 'unattended_upgrades' do
             /Unattended-Upgrade::Allowed-Origins\ {\n
             \t"\${distro_id}\:\${distro_codename}";\n
             \t"\${distro_id}\:\${distro_codename}-security";\n
+            \t"\${distro_id}ESMApps\:\${distro_codename}-apps-security";\n
+            \t"\${distro_id}ESM\:\${distro_codename}-infra-security";\n
             };/x
           )
         end

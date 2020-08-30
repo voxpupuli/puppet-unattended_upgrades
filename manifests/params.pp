@@ -40,6 +40,8 @@ class unattended_upgrades::params {
       $origins            = [
         '${distro_id}:${distro_codename}', #lint:ignore:single_quote_string_with_variables
         '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+        '${distro_id}ESMApps:${distro_codename}-apps-security', #lint:ignore:single_quote_string_with_variables
+        '${distro_id}ESM:${distro_codename}-infra-security', #lint:ignore:single_quote_string_with_variables
       ]
     }
     'LinuxMint': {
