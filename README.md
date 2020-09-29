@@ -165,6 +165,8 @@ altering some of the default settings.
   * `force_confmiss` (`false`): Always install missing config files
 * `remove_new_unused_deps` (`undef`): Automatic removal of newly unused dependencies after the upgrade.
 * `remove_unused_kernel` (`undef`): Remove unused automatically installed kernel-related packages.
+* `syslog_enable` (`undef`): Enable logging to syslog. Default is False.
+* `syslog_facility` (`undef`): Specify syslog facility. Default is `daemon`.
 
 ## Limitations
 

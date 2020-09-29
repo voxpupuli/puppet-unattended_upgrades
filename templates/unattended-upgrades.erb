@@ -107,3 +107,13 @@ Unattended-Upgrade::Automatic-Reboot-Time "<%= @_auto['reboot_time'].to_s %>";
 // speed to 70kb/sec
 Acquire::http::Dl-Limit "<%= @dl_limit %>";
 <%- end -%>
+
+<%- unless @syslog_enable.nil? -%>
+// Enable logging to syslog. Default is False
+Unattended-Upgrade::SyslogEnable "<%= @syslog_enable %>";
+<%- end -%>
+
+<%- unless @syslog_facility.nil? -%>
+// Specify syslog facility. Default is daemon
+Unattended-Upgrade::SyslogFacility "<%= @syslog_facility %>";
+<%- end -%>
