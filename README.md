@@ -111,7 +111,7 @@ altering some of the default settings.
 * `legacy_origin` (`true` for Debian (squeeze), Ubuntu (precise, trusty,
   xenial, bionic and default), `false` for Debian (wheezy and default)):
   Use the legacy `Unattended-Upgrade::Allowed-Origins` setting or the modern `Unattended-Upgrade::Origins-Pattern`.
-* `mail`: A hash to configure email behaviour with two possible keys:
+* `mail`: A hash to configure email behaviour with the following possible keys:
   * `report` (`undef`): Possible values are "always", "only-on-error" or "on-change". Defaults to "on-change". Note that "never" is achieved by not setting any `to` address.
   * `only_on_error` (`true`): Only send mail when something went wrong. Deprecated in unattended-upgrades 1.13 and newer in favor of `report`.
   * `to` (`undef`): Email address to send email too
