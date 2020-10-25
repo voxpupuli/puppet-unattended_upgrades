@@ -72,7 +72,7 @@ describe 'unattended_upgrades' do
           mail: {
             'to'            => 'root@localhost',
             'only_on_error' => true,
-            'report'        => 'on-change',
+            'report'        => 'on-change'
           },
           sender: 'root@server.example.com',
           dl_limit: 70,
@@ -86,7 +86,7 @@ describe 'unattended_upgrades' do
           },
           remove_new_unused_deps: false,
           syslog_enable: true,
-          syslog_facility: 'daemon',
+          syslog_facility: 'daemon'
         }
       end
 
