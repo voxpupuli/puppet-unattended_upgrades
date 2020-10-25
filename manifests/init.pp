@@ -26,7 +26,7 @@ class unattended_upgrades (
   Optional[Boolean]                         $remove_new_unused_deps = undef,
   Optional[Boolean]                         $syslog_enable          = undef,
   Optional[String]                          $syslog_facility        = undef,
-) inherits ::unattended_upgrades::params {
+) inherits unattended_upgrades::params {
   # apt::conf settings require the apt class to work
   include apt
 
