@@ -3,6 +3,7 @@ class unattended_upgrades (
   Unattended_upgrades::Auto                 $auto                   = {},
   Unattended_upgrades::Backup               $backup                 = {},
   Array[String[1]]                          $blacklist              = [],
+  Array[String[1]]                          $whitelist              = [],
   Optional[Integer[0]]                      $dl_limit               = undef,
   Integer[0, 1]                             $enable                 = 1,
   Boolean                                   $install_on_shutdown    = false,

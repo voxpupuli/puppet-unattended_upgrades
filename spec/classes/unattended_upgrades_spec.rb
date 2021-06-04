@@ -67,6 +67,7 @@ describe 'unattended_upgrades' do
           legacy_origin: true,
           origins: %w[bananas],
           blacklist: %w[foo bar],
+          whitelist: %w[foo bar],
           minimal_steps: false,
           install_on_shutdown: true,
           mail: {
@@ -121,6 +122,8 @@ describe 'unattended_upgrades' do
           /Unattended-Upgrade::Allowed-Origins {\n\t"bananas";\n};/
         ).with_content(
           /Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};/
+        ).with_content(
+          /Unattended-Upgrade::Package-Whitelist {\n\t"foo";\n\t"bar";\n};\n/
         ).with_content(
           /Unattended-Upgrade::Update-Days {\n\t"Tuesday";\n\t"Thursday";\n\t"5";\n};/
         ).with_content(
