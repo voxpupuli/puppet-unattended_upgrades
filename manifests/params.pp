@@ -9,13 +9,6 @@ class unattended_upgrades::params {
   $default_backup               = { 'archive_interval'     => 0, 'level'     => 3, }
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
   $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
-  # those are DEPRECATED and will be removed in a future releaseq
-  $default_options              = {
-    'force_confdef'        => false,
-    'force_confold'        => false,
-    'force_confnew'        => false,
-    'force_confmiss'       => false,
-  }
 
   case downcase($facts['os']['name']) {
     'debian', 'raspbian': {

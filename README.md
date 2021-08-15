@@ -159,13 +159,6 @@ altering some of the default settings.
   ```
 
 * `verbose` (`0`): Send report mail to root.
-* `options` (`{}`): A hash of settings with these possible keys:
-  * `force_confdef` (`true`) : Use the default option for new config files if one
-    is available, don't prompt. If no default can be found, you will be prompted
-    unless one of the confold or confnew options is also given
-  * `force_confold` (`true`): Always use the old config files, don't prompt
-  * `force_confnew` (`false`): Always use the new config files, don't prompt
-  * `force_confmiss` (`false`): Always install missing config files
 * `remove_new_unused_deps` (`undef`): Automatic removal of newly unused dependencies after the upgrade.
 * `remove_unused_kernel` (`undef`): Remove unused automatically installed kernel-related packages.
 * `syslog_enable` (`undef`): Enable logging to syslog. Default is False.
