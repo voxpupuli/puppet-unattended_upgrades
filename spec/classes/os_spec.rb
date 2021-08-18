@@ -33,8 +33,8 @@ describe 'unattended_upgrades' do
           with_owner('root').
           with_group('root').
           with_content(%r{^Dpkg::Options\s\{}).
-          with_content(%r{^\s+\"--force-confdef\";}).
-          with_content(%r{^\s+\"--force-confold\";}).
+          without_content(%r{^\s+\"--force-confdef\";}).
+          without_content(%r{^\s+\"--force-confold\";}).
           without_content(%r{\"--force-confnew\";}).
           without_content(%r{\"--force-confmiss\";})
       end

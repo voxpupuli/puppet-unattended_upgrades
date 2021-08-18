@@ -46,6 +46,9 @@ class unattended_upgrades (
   $_upgradeable_packages = merge($unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
   assert_type(Unattended_upgrades::Upgradeable_packages, $_upgradeable_packages)
 
+  if $options != {} {
+    warning('passing "options" is deprecated, use apt::conf directly instead')
+  }
   $_options = merge($unattended_upgrades::default_options, $options)
   assert_type(Unattended_upgrades::Options, $_options)
 
