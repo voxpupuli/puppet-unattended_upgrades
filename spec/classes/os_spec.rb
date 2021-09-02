@@ -45,7 +45,7 @@ describe 'unattended_upgrades' do
       case os_facts[:operatingsystem]
       when 'Debian'
         case os_facts[:lsbdistcodename]
-        when 'jessie', 'stretch'
+        when 'stretch', 'buster'
           it do
             is_expected.to create_file(file_unattended).with_content(
               /Unattended-Upgrade::Origins-Pattern\ {\n
@@ -53,12 +53,12 @@ describe 'unattended_upgrades' do
               };/x
             )
           end
-        when 'buster'
+        when 'bullseye'
           it do
             is_expected.to create_file(file_unattended).with_content(
               /Unattended-Upgrade::Origins-Pattern\ {\n
               \t"origin=Debian,codename=\${distro_codename},label=Debian";\n
-              \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
+              \t"origin=Debian,codename=\${distro_codename}-security,label=Debian-Security";\n
               };/x
             )
           end
