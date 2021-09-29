@@ -4,7 +4,41 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v5.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v5.1.0) (2020-08-21)
+## [v6.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v6.0.0) (2021-09-29)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v5.1.0...v6.0.0)
+
+**Breaking changes:**
+
+- Drop support for Ubuntu 19.10 \(EOL\) [\#198](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/198) ([smortex](https://github.com/smortex))
+- Drop support of Puppet 5 \(EOL\) [\#196](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/196) ([smortex](https://github.com/smortex))
+- Drop support for Debian 8, 9 and Ubuntu 16.04 \(EOL\) [\#195](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/195) ([smortex](https://github.com/smortex))
+
+**Implemented enhancements:**
+
+- Add support for Puppet 7 [\#197](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/197) ([smortex](https://github.com/smortex))
+- Add support for Debian 11 [\#193](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/193) ([sboyd-m](https://github.com/sboyd-m))
+- add support for Package-Whitelist [\#188](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/188) ([moritz-makandra](https://github.com/moritz-makandra))
+- add SyslogEnable and SyslogFacility options to unattended-upgrades.erb [\#182](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/182) ([kenyon](https://github.com/kenyon))
+- add the Unattended-Upgrade::MailReport setting to unattended-upgrades.erb [\#181](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/181) ([kenyon](https://github.com/kenyon))
+- Support Ubuntu Extended Security Maintenance \(ESM\) [\#180](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/180) ([raoulbhatia](https://github.com/raoulbhatia))
+
+**Fixed bugs:**
+
+- disable by default and deprecate dpkg "options" parameter [\#191](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/191) ([anarcat](https://github.com/anarcat))
+
+**Closed issues:**
+
+- Debian 11 changes name of security suite [\#187](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/187)
+
+**Merged pull requests:**
+
+- Add a basic acceptance test [\#194](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/194) ([smortex](https://github.com/smortex))
+- Allow stdlib 8.0.0 [\#192](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/192) ([smortex](https://github.com/smortex))
+- Update dependencies [\#189](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/189) ([saz](https://github.com/saz))
+- README: fix wording about the mail hash [\#183](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/183) ([kenyon](https://github.com/kenyon))
+
+## [v5.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v5.1.0) (2020-08-23)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v5.0.0...v5.1.0)
 
