@@ -30,6 +30,7 @@ class unattended_upgrades::params {
         default: {
           $legacy_origin      = false
           $origins            = [
+            'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
             'origin=Debian,codename=${distro_codename},label=Debian-Security', #lint:ignore:single_quote_string_with_variables
           ]
         }
