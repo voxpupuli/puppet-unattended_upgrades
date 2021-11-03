@@ -21,14 +21,12 @@ class unattended_upgrades::params {
     'debian', 'raspbian': {
       case fact('lsbdistcodename') {
         'bullseye': {
-          $legacy_origin      = false
           $origins            = [
             'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
             'origin=Debian,codename=${distro_codename}-security,label=Debian-Security', #lint:ignore:single_quote_string_with_variables
           ]
         }
         default: {
-          $legacy_origin      = false
           $origins            = [
             'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
             'origin=Debian,codename=${distro_codename},label=Debian-Security', #lint:ignore:single_quote_string_with_variables
@@ -38,25 +36,18 @@ class unattended_upgrades::params {
     }
     'ubuntu', 'neon': {
       # Ubuntu: https://ubuntu.com/about/release-cycle and https://wiki.ubuntu.com/Releases
-      $legacy_origin      = true
+      # Ubuntu 18.04 and up do allow the use of Origins-Pattern; 16.04 is out of support for Vox Pupuli.
       $origins            = [
-        '${distro_id}:${distro_codename}', #lint:ignore:single_quote_string_with_variables
-        '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-        '${distro_id}ESMApps:${distro_codename}-apps-security', #lint:ignore:single_quote_string_with_variables
-        '${distro_id}ESM:${distro_codename}-infra-security', #lint:ignore:single_quote_string_with_variables
+        'origin=${distro_id},suite=${distro_codename}', #lint:ignore:single_quote_string_with_variables
+        'origin=${distro_id},suite=${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
+        'origin=${distro_id},suite=${distro_codename}-apps-security', #lint:ignore:single_quote_string_with_variables
+        'origin=${distro_id}ESM,suite=${distro_codename}-infra-security', #lint:ignore:single_quote_string_with_variables
       ]
     }
     'LinuxMint': {
       case fact('lsbmajdistrelease') {
         # Linux Mint 18* is based on Ubuntu 16.04
-        '18': {
-          $legacy_origin      = true
-          $origins            = [
-            'Ubuntu:xenial-security',
-          ]
-        }
         default: {
-          $legacy_origin      = true
           $origins            = [
             '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
           ]
@@ -64,7 +55,6 @@ class unattended_upgrades::params {
       }
     }
     default: {
-      $legacy_origin = undef
       $origins       = undef
     }
   }

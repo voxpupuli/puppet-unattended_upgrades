@@ -3,11 +3,7 @@
 // Note that in Ubuntu security updates may pull in new dependencies
 // from non-security sources (e.g. chromium). By allowing the release
 // pocket these get automatically pulled in.
-<%- if @legacy_origin -%>
-Unattended-Upgrade::Allowed-Origins {
-<%- else -%>
 Unattended-Upgrade::Origins-Pattern {
-<%- end -%>
 <% @origins.each do |origin| -%>
 	"<%= origin %>";
 <% end -%>

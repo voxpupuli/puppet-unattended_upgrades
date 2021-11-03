@@ -64,7 +64,6 @@ describe 'unattended_upgrades' do
             'reboot_time'          => '03:00'
           },
           verbose: 1,
-          legacy_origin: true,
           origins: %w[bananas],
           blacklist: %w[foo bar],
           whitelist: %w[foo bar],
@@ -229,15 +228,6 @@ describe 'unattended_upgrades' do
         let :params do
           {
             days: 'foo'
-          }
-        end
-
-        it { is_expected.to compile.and_raise_error(/got String/) }
-      end
-      context 'bad legacy_origin' do
-        let :params do
-          {
-            legacy_origin: 'foo'
           }
         end
 
