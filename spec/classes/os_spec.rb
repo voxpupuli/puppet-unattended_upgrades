@@ -67,11 +67,11 @@ describe 'unattended_upgrades' do
       when 'Ubuntu'
         it do
           is_expected.to create_file(file_unattended).with_content(
-            /Unattended-Upgrade::Allowed-Origins\ {\n
-            \t"\${distro_id}\:\${distro_codename}";\n
-            \t"\${distro_id}\:\${distro_codename}-security";\n
-            \t"\${distro_id}ESMApps\:\${distro_codename}-apps-security";\n
-            \t"\${distro_id}ESM\:\${distro_codename}-infra-security";\n
+            /Unattended-Upgrade::Origins-Pattern\ {\n
+            \t"origin=\${distro_id},suite=\${distro_codename}";\n
+            \t"origin=\${distro_id},suite=\${distro_codename}-security";\n
+            \t"origin=\${distro_id}ESMApps,suite=\${distro_codename}-apps-security";\n
+            \t"origin=\${distro_id}ESM,suite=\${distro_codename}-infra-security";\n
             };/x
           )
         end

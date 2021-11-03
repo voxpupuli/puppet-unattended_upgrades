@@ -64,7 +64,7 @@ describe 'unattended_upgrades' do
             'reboot_time'          => '03:00'
           },
           verbose: 1,
-          origins: %w[bananas],
+          origins: %w[codename=bananas],
           blacklist: %w[foo bar],
           whitelist: %w[foo bar],
           minimal_steps: false,
@@ -118,7 +118,7 @@ describe 'unattended_upgrades' do
           owner: 'root',
           group: 'root'
         ).with_content(
-          /Unattended-Upgrade::Allowed-Origins {\n\t"bananas";\n};/
+          /Unattended-Upgrade::Origins-Pattern {\n\t"codename=bananas";\n};/
         ).with_content(
           /Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};/
         ).with_content(

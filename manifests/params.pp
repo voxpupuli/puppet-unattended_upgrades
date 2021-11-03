@@ -40,7 +40,7 @@ class unattended_upgrades::params {
       $origins            = [
         'origin=${distro_id},suite=${distro_codename}', #lint:ignore:single_quote_string_with_variables
         'origin=${distro_id},suite=${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-        'origin=${distro_id},suite=${distro_codename}-apps-security', #lint:ignore:single_quote_string_with_variables
+        'origin=${distro_id}ESMApps,suite=${distro_codename}-apps-security', #lint:ignore:single_quote_string_with_variables
         'origin=${distro_id}ESM,suite=${distro_codename}-infra-security', #lint:ignore:single_quote_string_with_variables
       ]
     }
