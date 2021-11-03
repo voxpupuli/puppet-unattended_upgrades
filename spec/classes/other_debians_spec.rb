@@ -28,35 +28,4 @@ describe 'unattended_upgrades' do
       )
     end
   end
-
-  context 'with defaults on Linux Mint 18 Sarah' do
-    let(:facts) do
-      {
-        os: {
-          name: 'LinuxMint',
-          family: 'Debian',
-          release: {
-            full: '18'
-          }
-        },
-        osfamily: 'Debian',
-        lsbdistid: 'LinuxMint',
-        lsbdistcodename: 'sarah',
-        lsbdistrelease: '18',
-        lsbmajdistrelease: '18'
-      }
-    end
-
-    it do
-      is_expected.to create_file(file_unattended).with(
-        'owner' => 'root',
-        'group' => 'root'
-      ).with_content(
-        # This is the only section that's different for Ubuntu compared to Debian
-        %r{\Unattended-Upgrade::Allowed-Origins\ {\n
-        \t"Ubuntu\:xenial-security";\n
-        };}x
-      )
-    end
-  end
 end

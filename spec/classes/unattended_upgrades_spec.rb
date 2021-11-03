@@ -64,8 +64,7 @@ describe 'unattended_upgrades' do
             'reboot_time'          => '03:00'
           },
           verbose: 1,
-          legacy_origin: true,
-          origins: %w[bananas],
+          origins: %w[codename=bananas],
           blacklist: %w[foo bar],
           whitelist: %w[foo bar],
           minimal_steps: false,
@@ -119,7 +118,7 @@ describe 'unattended_upgrades' do
           owner: 'root',
           group: 'root'
         ).with_content(
-          /Unattended-Upgrade::Allowed-Origins {\n\t"bananas";\n};/
+          /Unattended-Upgrade::Origins-Pattern {\n\t"codename=bananas";\n};/
         ).with_content(
           /Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};/
         ).with_content(
@@ -229,15 +228,6 @@ describe 'unattended_upgrades' do
         let :params do
           {
             days: 'foo'
-          }
-        end
-
-        it { is_expected.to compile.and_raise_error(/got String/) }
-      end
-      context 'bad legacy_origin' do
-        let :params do
-          {
-            legacy_origin: 'foo'
           }
         end
 

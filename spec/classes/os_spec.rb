@@ -45,15 +45,6 @@ describe 'unattended_upgrades' do
       case os_facts[:operatingsystem]
       when 'Debian'
         case os_facts[:lsbdistcodename]
-        when 'buster'
-          it do
-            is_expected.to create_file(file_unattended).with_content(
-              /Unattended-Upgrade::Origins-Pattern\ {\n
-              \t"origin=Debian,codename=\${distro_codename},label=Debian";\n
-              \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
-              };/x
-            )
-          end
         when 'bullseye'
           it do
             is_expected.to create_file(file_unattended).with_content(
@@ -63,15 +54,24 @@ describe 'unattended_upgrades' do
               };/x
             )
           end
+        else
+          it do
+            is_expected.to create_file(file_unattended).with_content(
+              /Unattended-Upgrade::Origins-Pattern\ {\n
+              \t"origin=Debian,codename=\${distro_codename},label=Debian";\n
+              \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
+              };/x
+            )
+          end
         end
       when 'Ubuntu'
         it do
           is_expected.to create_file(file_unattended).with_content(
-            /Unattended-Upgrade::Allowed-Origins\ {\n
-            \t"\${distro_id}\:\${distro_codename}";\n
-            \t"\${distro_id}\:\${distro_codename}-security";\n
-            \t"\${distro_id}ESMApps\:\${distro_codename}-apps-security";\n
-            \t"\${distro_id}ESM\:\${distro_codename}-infra-security";\n
+            /Unattended-Upgrade::Origins-Pattern\ {\n
+            \t"origin=\${distro_id},suite=\${distro_codename}";\n
+            \t"origin=\${distro_id},suite=\${distro_codename}-security";\n
+            \t"origin=\${distro_id}ESMApps,suite=\${distro_codename}-apps-security";\n
+            \t"origin=\${distro_id}ESM,suite=\${distro_codename}-infra-security";\n
             };/x
           )
         end
