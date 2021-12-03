@@ -75,8 +75,8 @@ altering some of the default settings.
   ```
 
 * `auto` (`{}`): A hash of settings with these possible keys:
-  * `clean`(`0`): Remove packages that can no longer be downloaded from cache every
-    X days (`0` = disabled).
+  * `clean`(`0`): Remove packages that can no longer be downloaded from cache every X days (`0` = disabled).
+    Also supports 'always' as value to execute this operation every time the script is executed.
   * `fix_interrupted_dpkg`(`true`): Try to fix package installation state.
   * `reboot`(`false`): Reboot system after package update installation.
   * `reboot_time`(`now`): If automatic reboot is enabled and needed, reboot at the
@@ -138,10 +138,13 @@ altering some of the default settings.
   cron job applies, which is 1800 seconds.
 * `size` (`0`): Maximum size of the cache in MB.
 * `update` (`1`): Do "apt-get update" automatically every n-days.
+  Also supports 'always' as value to execute this operation every time the script is executed.
 * `upgrade` (`1`): Run the "unattended-upgrade" security upgrade script every n-days.
+  Also supports 'always' as value to execute this operation every time the script is executed.
 * `days` (`[]`): Set the days of the week that updates should be applied. The days can be specified as localized abbreviated or full names. Or as integers where "0" is Sunday, "1" is Monday etc.
 * `upgradeable_packages` (`{}`): A hash with two possible keys:
   * `download_only` (`0`): Do "apt-get upgrade --download-only" every n-days.
+    Also supports 'always' as value to execute this operation every time the script is executed.
   * `debdelta` (`1`): Use debdelta-upgrade to download updates if available.
 
   Any of these keys can be specified and will be merged into the defaults:
