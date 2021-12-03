@@ -369,6 +369,61 @@ describe 'unattended_upgrades' do
         it { is_expected.to compile.and_raise_error(/unrecognized key 'invalid_key'/) }
       end
     end
+
+    describe 'n-days settings tests' do
+      context 'update supports always' do
+        let :params do
+          {
+            update: 'always'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            /APT::Periodic::Update-Package-Lists "always";/
+          )
+        end
+      end
+      context 'ugrade supports always' do
+        let :params do
+          {
+            upgrade: 'always'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            /APT::Periodic::Unattended-Upgrade "always";/
+          )
+        end
+      end
+      context 'count supports always' do
+        let :params do
+          {
+            auto: { 'clean' => 'always' }
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            /APT::Periodic::AutocleanInterval "always";/
+          )
+        end
+      end
+      context 'download-only supports always' do
+        let :params do
+          {
+            upgradeable_packages: { 'download_only' => 'always' }
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            /APT::Periodic::Download-Upgradeable-Packages "always";/
+          )
+        end
+      end
+    end
   end
 
   on_supported_os.each do |os, facts|
