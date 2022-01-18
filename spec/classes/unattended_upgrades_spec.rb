@@ -86,7 +86,8 @@ describe 'unattended_upgrades' do
           },
           remove_new_unused_deps: false,
           syslog_enable: true,
-          syslog_facility: 'daemon'
+          syslog_facility: 'daemon',
+          only_on_ac_power: false,
         }
       end
 
@@ -155,6 +156,8 @@ describe 'unattended_upgrades' do
           /Unattended-Upgrade::SyslogEnable "true";/
         ).with_content(
           /Unattended-Upgrade::SyslogFacility "daemon";/
+        ).with_content(
+          /Unattended-Upgrade::OnlyOnACPower "false";/
         )
       end
 

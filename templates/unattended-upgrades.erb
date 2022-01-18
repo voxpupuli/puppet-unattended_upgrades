@@ -122,3 +122,9 @@ Unattended-Upgrade::SyslogEnable "<%= @syslog_enable %>";
 // Specify syslog facility. Default is daemon
 Unattended-Upgrade::SyslogFacility "<%= @syslog_facility %>";
 <%- end -%>
+
+<%- unless @only_on_ac_power.nil? -%>
+// Download and install upgrades only on AC power
+// (i.e. skip or gracefully stop updates on battery)
+Unattended-Upgrade::OnlyOnACPower "<%= @only_on_ac_power %>";
+<%- end -%>

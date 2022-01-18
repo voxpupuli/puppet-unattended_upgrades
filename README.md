@@ -167,6 +167,7 @@ altering some of the default settings.
 * `remove_unused_kernel` (`undef`): Remove unused automatically installed kernel-related packages.
 * `syslog_enable` (`undef`): Enable logging to syslog. Default is False.
 * `syslog_facility` (`undef`): Specify syslog facility. Default is `daemon`.
+* `only_on_ac_power` (`undef`): Download and install upgrades only on AC power. Default is `true`.
 
 ## Limitations
 
