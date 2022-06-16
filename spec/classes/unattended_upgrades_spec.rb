@@ -5,7 +5,6 @@ require 'spec_helper'
 describe 'unattended_upgrades' do
   let(:file_unattended) { '/etc/apt/apt.conf.d/50unattended-upgrades' }
   let(:file_periodic) { '/etc/apt/apt.conf.d/10periodic' }
-  let(:file_options) { '/etc/apt/apt.conf.d/10options' }
 
   shared_examples 'basic specs' do
     let(:params) { {} }
@@ -30,13 +29,6 @@ describe 'unattended_upgrades' do
 
       it do
         is_expected.to contain_apt__conf('periodic').with(
-          require: 'Package[unattended-upgrades]',
-          notify_update: false
-        )
-      end
-
-      it do
-        is_expected.to contain_apt__conf('options').with(
           require: 'Package[unattended-upgrades]',
           notify_update: false
         )
@@ -79,12 +71,6 @@ describe 'unattended_upgrades' do
           dl_limit: 70,
           random_sleep: 300,
           notify_update: true,
-          options: {
-            'force_confdef' => false,
-            'force_confold' => false,
-            'force_confnew' => true,
-            'force_confmiss' => true
-          },
           remove_new_unused_deps: false,
           syslog_enable: true,
           syslog_facility: 'daemon',
@@ -103,13 +89,6 @@ describe 'unattended_upgrades' do
 
       it do
         is_expected.to contain_apt__conf('periodic').with(
-          require: 'Package[unattended-upgrades]',
-          notify_update: true
-        )
-      end
-
-      it do
-        is_expected.to contain_apt__conf('options').with(
           require: 'Package[unattended-upgrades]',
           notify_update: true
         )
@@ -192,23 +171,6 @@ describe 'unattended_upgrades' do
           %r{APT::Periodic::Verbose "1";}
         ).with_content(
           %r{APT::Periodic::RandomSleep "300";}
-        )
-      end
-
-      it do
-        is_expected.to create_file(file_options).with(
-          owner: 'root',
-          group: 'root'
-        ).with_content(
-          %r{^Dpkg::Options\s\{}
-        ).without_content(
-          %r{"--force-confdef";}
-        ).without_content(
-          %r{"--force-confold";}
-        ).with_content(
-          %r{^\s+"--force-confnew";}
-        ).with_content(
-          %r{^\s+"--force-confmiss";}
         )
       end
 
@@ -338,56 +300,6 @@ describe 'unattended_upgrades' do
         end
 
         it { is_expected.to compile.and_raise_error(%r{got String}) }
-      end
-
-      context 'bad options[\'force_confdef\']' do
-        let :params do
-          {
-            options: { 'force_confdef' => 'foo' }
-          }
-        end
-
-        it { is_expected.to compile.and_raise_error(%r{got String}) }
-      end
-
-      context 'bad options[\'force_confold\']' do
-        let :params do
-          {
-            options: { 'force_confold' => 'foo' }
-          }
-        end
-
-        it { is_expected.to compile.and_raise_error(%r{got String}) }
-      end
-
-      context 'bad options[\'force_confnew\']' do
-        let :params do
-          {
-            options: { 'force_confnew' => 'foo' }
-          }
-        end
-
-        it { is_expected.to compile.and_raise_error(%r{got String}) }
-      end
-
-      context 'bad options[\'force_confmiss\']' do
-        let :params do
-          {
-            options: { 'force_confmiss' => 'foo' }
-          }
-        end
-
-        it { is_expected.to compile.and_raise_error(%r{got String}) }
-      end
-
-      context 'bad options[\'invalid_key\']' do
-        let :params do
-          {
-            options: { 'invalid_key' => true }
-          }
-        end
-
-        it { is_expected.to compile.and_raise_error(%r{unrecognized key 'invalid_key'}) }
       end
     end
 

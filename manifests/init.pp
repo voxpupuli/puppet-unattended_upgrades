@@ -20,7 +20,6 @@ class unattended_upgrades (
   Unattended_upgrades::Upgradeable_packages $upgradeable_packages   = {},
   Integer[0]                                $verbose                = 0,
   Boolean                                   $notify_update          = false,
-  Unattended_upgrades::Options              $options                = {},
   Array[String[1]]                          $days                   = [],
   Optional[Boolean]                         $remove_unused_kernel   = undef,
   Optional[Boolean]                         $remove_new_unused_deps = undef,
@@ -46,12 +45,6 @@ class unattended_upgrades (
   $_upgradeable_packages = merge($unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
   assert_type(Unattended_upgrades::Upgradeable_packages, $_upgradeable_packages)
 
-  if $options != {} {
-    warning('passing "options" is deprecated, use apt::conf directly instead')
-  }
-  $_options = merge($unattended_upgrades::default_options, $options)
-  assert_type(Unattended_upgrades::Options, $_options)
-
   package { 'unattended-upgrades':
     ensure => $package_ensure,
   }
@@ -73,12 +66,6 @@ class unattended_upgrades (
   apt::conf { 'auto-upgrades':
     ensure        => absent,
     priority      => 20,
-    require       => Package['unattended-upgrades'],
-    notify_update => $notify_update,
-  }
-  apt::conf { 'options':
-    priority      => 10,
-    content       => template("${module_name}/options.erb"),
     require       => Package['unattended-upgrades'],
     notify_update => $notify_update,
   }

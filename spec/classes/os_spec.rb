@@ -30,17 +30,6 @@ describe 'unattended_upgrades' do
 
       it { is_expected.to contain_apt__conf('auto-upgrades').with_ensure('absent') }
 
-      it do
-        is_expected.to create_file('/etc/apt/apt.conf.d/10options').
-          with_owner('root').
-          with_group('root').
-          with_content(%r{^Dpkg::Options\s\{}).
-          without_content(%r{^\s+"--force-confdef";}).
-          without_content(%r{^\s+"--force-confold";}).
-          without_content(%r{"--force-confnew";}).
-          without_content(%r{"--force-confmiss";})
-      end
-
       it { is_expected.to create_file(file_unattended).with_owner('root').with_group('root') }
 
       # rubocop:disable Style/RegexpLiteral
