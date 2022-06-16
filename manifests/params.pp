@@ -17,9 +17,9 @@ class unattended_upgrades::params {
     'force_confmiss'       => false,
   }
 
-  case fact('lsbdistid') {
+  case downcase($facts['os']['name']) {
     'debian', 'raspbian': {
-      case fact('lsbdistcodename') {
+      case fact('os.distro.codename') {
         'bullseye': {
           $origins            = [
             'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
@@ -45,14 +45,7 @@ class unattended_upgrades::params {
       ]
     }
     'LinuxMint': {
-      case fact('lsbmajdistrelease') {
-        # Linux Mint 18* is based on Ubuntu 16.04
-        default: {
-          $origins            = [
-            '${distro_id}:${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
-          ]
-        }
-      }
+      $origins = ['${distro_id}:${distro_codename}-security',] #lint:ignore:single_quote_string_with_variables
     }
     default: {
       $origins       = undef
