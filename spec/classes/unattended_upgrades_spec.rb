@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-# rubocop:disable Style/RegexpLiteral
 describe 'unattended_upgrades' do
   let(:file_unattended) { '/etc/apt/apt.conf.d/50unattended-upgrades' }
   let(:file_periodic) { '/etc/apt/apt.conf.d/10periodic' }
@@ -41,7 +42,7 @@ describe 'unattended_upgrades' do
         )
       end
 
-      it { is_expected.to create_file(file_unattended).without_content(/Unattended-Upgrade::Sender/) }
+      it { is_expected.to create_file(file_unattended).without_content(%r{Unattended-Upgrade::Sender}) }
     end
 
     context 'set all the things' do
@@ -79,9 +80,9 @@ describe 'unattended_upgrades' do
           random_sleep: 300,
           notify_update: true,
           options: {
-            'force_confdef' =>  false,
-            'force_confold' =>  false,
-            'force_confnew' =>  true,
+            'force_confdef' => false,
+            'force_confold' => false,
+            'force_confnew' => true,
             'force_confmiss' => true
           },
           remove_new_unused_deps: false,
@@ -119,45 +120,45 @@ describe 'unattended_upgrades' do
           owner: 'root',
           group: 'root'
         ).with_content(
-          /Unattended-Upgrade::Origins-Pattern {\n\t"codename=bananas";\n};/
+          %r{Unattended-Upgrade::Origins-Pattern {\n\t"codename=bananas";\n};}
         ).with_content(
-          /Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};/
+          %r{Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};}
         ).with_content(
-          /Unattended-Upgrade::Package-Whitelist {\n\t"foo";\n\t"bar";\n};\n/
+          %r{Unattended-Upgrade::Package-Whitelist {\n\t"foo";\n\t"bar";\n};\n}
         ).with_content(
-          /Unattended-Upgrade::Update-Days {\n\t"Tuesday";\n\t"Thursday";\n\t"5";\n};/
+          %r{Unattended-Upgrade::Update-Days {\n\t"Tuesday";\n\t"Thursday";\n\t"5";\n};}
         ).with_content(
-          /Unattended-Upgrade::AutoFixInterruptedDpkg "false";/
+          %r{Unattended-Upgrade::AutoFixInterruptedDpkg "false";}
         ).with_content(
-          /Unattended-Upgrade::MinimalSteps "false";/
+          %r{Unattended-Upgrade::MinimalSteps "false";}
         ).with_content(
-          /Unattended-Upgrade::InstallOnShutdown "true";/
+          %r{Unattended-Upgrade::InstallOnShutdown "true";}
         ).with_content(
-          /Unattended-Upgrade::Remove-Unused-Dependencies "false";/
+          %r{Unattended-Upgrade::Remove-Unused-Dependencies "false";}
         ).with_content(
-          /Unattended-Upgrade::Automatic-Reboot "true";/
+          %r{Unattended-Upgrade::Automatic-Reboot "true";}
         ).with_content(
-          /Unattended-Upgrade::Automatic-Reboot-Time "03:00";/
+          %r{Unattended-Upgrade::Automatic-Reboot-Time "03:00";}
         ).with_content(
-          /Unattended-Upgrade::Mail "root@localhost";/
+          %r{Unattended-Upgrade::Mail "root@localhost";}
         ).with_content(
-          /Unattended-Upgrade::Sender "root@server.example.com";/
+          %r{Unattended-Upgrade::Sender "root@server.example.com";}
         ).with_content(
-          /Unattended-Upgrade::MailOnlyOnError "true";/
+          %r{Unattended-Upgrade::MailOnlyOnError "true";}
         ).with_content(
-          /Unattended-Upgrade::MailReport "on-change";/
+          %r{Unattended-Upgrade::MailReport "on-change";}
         ).with_content(
-          /Acquire::http::Dl-Limit "70";/
+          %r{Acquire::http::Dl-Limit "70";}
         ).with_content(
-          /Unattended-Upgrade::Remove-New-Unused-Dependencies "false";/
+          %r{Unattended-Upgrade::Remove-New-Unused-Dependencies "false";}
         ).without_content(
-          /Unattended-Upgrade::Remove-Unused-Kernel-Packages/
+          %r{Unattended-Upgrade::Remove-Unused-Kernel-Packages}
         ).with_content(
-          /Unattended-Upgrade::SyslogEnable "true";/
+          %r{Unattended-Upgrade::SyslogEnable "true";}
         ).with_content(
-          /Unattended-Upgrade::SyslogFacility "daemon";/
+          %r{Unattended-Upgrade::SyslogFacility "daemon";}
         ).with_content(
-          /Unattended-Upgrade::OnlyOnACPower "false";/
+          %r{Unattended-Upgrade::OnlyOnACPower "false";}
         )
       end
 
@@ -166,31 +167,31 @@ describe 'unattended_upgrades' do
           owner: 'root',
           group: 'root'
         ).with_content(
-          /APT::Periodic::Enable "1";/
+          %r{APT::Periodic::Enable "1";}
         ).with_content(
-          /APT::Periodic::BackupArchiveInterval "0";/
+          %r{APT::Periodic::BackupArchiveInterval "0";}
         ).with_content(
-          /APT::Periodic::BackupLevel "3";/
+          %r{APT::Periodic::BackupLevel "3";}
         ).with_content(
-          /APT::Periodic::MaxAge "20";/
+          %r{APT::Periodic::MaxAge "20";}
         ).with_content(
-          /APT::Periodic::MinAge "1";/
+          %r{APT::Periodic::MinAge "1";}
         ).with_content(
-          /APT::Periodic::MaxSize "1000";/
+          %r{APT::Periodic::MaxSize "1000";}
         ).with_content(
-          /APT::Periodic::Update-Package-Lists "5";/
+          %r{APT::Periodic::Update-Package-Lists "5";}
         ).with_content(
-          /APT::Periodic::Download-Upgradeable-Packages "5";/
+          %r{APT::Periodic::Download-Upgradeable-Packages "5";}
         ).with_content(
-          /APT::Periodic::Download-Upgradeable-Packages-Debdelta "5";/
+          %r{APT::Periodic::Download-Upgradeable-Packages-Debdelta "5";}
         ).with_content(
-          /APT::Periodic::Unattended-Upgrade "5";/
+          %r{APT::Periodic::Unattended-Upgrade "5";}
         ).with_content(
-          /APT::Periodic::AutocleanInterval "5";/
+          %r{APT::Periodic::AutocleanInterval "5";}
         ).with_content(
-          /APT::Periodic::Verbose "1";/
+          %r{APT::Periodic::Verbose "1";}
         ).with_content(
-          /APT::Periodic::RandomSleep "300";/
+          %r{APT::Periodic::RandomSleep "300";}
         )
       end
 
@@ -199,17 +200,18 @@ describe 'unattended_upgrades' do
           owner: 'root',
           group: 'root'
         ).with_content(
-          /^Dpkg::Options\s{/
+          %r{^Dpkg::Options\s\{}
         ).without_content(
-          /"--force-confdef";/
+          %r{"--force-confdef";}
         ).without_content(
-          /"--force-confold";/
+          %r{"--force-confold";}
         ).with_content(
-          /^\s+"--force-confnew";/
+          %r{^\s+"--force-confnew";}
         ).with_content(
-          /^\s+"--force-confmiss";/
+          %r{^\s+"--force-confmiss";}
         )
       end
+
       it do
         is_expected.to contain_apt__conf('auto-upgrades').with(
           ensure: 'absent'
@@ -225,8 +227,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad days' do
         let :params do
           {
@@ -234,8 +237,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad minimal_steps' do
         let :params do
           {
@@ -243,8 +247,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad blacklist' do
         let :params do
           {
@@ -252,8 +257,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad origins' do
         let :params do
           {
@@ -261,8 +267,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad auto' do
         let :params do
           {
@@ -270,8 +277,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad mail' do
         let :params do
           {
@@ -279,8 +287,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad backup' do
         let :params do
           {
@@ -288,8 +297,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad age' do
         let :params do
           {
@@ -297,8 +307,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad size' do
         let :params do
           {
@@ -306,8 +317,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad upgradeable_packages' do
         let :params do
           {
@@ -315,8 +327,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad mail[\'only_on_error\']' do
         let :params do
           {
@@ -324,8 +337,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad options[\'force_confdef\']' do
         let :params do
           {
@@ -333,8 +347,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad options[\'force_confold\']' do
         let :params do
           {
@@ -342,8 +357,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad options[\'force_confnew\']' do
         let :params do
           {
@@ -351,8 +367,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad options[\'force_confmiss\']' do
         let :params do
           {
@@ -360,8 +377,9 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/got String/) }
+        it { is_expected.to compile.and_raise_error(%r{got String}) }
       end
+
       context 'bad options[\'invalid_key\']' do
         let :params do
           {
@@ -369,7 +387,7 @@ describe 'unattended_upgrades' do
           }
         end
 
-        it { is_expected.to compile.and_raise_error(/unrecognized key 'invalid_key'/) }
+        it { is_expected.to compile.and_raise_error(%r{unrecognized key 'invalid_key'}) }
       end
     end
 
@@ -383,10 +401,11 @@ describe 'unattended_upgrades' do
 
         it do
           is_expected.to create_file(file_periodic).with_content(
-            /APT::Periodic::Update-Package-Lists "always";/
+            %r{APT::Periodic::Update-Package-Lists "always";}
           )
         end
       end
+
       context 'ugrade supports always' do
         let :params do
           {
@@ -396,10 +415,11 @@ describe 'unattended_upgrades' do
 
         it do
           is_expected.to create_file(file_periodic).with_content(
-            /APT::Periodic::Unattended-Upgrade "always";/
+            %r{APT::Periodic::Unattended-Upgrade "always";}
           )
         end
       end
+
       context 'count supports always' do
         let :params do
           {
@@ -409,10 +429,11 @@ describe 'unattended_upgrades' do
 
         it do
           is_expected.to create_file(file_periodic).with_content(
-            /APT::Periodic::AutocleanInterval "always";/
+            %r{APT::Periodic::AutocleanInterval "always";}
           )
         end
       end
+
       context 'download-only supports always' do
         let :params do
           {
@@ -422,7 +443,7 @@ describe 'unattended_upgrades' do
 
         it do
           is_expected.to create_file(file_periodic).with_content(
-            /APT::Periodic::Download-Upgradeable-Packages "always";/
+            %r{APT::Periodic::Download-Upgradeable-Packages "always";}
           )
         end
       end

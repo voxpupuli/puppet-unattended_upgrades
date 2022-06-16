@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'unattended_upgrades' do
@@ -33,10 +35,10 @@ describe 'unattended_upgrades' do
           with_owner('root').
           with_group('root').
           with_content(%r{^Dpkg::Options\s\{}).
-          without_content(%r{^\s+\"--force-confdef\";}).
-          without_content(%r{^\s+\"--force-confold\";}).
-          without_content(%r{\"--force-confnew\";}).
-          without_content(%r{\"--force-confmiss\";})
+          without_content(%r{^\s+"--force-confdef";}).
+          without_content(%r{^\s+"--force-confold";}).
+          without_content(%r{"--force-confnew";}).
+          without_content(%r{"--force-confmiss";})
       end
 
       it { is_expected.to create_file(file_unattended).with_owner('root').with_group('root') }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 describe 'unattended_upgrades' do
   let(:file_unattended) { '/etc/apt/apt.conf.d/50unattended-upgrades' }
