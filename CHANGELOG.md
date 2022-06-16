@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v7.0.0) (2022-06-16)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v6.0.0...v7.0.0)
+
+**Breaking changes:**
+
+- Replace legacy Allowed-Origins with Origins-Pattern on all distros [\#204](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/204) ([towo](https://github.com/towo))
+- retire options support [\#190](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/190) ([anarcat](https://github.com/anarcat))
+
+**Implemented enhancements:**
+
+- Cleanup legacy fact usage [\#210](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/210) ([bastelfreak](https://github.com/bastelfreak))
+- Add only\_on\_ac\_power option to unattended-upgrades.erb [\#208](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/208) ([jps-help](https://github.com/jps-help))
+
+**Fixed bugs:**
+
+- Add missing 'always' value support to periodic parameters \(every n-days\) [\#206](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/206) ([Hufschmidt](https://github.com/Hufschmidt))
+- params: debian default: re-add main origin [\#201](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/201) ([kenyon](https://github.com/kenyon))
+
+**Closed issues:**
+
+- \[Ubuntu 20.04.3\] Traceback when running unattended-upgrades --debug --dry-run [\#202](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/202)
+
+**Merged pull requests:**
+
+- README: remove legacy\_origin [\#205](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/205) ([kenyon](https://github.com/kenyon))
+
 ## [v6.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v6.0.0) (2021-09-29)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v5.1.0...v6.0.0)
