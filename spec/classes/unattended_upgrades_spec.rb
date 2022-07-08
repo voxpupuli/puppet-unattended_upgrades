@@ -75,6 +75,7 @@ describe 'unattended_upgrades' do
           syslog_enable: true,
           syslog_facility: 'daemon',
           only_on_ac_power: false,
+          whitelist_strict: true,
         }
       end
 
@@ -104,6 +105,8 @@ describe 'unattended_upgrades' do
           %r{Unattended-Upgrade::Package-Blacklist {\n\t"foo";\n\t"bar";\n};}
         ).with_content(
           %r{Unattended-Upgrade::Package-Whitelist {\n\t"foo";\n\t"bar";\n};\n}
+        ).with_content(
+          %r{Unattended-Upgrade::Package-Whitelist-Strict "true";}
         ).with_content(
           %r{Unattended-Upgrade::Update-Days {\n\t"Tuesday";\n\t"Thursday";\n\t"5";\n};}
         ).with_content(

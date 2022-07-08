@@ -26,7 +26,9 @@ Unattended-Upgrade::Package-Whitelist {
 	"<%= package %>";
 <% end -%>
 };
-
+<% unless @whitelist_strict.nil? -%>
+Unattended-Upgrade::Package-Whitelist-Strict "<%= @whitelist_strict %>";
+<% end -%>
 <% end -%>
 // List of days in the week that updates should be applied.
 // The days can be specified as localized abbreviated or full names.
