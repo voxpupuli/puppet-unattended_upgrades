@@ -4,7 +4,7 @@ class unattended_upgrades::params {
     fail('This module only works on Debian or derivatives like Ubuntu')
   }
 
-  $default_auto                 = { 'fix_interrupted_dpkg' => true, 'remove' => true, 'reboot' => false, 'clean' => 0, 'reboot_time' => 'now', }
+  $default_auto                 = { 'fix_interrupted_dpkg' => true, 'remove' => true, 'reboot' => false, 'reboot_withusers' => true, 'clean' => 0, 'reboot_time' => 'now', }
   $default_mail                 = { 'only_on_error'        => true, }
   $default_backup               = { 'archive_interval'     => 0, 'level'     => 3, }
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
