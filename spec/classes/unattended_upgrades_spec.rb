@@ -54,6 +54,7 @@ describe 'unattended_upgrades' do
             'fix_interrupted_dpkg' => false,
             'remove'               => false,
             'reboot'               => true,
+            'reboot_withusers'     => false,
             'reboot_time'          => '03:00'
           },
           verbose: 1,
@@ -119,6 +120,8 @@ describe 'unattended_upgrades' do
           %r{Unattended-Upgrade::Remove-Unused-Dependencies "false";}
         ).with_content(
           %r{Unattended-Upgrade::Automatic-Reboot "true";}
+        ).with_content(
+          %r{Unattended-Upgrade::Automatic-Reboot-WithUsers "false";}
         ).with_content(
           %r{Unattended-Upgrade::Automatic-Reboot-Time "03:00";}
         ).with_content(
