@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v7.1.0) (2022-08-28)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v7.0.0...v7.1.0)
+
+**Implemented enhancements:**
+
+- Add reboot\_withusers option to unattended-upgrades.erb [\#214](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/214) ([jps-help](https://github.com/jps-help))
+- Support the option Unattended-Upgrade::Package-Whitelist-Strict [\#213](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/213) ([makmarius](https://github.com/makmarius))
+
+**Fixed bugs:**
+
+- types/origin: fix typo in comment [\#212](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/212) ([kenyon](https://github.com/kenyon))
+
+**Merged pull requests:**
+
+- puppetlabs/apt: Allow 9.x [\#215](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/215) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v7.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v7.0.0) (2022-06-16)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v6.0.0...v7.0.0)
