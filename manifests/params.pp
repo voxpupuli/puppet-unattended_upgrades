@@ -38,7 +38,7 @@ class unattended_upgrades::params {
       ]
     }
     'LinuxMint': {
-      $origins = ['${distro_id}:${distro_codename}-security',] #lint:ignore:single_quote_string_with_variables
+      $origins = ['origin=${distro_id},suite=${distro_codename}-security',] #lint:ignore:single_quote_string_with_variables
     }
     default: {
       $origins       = undef
