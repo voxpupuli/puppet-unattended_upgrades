@@ -77,6 +77,7 @@ describe 'unattended_upgrades' do
           syslog_facility: 'daemon',
           only_on_ac_power: false,
           whitelist_strict: true,
+          allow_downgrade: false,
         }
       end
 
@@ -144,6 +145,8 @@ describe 'unattended_upgrades' do
           %r{Unattended-Upgrade::SyslogFacility "daemon";}
         ).with_content(
           %r{Unattended-Upgrade::OnlyOnACPower "false";}
+        ).with_content(
+          %r{Unattended-Upgrade::Allow-downgrade "false";}
         )
       end
 
