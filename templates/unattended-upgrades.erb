@@ -134,3 +134,8 @@ Unattended-Upgrade::SyslogFacility "<%= @syslog_facility %>";
 // (i.e. skip or gracefully stop updates on battery)
 Unattended-Upgrade::OnlyOnACPower "<%= @only_on_ac_power %>";
 <%- end -%>
+
+<%- unless @allow_downgrade.nil? -%>
+// Allow package downgrade if Pin-Priority exceeds 1000
+Unattended-Upgrade::Allow-downgrade "<%= @allow_downgrade %>";
+<%- end -%>
