@@ -133,7 +133,6 @@ altering some of the default settings.
 * `origins`: The repositories from which to automatically upgrade included packages.
 
   The default origins can be replaced with contents of an array:
-  
   ```puppet
   class { 'unattended_upgrades':
     origins => [
