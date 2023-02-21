@@ -139,7 +139,7 @@ altering some of the default settings.
       'origin=${distro_id},suite=${distro_codename}',
       'origin=${distro_id},suite=${distro_codename}-security',
       'origin=${distro_id},suite=${distro_codename}-backports',
-      'origin=${distro_id},suite=${distro_codename}-updates',   
+      'origin=${distro_id},suite=${distro_codename}-updates',
     ],
   }
   ```
