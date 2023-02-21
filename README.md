@@ -130,7 +130,7 @@ altering some of the default settings.
 
 * `minimal_steps` (`true`): Split the upgrade process into sections to allow
   shutdown during upgrade.
-* `origins`: The repositories from which to automatically upgrade included packages. 
+* `origins`: The repositories from which to automatically upgrade included packages.
 
   The default origins can be replaced with contents of an array:
   
