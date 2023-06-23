@@ -32,19 +32,19 @@ class unattended_upgrades (
   # apt::conf settings require the apt class to work
   include apt
 
-  $_age = merge($unattended_upgrades::default_age, $age)
+  $_age = $unattended_upgrades::default_age + $age
   assert_type(Unattended_upgrades::Age, $_age)
 
-  $_auto = merge($unattended_upgrades::default_auto, $auto)
+  $_auto = $unattended_upgrades::default_auto + $auto
   assert_type(Unattended_upgrades::Auto, $_auto)
 
-  $_backup = merge($unattended_upgrades::default_backup, $backup)
+  $_backup = $unattended_upgrades::default_backup + $backup
   assert_type(Unattended_upgrades::Backup, $_backup)
 
-  $_mail = merge($unattended_upgrades::default_mail, $mail)
+  $_mail = $unattended_upgrades::default_mail + $mail
   assert_type(Unattended_upgrades::Mail, $_mail)
 
-  $_upgradeable_packages = merge($unattended_upgrades::default_upgradeable_packages, $upgradeable_packages)
+  $_upgradeable_packages = $unattended_upgrades::default_upgradeable_packages + $upgradeable_packages
   assert_type(Unattended_upgrades::Upgradeable_packages, $_upgradeable_packages)
 
   package { 'unattended-upgrades':
