@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v8.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.0.0) (2023-06-23)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v7.1.0...v8.0.0)
+
+**Breaking changes:**
+
+- Drop Puppet 6 support [\#226](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/226) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add ubuntu 22.04 support [\#232](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/232) ([bastelfreak](https://github.com/bastelfreak))
+- puppetlabs/stdlib: Allow 9.x [\#231](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/231) ([bastelfreak](https://github.com/bastelfreak))
+- Add puppet 8 support [\#230](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/230) ([bastelfreak](https://github.com/bastelfreak))
+- Add allow\_downgrade option to unattended-upgrades.erb [\#219](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/219) ([wiemk](https://github.com/wiemk))
+
+**Fixed bugs:**
+
+- Fix default LinuxMint origins so they pass validation [\#218](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/218) ([djmofcourse](https://github.com/djmofcourse))
+
+**Closed issues:**
+
+- document the origin configurations in README [\#105](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/105)
+
+**Merged pull requests:**
+
+- README.md: add example for `origins` parameter [\#224](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/224) ([clambertus](https://github.com/clambertus))
+- Fix broken Apache-2 license [\#223](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/223) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v7.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v7.1.0) (2022-08-28)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v7.0.0...v7.1.0)
