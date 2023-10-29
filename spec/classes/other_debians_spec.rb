@@ -12,7 +12,9 @@ describe 'unattended_upgrades' do
           name: 'Raspbian',
           family: 'Debian',
           release: {
-            full: '8.0'
+            full: '8.0',
+            major: '8',
+            minor: '0'
           }
         },
         osfamily: 'Debian',

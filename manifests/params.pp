@@ -12,19 +12,16 @@ class unattended_upgrades::params {
 
   case downcase($facts['os']['name']) {
     'debian', 'raspbian': {
-      case fact('os.distro.codename') {
-        'bullseye': {
-          $origins            = [
-            'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
-            'origin=Debian,codename=${distro_codename}-security,label=Debian-Security', #lint:ignore:single_quote_string_with_variables
-          ]
-        }
-        default: {
-          $origins            = [
-            'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
-            'origin=Debian,codename=${distro_codename},label=Debian-Security', #lint:ignore:single_quote_string_with_variables
-          ]
-        }
+      if versioncmp($facts['os']['release']['major'], '11') >= 0 {
+        $origins            = [
+          'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
+          'origin=Debian,codename=${distro_codename}-security,label=Debian-Security', #lint:ignore:single_quote_string_with_variables
+        ]
+      } else {
+        $origins            = [
+          'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
+          'origin=Debian,codename=${distro_codename},label=Debian-Security', #lint:ignore:single_quote_string_with_variables
+        ]
       }
     }
     'ubuntu', 'neon': {
