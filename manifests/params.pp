@@ -12,7 +12,7 @@ class unattended_upgrades::params {
 
   case downcase($facts['os']['name']) {
     'debian', 'raspbian': {
-      if Integer($facts['os']['release']['major']) >= 11 {
+      if versioncmp($facts['os']['release']['major'], '11') >= 0 {
         $origins            = [
           'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
           'origin=Debian,codename=${distro_codename}-security,label=Debian-Security', #lint:ignore:single_quote_string_with_variables
