@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v8.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.1.0) (2023-10-30)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v8.0.0...v8.1.0)
+
+**Implemented enhancements:**
+
+- Add Debian 12 support [\#236](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/236) ([weaselp](https://github.com/weaselp))
+
 ## [v8.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.0.0) (2023-06-23)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v7.1.0...v8.0.0)
