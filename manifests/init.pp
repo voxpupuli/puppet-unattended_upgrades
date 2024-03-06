@@ -51,7 +51,13 @@ class unattended_upgrades (
     ensure => $package_ensure,
   }
 
+  $ensure_status = $enable ? {
+    0       => absent,
+    1       => present,
+    default => present
+  }
   apt::conf { 'unattended-upgrades':
+    ensure        => $ensure_status,
     priority      => 50,
     content       => template("${module_name}/unattended-upgrades.erb"),
     require       => Package['unattended-upgrades'],
@@ -59,6 +65,7 @@ class unattended_upgrades (
   }
 
   apt::conf { 'periodic':
+    ensure        => $ensure_status,
     priority      => 10,
     content       => template("${module_name}/periodic.erb"),
     require       => Package['unattended-upgrades'],
