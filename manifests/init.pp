@@ -51,11 +51,7 @@ class unattended_upgrades (
     ensure => $package_ensure,
   }
 
-  $ensure_status = $enable ? {
-    0       => absent,
-    1       => present,
-    default => present
-  }
+   $ensure_status = $enable ? { 0 => 'absent',  default  => 'present' }
   apt::conf { 'unattended-upgrades':
     ensure        => $ensure_status,
     priority      => 50,
