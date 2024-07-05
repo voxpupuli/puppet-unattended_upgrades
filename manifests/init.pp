@@ -11,7 +11,7 @@ class unattended_upgrades (
   Boolean                                   $minimal_steps          = true,
   Array[Unattended_upgrades::Origin]        $origins                = $unattended_upgrades::params::origins,
   String[1]                                 $package_ensure         = installed,
-  Array[String[1]]                          $extra_origins          = [],
+  Array[Unattended_upgrades::Origin]        $extra_origins          = [],
   Optional[Integer[0]]                      $random_sleep           = undef,
   Optional[String]                          $sender                 = undef,
   Integer[0]                                $size                   = 0,
