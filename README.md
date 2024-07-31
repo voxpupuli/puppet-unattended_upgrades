@@ -136,10 +136,10 @@ altering some of the default settings.
   ```puppet
   class { 'unattended_upgrades':
     origins => [
-      'origin=${distro_id},suite=${distro_codename}',
-      'origin=${distro_id},suite=${distro_codename}-security',
-      'origin=${distro_id},suite=${distro_codename}-backports',
-      'origin=${distro_id},suite=${distro_codename}-updates',
+      'origin=${distro_id},suite=${distro_codename}', # lint:ignore:single_quote_string_with_variables
+      'origin=${distro_id},suite=${distro_codename}-security', # lint:ignore:single_quote_string_with_variables
+      'origin=${distro_id},suite=${distro_codename}-backports', # lint:ignore:single_quote_string_with_variables
+      'origin=${distro_id},suite=${distro_codename}-updates', # lint:ignore:single_quote_string_with_variables
     ],
   }
   ```
