@@ -78,6 +78,7 @@ describe 'unattended_upgrades' do
           only_on_ac_power: false,
           whitelist_strict: true,
           allow_downgrade: false,
+          dpkg_options: ['--force-confold', '--force-confdef'],
         }
       end
 
@@ -147,6 +148,8 @@ describe 'unattended_upgrades' do
           %r{Unattended-Upgrade::OnlyOnACPower "false";}
         ).with_content(
           %r{Unattended-Upgrade::Allow-downgrade "false";}
+        ).with_content(
+          %r{DPkg::Options\s+\{\n\s+"--force-confold";\n\s+"--force-confdef";\n\};}
         )
       end
 
