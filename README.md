@@ -181,12 +181,12 @@ altering some of the default settings.
 * `allow_downgrade` (`undef`): Allow package downgrade if Pin-Priority exceeds 1000. Default is `false`.
 * `dpkg_options` (`[]`): Pass options to `dpkg`
 
- Force dpkg to keep the old configuration files:
-```
-class { 'unattended_upgrades':
-  dpkg_options => ['--force-confold']
-}
-```
+  Force dpkg to keep the old configuration files:
+
+  ```puppet
+  class { 'unattended_upgrades':
+    dpkg_options => ['--force-confold'],
+  }
 
 ## Limitations
 
