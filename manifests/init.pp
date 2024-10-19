@@ -28,6 +28,7 @@ class unattended_upgrades (
   Optional[Boolean]                         $only_on_ac_power       = undef,
   Optional[Boolean]                         $whitelist_strict       = undef,
   Optional[Boolean]                         $allow_downgrade        = undef,
+  Array[String[1]]                          $dpkg_options           = [],
 ) inherits unattended_upgrades::params {
   # apt::conf settings require the apt class to work
   include apt

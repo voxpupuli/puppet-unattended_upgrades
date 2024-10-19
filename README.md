@@ -179,6 +179,14 @@ altering some of the default settings.
 * `syslog_facility` (`undef`): Specify syslog facility. Default is `daemon`.
 * `only_on_ac_power` (`undef`): Download and install upgrades only on AC power. Default is `true`.
 * `allow_downgrade` (`undef`): Allow package downgrade if Pin-Priority exceeds 1000. Default is `false`.
+* `dpkg_options` (`[]`): Pass options to `dpkg`
+
+  Force dpkg to keep the old configuration files:
+
+  ```puppet
+  class { 'unattended_upgrades':
+    dpkg_options => ['--force-confold'],
+  }
 
 ## Limitations
 

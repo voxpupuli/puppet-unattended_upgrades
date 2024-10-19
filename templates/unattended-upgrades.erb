@@ -139,3 +139,11 @@ Unattended-Upgrade::OnlyOnACPower "<%= @only_on_ac_power %>";
 // Allow package downgrade if Pin-Priority exceeds 1000
 Unattended-Upgrade::Allow-downgrade "<%= @allow_downgrade %>";
 <%- end -%>
+
+<%- unless @dpkg_options.empty? -%>
+DPkg::Options {
+<% @dpkg_options.each do |opt| -%>
+    "<%= opt %>";
+<%- end -%>
+};
+<%- end -%>
