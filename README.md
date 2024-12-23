@@ -178,6 +178,7 @@ altering some of the default settings.
 * `syslog_enable` (`undef`): Enable logging to syslog. Default is False.
 * `syslog_facility` (`undef`): Specify syslog facility. Default is `daemon`.
 * `only_on_ac_power` (`undef`): Download and install upgrades only on AC power. Default is `true`.
+* `skip_updates_on_metered_connection` (`undef`): Download and install upgrades only on non-metered connection. Default is `true`.
 * `allow_downgrade` (`undef`): Allow package downgrade if Pin-Priority exceeds 1000. Default is `false`.
 * `dpkg_options` (`[]`): Pass options to `dpkg`
 

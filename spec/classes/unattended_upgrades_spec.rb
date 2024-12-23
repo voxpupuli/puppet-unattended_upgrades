@@ -76,6 +76,7 @@ describe 'unattended_upgrades' do
           syslog_enable: true,
           syslog_facility: 'daemon',
           only_on_ac_power: false,
+          skip_updates_on_metered_connection: false,
           whitelist_strict: true,
           allow_downgrade: false,
           dpkg_options: ['--force-confold', '--force-confdef'],
@@ -146,6 +147,8 @@ describe 'unattended_upgrades' do
           %r{Unattended-Upgrade::SyslogFacility "daemon";}
         ).with_content(
           %r{Unattended-Upgrade::OnlyOnACPower "false";}
+        ).with_content(
+          %r{Unattended-Upgrade::Skip-Updates-On-Metered-Connections "false";}
         ).with_content(
           %r{Unattended-Upgrade::Allow-downgrade "false";}
         ).with_content(
