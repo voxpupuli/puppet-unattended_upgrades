@@ -26,6 +26,7 @@ class unattended_upgrades (
   Optional[Boolean]                         $syslog_enable          = undef,
   Optional[String]                          $syslog_facility        = undef,
   Optional[Boolean]                         $only_on_ac_power       = undef,
+  Optional[Boolean]                         $skip_updates_on_metered_connection = undef,
   Optional[Boolean]                         $whitelist_strict       = undef,
   Optional[Boolean]                         $allow_downgrade        = undef,
   Array[String[1]]                          $dpkg_options           = [],

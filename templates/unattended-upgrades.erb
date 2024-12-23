@@ -135,6 +135,12 @@ Unattended-Upgrade::SyslogFacility "<%= @syslog_facility %>";
 Unattended-Upgrade::OnlyOnACPower "<%= @only_on_ac_power %>";
 <%- end -%>
 
+<%- unless @skip_updates_on_metered_connection.nil? -%>
+// Download and install upgrades only on non-metered connection
+// (i.e. skip or gracefully stop updates on a metered connection)
+Unattended-Upgrade::Skip-Updates-On-Metered-Connections "<%= @skip_updates_on_metered_connection %>";
+<%- end -%>
+
 <%- unless @allow_downgrade.nil? -%>
 // Allow package downgrade if Pin-Priority exceeds 1000
 Unattended-Upgrade::Allow-downgrade "<%= @allow_downgrade %>";
