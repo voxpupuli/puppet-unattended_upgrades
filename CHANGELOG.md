@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v8.2.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.2.0) (2024-12-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v8.1.0...v8.2.0)
+
+**Implemented enhancements:**
+
+- Add skip\_updates\_on\_metered\_connection option [\#255](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/255) ([rrotter](https://github.com/rrotter))
+- puppetlabs/apt: Allow 10.x [\#254](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/254) ([rrotter](https://github.com/rrotter))
+- Support passing dpkg options [\#251](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/251) ([deric](https://github.com/deric))
+- More specific type for `extra_origins` [\#245](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/245) ([davidmhewitt](https://github.com/davidmhewitt))
+
+**Closed issues:**
+
+- buildin function merge got deprecated in puppet 8 [\#228](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/228)
+
+**Merged pull requests:**
+
+- lint false positive [\#248](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/248) ([sebbASF](https://github.com/sebbASF))
+
 ## [v8.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.1.0) (2023-10-30)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v8.0.0...v8.1.0)
@@ -47,7 +66,7 @@ These should not affect the functionality of the module.
 **Implemented enhancements:**
 
 - Add reboot\_withusers option to unattended-upgrades.erb [\#214](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/214) ([jps-help](https://github.com/jps-help))
-- Support the option Unattended-Upgrade::Package-Whitelist-Strict [\#213](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/213) ([makmarius](https://github.com/makmarius))
+- Support the option Unattended-Upgrade::Package-Whitelist-Strict [\#213](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/213) ([ghost](https://github.com/ghost))
 
 **Fixed bugs:**
 
