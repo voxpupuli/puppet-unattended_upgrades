@@ -1,4 +1,5 @@
+---
 fixtures:
   repositories:
-    apt:    'https://github.com/puppetlabs/puppetlabs-apt.git'
-    stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
+    apt: https://github.com/puppetlabs/puppetlabs-apt.git
+    stdlib: https://github.com/puppetlabs/puppetlabs-stdlib.git
