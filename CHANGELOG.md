@@ -4,7 +4,27 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v8.2.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.2.0) (2024-12-24)
+## [v9.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v9.0.0) (2025-09-10)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v8.2.0...v9.0.0)
+
+**Breaking changes:**
+
+- Drop support for EOL Debian 10, Ubuntu 18.04, 20.04 [\#271](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/271) ([kenyon](https://github.com/kenyon))
+- Drop puppet, update openvox minimum version to 8.19 [\#263](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/263) ([TheMeier](https://github.com/TheMeier))
+
+**Implemented enhancements:**
+
+- Add support for Ubuntu 24.04 [\#270](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/270) ([kenyon](https://github.com/kenyon))
+- Add support for Debian 13 \(trixie\) [\#269](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/269) ([cmrtdev](https://github.com/cmrtdev))
+- Add support for puppetlabs-apt \< 12.0.0 [\#268](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/268) ([cmrtdev](https://github.com/cmrtdev))
+- metadata.json: Add OpenVox [\#259](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/259) ([jstraw](https://github.com/jstraw))
+
+**Closed issues:**
+
+- Debian 13 and puppetlabs-apt 11 support [\#265](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/265)
+
+## [v8.2.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.2.0) (2024-12-25)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v8.1.0...v8.2.0)
 
