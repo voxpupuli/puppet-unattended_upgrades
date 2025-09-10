@@ -36,7 +36,7 @@ describe 'unattended_upgrades' do
       case os_facts[:operatingsystem]
       when 'Debian'
         case os_facts[:lsbdistcodename]
-        when 'bullseye', 'bookworm'
+        when 'bullseye', 'bookworm', 'trixie'
           it do
             is_expected.to create_file(file_unattended).with_content(
               /Unattended-Upgrade::Origins-Pattern\ {\n
