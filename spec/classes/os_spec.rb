@@ -35,25 +35,13 @@ describe 'unattended_upgrades' do
       # rubocop:disable Style/RegexpLiteral
       case os_facts[:operatingsystem]
       when 'Debian'
-        case os_facts[:lsbdistcodename]
-        when 'bullseye', 'bookworm', 'trixie'
-          it do
-            is_expected.to create_file(file_unattended).with_content(
-              /Unattended-Upgrade::Origins-Pattern\ {\n
-              \t"origin=Debian,codename=\${distro_codename},label=Debian";\n
-              \t"origin=Debian,codename=\${distro_codename}-security,label=Debian-Security";\n
-              };/x
-            )
-          end
-        else
-          it do
-            is_expected.to create_file(file_unattended).with_content(
-              /Unattended-Upgrade::Origins-Pattern\ {\n
-              \t"origin=Debian,codename=\${distro_codename},label=Debian";\n
-              \t"origin=Debian,codename=\${distro_codename},label=Debian-Security";\n
-              };/x
-            )
-          end
+        it do
+          is_expected.to create_file(file_unattended).with_content(
+            /Unattended-Upgrade::Origins-Pattern\ {\n
+            \t"origin=Debian,codename=\${distro_codename},label=Debian";\n
+            \t"origin=Debian,codename=\${distro_codename}-security,label=Debian-Security";\n
+            };/x
+          )
         end
       when 'Ubuntu'
         it do
