@@ -4,7 +4,19 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v8.2.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.2.0) (2024-12-24)
+## [v8.2.1](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.2.1) (2025-09-10)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v8.2.0...v8.2.1)
+
+**Breaking changes:**
+
+- Drop puppet, update openvox minimum version to 8.19 [\#263](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/263) ([TheMeier](https://github.com/TheMeier))
+
+**Implemented enhancements:**
+
+- metadata.json: Add OpenVox [\#259](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/259) ([jstraw](https://github.com/jstraw))
+
+## [v8.2.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v8.2.0) (2024-12-25)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v8.1.0...v8.2.0)
 
