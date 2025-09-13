@@ -1,3 +1,70 @@
+# @summary Installs and configures unattended-upgrades.
+#
+# This class installs and configures the unattended-upgrades package.
+#
+# @param age
+#   See `Unattended_upgrades::Age` for details.
+# @param auto
+#   See `Unattended_upgrades::Auto` for details.
+# @param backup
+#   See `Unattended_upgrades::Backup` for details.
+# @param blacklist
+#   Array of packages to blacklist from automatic upgrades.
+# @param whitelist
+#   Array of packages to whitelist for automatic upgrades.
+# @param dl_limit
+#   Limit the download speed in KB/s.
+# @param enable
+#   Enable unattended-upgrades.
+# @param install_on_shutdown
+#   Install upgrades on shutdown.
+# @param mail
+#   See `Unattended_upgrades::Mail` for details.
+# @param minimal_steps
+#   Split the upgrade process into minimal steps.
+# @param origins
+#   Array of origins to allow automatic upgrades from.
+# @param package_ensure
+#   Ensure for the unattended-upgrades package.
+# @param extra_origins
+#   Array of extra origins to allow automatic upgrades from.
+# @param random_sleep
+#   Maximum random sleep in seconds.
+# @param sender
+#   Email sender address.
+# @param size
+#   Maximum size of the download in MB.
+# @param update
+#   Run `apt-get update` automatically.
+# @param upgrade
+#   Run `apt-get upgrade` automatically.
+# @param upgradeable_packages
+#   See `Unattended_upgrades::Upgradeable_packages` for details.
+# @param verbose
+#   Enable verbose logging.
+# @param notify_update
+#   Notify on package updates.
+# @param days
+#   Days of the week to run unattended-upgrades.
+# @param remove_unused_kernel
+#   Remove unused kernel packages.
+# @param remove_new_unused_deps
+#   Remove new unused dependencies.
+# @param syslog_enable
+#   Enable syslog logging.
+# @param syslog_facility
+#   Syslog facility to use.
+# @param only_on_ac_power
+#   Download and install upgrades only when on AC power.
+# @param skip_updates_on_metered_connection
+#   Skip updates on metered connections.
+# @param whitelist_strict
+#   Whether to apply the whitelist strictly.
+# @param allow_downgrade
+#   Allow downgrades.
+# @param dpkg_options
+#   Array of dpkg options.
+#
 class unattended_upgrades (
   Unattended_upgrades::Age                  $age                    = {},
   Unattended_upgrades::Auto                 $auto                   = {},

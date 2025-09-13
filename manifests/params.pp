@@ -1,10 +1,21 @@
 #
+# @summary Provides default parameters for the unattended_upgrades module.
+#
+# This class provides default parameters for the unattended_upgrades module.
+#
 class unattended_upgrades::params {
   if $facts['os']['family'] != 'Debian' {
     fail('This module only works on Debian or derivatives like Ubuntu')
   }
 
-  $default_auto                 = { 'fix_interrupted_dpkg' => true, 'remove' => true, 'reboot' => false, 'reboot_withusers' => true, 'clean' => 0, 'reboot_time' => 'now', }
+  $default_auto = {
+    'fix_interrupted_dpkg' => true,
+    'remove'               => true,
+    'reboot'               => false,
+    'reboot_withusers'     => true,
+    'clean'                => 0,
+    'reboot_time'          => 'now',
+  }
   $default_mail                 = { 'only_on_error'        => true, }
   $default_backup               = { 'archive_interval'     => 0, 'level'     => 3, }
   $default_age                  = { 'min'                  => 2, 'max'       => 0, }
