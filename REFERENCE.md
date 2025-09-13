@@ -6,23 +6,23 @@
 
 ### Classes
 
-* [`unattended_upgrades`](#unattended_upgrades)
-* [`unattended_upgrades::params`](#unattended_upgrades--params)
+* [`unattended_upgrades`](#unattended_upgrades): Installs and configures unattended-upgrades.
+* [`unattended_upgrades::params`](#unattended_upgrades--params): Provides default parameters for the unattended_upgrades module.
 
 ### Data types
 
-* [`Unattended_upgrades::Age`](#Unattended_upgrades--Age)
-* [`Unattended_upgrades::Auto`](#Unattended_upgrades--Auto)
-* [`Unattended_upgrades::Backup`](#Unattended_upgrades--Backup)
-* [`Unattended_upgrades::Mail`](#Unattended_upgrades--Mail)
+* [`Unattended_upgrades::Age`](#Unattended_upgrades--Age): Specifies the minimum and maximum age of packages to upgrade.
+* [`Unattended_upgrades::Auto`](#Unattended_upgrades--Auto): Automatic upgrade options.
+* [`Unattended_upgrades::Backup`](#Unattended_upgrades--Backup): Backup options.
+* [`Unattended_upgrades::Mail`](#Unattended_upgrades--Mail): Mail notification options.
 * [`Unattended_upgrades::Origin`](#Unattended_upgrades--Origin): Validate that the given input is accepted as an `Unattended-Upgrade::Origins-Pattern`.
-* [`Unattended_upgrades::Upgradeable_packages`](#Unattended_upgrades--Upgradeable_packages)
+* [`Unattended_upgrades::Upgradeable_packages`](#Unattended_upgrades--Upgradeable_packages): Options for upgradeable packages.
 
 ## Classes
 
 ### <a name="unattended_upgrades"></a>`unattended_upgrades`
 
-The unattended_upgrades class.
+This class installs and configures the unattended-upgrades package.
 
 #### Parameters
 
@@ -64,7 +64,7 @@ The following parameters are available in the `unattended_upgrades` class:
 
 Data type: `Unattended_upgrades::Age`
 
-
+See `Unattended_upgrades::Age` for details.
 
 Default value: `{}`
 
@@ -72,7 +72,7 @@ Default value: `{}`
 
 Data type: `Unattended_upgrades::Auto`
 
-
+See `Unattended_upgrades::Auto` for details.
 
 Default value: `{}`
 
@@ -80,7 +80,7 @@ Default value: `{}`
 
 Data type: `Unattended_upgrades::Backup`
 
-
+See `Unattended_upgrades::Backup` for details.
 
 Default value: `{}`
 
@@ -88,7 +88,7 @@ Default value: `{}`
 
 Data type: `Array[String[1]]`
 
-
+Array of packages to blacklist from automatic upgrades.
 
 Default value: `[]`
 
@@ -96,7 +96,7 @@ Default value: `[]`
 
 Data type: `Array[String[1]]`
 
-
+Array of packages to whitelist for automatic upgrades.
 
 Default value: `[]`
 
@@ -104,7 +104,7 @@ Default value: `[]`
 
 Data type: `Optional[Integer[0]]`
 
-
+Limit the download speed in KB/s.
 
 Default value: `undef`
 
@@ -112,7 +112,7 @@ Default value: `undef`
 
 Data type: `Integer[0, 1]`
 
-
+Enable unattended-upgrades.
 
 Default value: `1`
 
@@ -120,7 +120,7 @@ Default value: `1`
 
 Data type: `Boolean`
 
-
+Install upgrades on shutdown.
 
 Default value: `false`
 
@@ -128,7 +128,7 @@ Default value: `false`
 
 Data type: `Unattended_upgrades::Mail`
 
-
+See `Unattended_upgrades::Mail` for details.
 
 Default value: `{}`
 
@@ -136,7 +136,7 @@ Default value: `{}`
 
 Data type: `Boolean`
 
-
+Split the upgrade process into minimal steps.
 
 Default value: `true`
 
@@ -144,7 +144,7 @@ Default value: `true`
 
 Data type: `Array[Unattended_upgrades::Origin]`
 
-
+Array of origins to allow automatic upgrades from.
 
 Default value: `$unattended_upgrades::params::origins`
 
@@ -152,7 +152,7 @@ Default value: `$unattended_upgrades::params::origins`
 
 Data type: `String[1]`
 
-
+Ensure for the unattended-upgrades package.
 
 Default value: `installed`
 
@@ -160,7 +160,7 @@ Default value: `installed`
 
 Data type: `Array[Unattended_upgrades::Origin]`
 
-
+Array of extra origins to allow automatic upgrades from.
 
 Default value: `[]`
 
@@ -168,7 +168,7 @@ Default value: `[]`
 
 Data type: `Optional[Integer[0]]`
 
-
+Maximum random sleep in seconds.
 
 Default value: `undef`
 
@@ -176,7 +176,7 @@ Default value: `undef`
 
 Data type: `Optional[String]`
 
-
+Email sender address.
 
 Default value: `undef`
 
@@ -184,7 +184,7 @@ Default value: `undef`
 
 Data type: `Integer[0]`
 
-
+Maximum size of the download in MB.
 
 Default value: `0`
 
@@ -192,7 +192,7 @@ Default value: `0`
 
 Data type: `Variant[Integer[0], Enum['always']]`
 
-
+Run `apt-get update` automatically.
 
 Default value: `1`
 
@@ -200,7 +200,7 @@ Default value: `1`
 
 Data type: `Variant[Integer[0], Enum['always']]`
 
-
+Run `apt-get upgrade` automatically.
 
 Default value: `1`
 
@@ -208,7 +208,7 @@ Default value: `1`
 
 Data type: `Unattended_upgrades::Upgradeable_packages`
 
-
+See `Unattended_upgrades::Upgradeable_packages` for details.
 
 Default value: `{}`
 
@@ -216,7 +216,7 @@ Default value: `{}`
 
 Data type: `Integer[0]`
 
-
+Enable verbose logging.
 
 Default value: `0`
 
@@ -224,7 +224,7 @@ Default value: `0`
 
 Data type: `Boolean`
 
-
+Notify on package updates.
 
 Default value: `false`
 
@@ -232,7 +232,7 @@ Default value: `false`
 
 Data type: `Array[String[1]]`
 
-
+Days of the week to run unattended-upgrades.
 
 Default value: `[]`
 
@@ -240,7 +240,7 @@ Default value: `[]`
 
 Data type: `Optional[Boolean]`
 
-
+Remove unused kernel packages.
 
 Default value: `undef`
 
@@ -248,7 +248,7 @@ Default value: `undef`
 
 Data type: `Optional[Boolean]`
 
-
+Remove new unused dependencies.
 
 Default value: `undef`
 
@@ -256,7 +256,7 @@ Default value: `undef`
 
 Data type: `Optional[Boolean]`
 
-
+Enable syslog logging.
 
 Default value: `undef`
 
@@ -264,7 +264,7 @@ Default value: `undef`
 
 Data type: `Optional[String]`
 
-
+Syslog facility to use.
 
 Default value: `undef`
 
@@ -272,7 +272,7 @@ Default value: `undef`
 
 Data type: `Optional[Boolean]`
 
-
+Download and install upgrades only when on AC power.
 
 Default value: `undef`
 
@@ -280,7 +280,7 @@ Default value: `undef`
 
 Data type: `Optional[Boolean]`
 
-
+Skip updates on metered connections.
 
 Default value: `undef`
 
@@ -288,7 +288,7 @@ Default value: `undef`
 
 Data type: `Optional[Boolean]`
 
-
+Whether to apply the whitelist strictly.
 
 Default value: `undef`
 
@@ -296,7 +296,7 @@ Default value: `undef`
 
 Data type: `Optional[Boolean]`
 
-
+Allow downgrades.
 
 Default value: `undef`
 
@@ -304,19 +304,19 @@ Default value: `undef`
 
 Data type: `Array[String[1]]`
 
-
+Array of dpkg options.
 
 Default value: `[]`
 
 ### <a name="unattended_upgrades--params"></a>`unattended_upgrades::params`
 
-The unattended_upgrades::params class.
+This class provides default parameters for the unattended_upgrades module.
 
 ## Data types
 
 ### <a name="Unattended_upgrades--Age"></a>`Unattended_upgrades::Age`
 
-The Unattended_upgrades::Age data type.
+Specifies the minimum and maximum age of packages to upgrade.
 
 Alias of
 
@@ -327,9 +327,24 @@ Struct[{
   }]
 ```
 
+#### Parameters
+
+The following parameters are available in the `Unattended_upgrades::Age` data type:
+
+* [`min`](#-Unattended_upgrades--Age--min)
+* [`max`](#-Unattended_upgrades--Age--max)
+
+##### <a name="-Unattended_upgrades--Age--min"></a>`min`
+
+Minimum age of a package in days.
+
+##### <a name="-Unattended_upgrades--Age--max"></a>`max`
+
+Maximum age of a package in days.
+
 ### <a name="Unattended_upgrades--Auto"></a>`Unattended_upgrades::Auto`
 
-The Unattended_upgrades::Auto data type.
+Automatic upgrade options.
 
 Alias of
 
@@ -344,9 +359,44 @@ Struct[{
   }]
 ```
 
+#### Parameters
+
+The following parameters are available in the `Unattended_upgrades::Auto` data type:
+
+* [`clean`](#-Unattended_upgrades--Auto--clean)
+* [`fix_interrupted_dpkg`](#-Unattended_upgrades--Auto--fix_interrupted_dpkg)
+* [`reboot`](#-Unattended_upgrades--Auto--reboot)
+* [`reboot_withusers`](#-Unattended_upgrades--Auto--reboot_withusers)
+* [`reboot_time`](#-Unattended_upgrades--Auto--reboot_time)
+* [`remove`](#-Unattended_upgrades--Auto--remove)
+
+##### <a name="-Unattended_upgrades--Auto--clean"></a>`clean`
+
+Automatically remove unused dependency packages.
+
+##### <a name="-Unattended_upgrades--Auto--fix_interrupted_dpkg"></a>`fix_interrupted_dpkg`
+
+Try to fix dpkg interruptions.
+
+##### <a name="-Unattended_upgrades--Auto--reboot"></a>`reboot`
+
+Automatically reboot after an upgrade.
+
+##### <a name="-Unattended_upgrades--Auto--reboot_withusers"></a>`reboot_withusers`
+
+Reboot even if users are logged in.
+
+##### <a name="-Unattended_upgrades--Auto--reboot_time"></a>`reboot_time`
+
+Time to reboot.
+
+##### <a name="-Unattended_upgrades--Auto--remove"></a>`remove`
+
+Automatically remove unused new packages.
+
 ### <a name="Unattended_upgrades--Backup"></a>`Unattended_upgrades::Backup`
 
-The Unattended_upgrades::Backup data type.
+Backup options.
 
 Alias of
 
@@ -357,9 +407,24 @@ Struct[{
   }]
 ```
 
+#### Parameters
+
+The following parameters are available in the `Unattended_upgrades::Backup` data type:
+
+* [`archive_interval`](#-Unattended_upgrades--Backup--archive_interval)
+* [`level`](#-Unattended_upgrades--Backup--level)
+
+##### <a name="-Unattended_upgrades--Backup--archive_interval"></a>`archive_interval`
+
+Interval in days to backup the package archives.
+
+##### <a name="-Unattended_upgrades--Backup--level"></a>`level`
+
+Backup level.
+
 ### <a name="Unattended_upgrades--Mail"></a>`Unattended_upgrades::Mail`
 
-The Unattended_upgrades::Mail data type.
+Mail notification options.
 
 Alias of
 
@@ -371,6 +436,26 @@ Struct[{
   }]
 ```
 
+#### Parameters
+
+The following parameters are available in the `Unattended_upgrades::Mail` data type:
+
+* [`report`](#-Unattended_upgrades--Mail--report)
+* [`only_on_error`](#-Unattended_upgrades--Mail--only_on_error)
+* [`to`](#-Unattended_upgrades--Mail--to)
+
+##### <a name="-Unattended_upgrades--Mail--report"></a>`report`
+
+When to send an email report.
+
+##### <a name="-Unattended_upgrades--Mail--only_on_error"></a>`only_on_error`
+
+Send email only on error.
+
+##### <a name="-Unattended_upgrades--Mail--to"></a>`to`
+
+Email address to send reports to.
+
 ### <a name="Unattended_upgrades--Origin"></a>`Unattended_upgrades::Origin`
 
 Validate that the given input is accepted as an `Unattended-Upgrade::Origins-Pattern`.
@@ -379,7 +464,7 @@ Alias of `Pattern[/^(origin|codename|label|site|suite|component|archive|[oalcn])
 
 ### <a name="Unattended_upgrades--Upgradeable_packages"></a>`Unattended_upgrades::Upgradeable_packages`
 
-The Unattended_upgrades::Upgradeable_packages data type.
+Options for upgradeable packages.
 
 Alias of
 
@@ -389,4 +474,19 @@ Struct[{
     Optional['debdelta']      => Integer[0],
   }]
 ```
+
+#### Parameters
+
+The following parameters are available in the `Unattended_upgrades::Upgradeable_packages` data type:
+
+* [`download_only`](#-Unattended_upgrades--Upgradeable_packages--download_only)
+* [`debdelta`](#-Unattended_upgrades--Upgradeable_packages--debdelta)
+
+##### <a name="-Unattended_upgrades--Upgradeable_packages--download_only"></a>`download_only`
+
+Only download packages, do not install.
+
+##### <a name="-Unattended_upgrades--Upgradeable_packages--debdelta"></a>`debdelta`
+
+Use debdelta to download smaller delta files.
 
