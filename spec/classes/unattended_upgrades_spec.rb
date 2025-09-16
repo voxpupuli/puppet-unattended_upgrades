@@ -196,6 +196,38 @@ describe 'unattended_upgrades' do
       end
     end
 
+    context 'service management' do
+      let(:params) do
+        {
+          service_ensure: 'running',
+          service_enable: true
+        }
+      end
+
+      it do
+        is_expected.to contain_service('unattended-upgrades').with(
+          ensure: 'running',
+          enable: true
+        )
+      end
+    end
+
+    context 'service management with stopped service' do
+      let(:params) do
+        {
+          service_ensure: 'stopped',
+          service_enable: false
+        }
+      end
+
+      it do
+        is_expected.to contain_service('unattended-upgrades').with(
+          ensure: 'stopped',
+          enable: false
+        )
+      end
+    end
+
     describe 'validation tests' do
       context 'bad install_on_shutdown' do
         let :params do

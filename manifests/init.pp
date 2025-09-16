@@ -68,6 +68,10 @@
 #   Allow downgrades.
 # @param dpkg_options
 #   Array of dpkg options.
+# @param service_ensure
+#   Specifies whether the service should be running.
+# @param service_enable
+#   Specifies whether the service should be enabled at boot.
 #
 class unattended_upgrades (
   Unattended_upgrades::Age                  $age                    = {},
@@ -101,6 +105,8 @@ class unattended_upgrades (
   Optional[Boolean]                         $whitelist_strict       = undef,
   Optional[Boolean]                         $allow_downgrade        = undef,
   Array[String[1]]                          $dpkg_options           = [],
+  Enum['running', 'stopped']                $service_ensure         = 'running',
+  Boolean                                   $service_enable         = true,
 ) inherits unattended_upgrades::params {
   # apt::conf settings require the apt class to work
   include apt
@@ -148,5 +154,11 @@ class unattended_upgrades (
   # Emit a warning if the deprecated parameter `random_sleep` is used
   if $random_sleep != undef {
     warning('The parameter `random_sleep` is deprecated and will be removed in a future release.')
+  }
+
+  service { 'unattended-upgrades':
+    ensure  => $service_ensure,
+    enable  => $service_enable,
+    require => Package['unattended-upgrades'],
   }
 }

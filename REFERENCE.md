@@ -59,6 +59,8 @@ The following parameters are available in the `unattended_upgrades` class:
 * [`whitelist_strict`](#-unattended_upgrades--whitelist_strict)
 * [`allow_downgrade`](#-unattended_upgrades--allow_downgrade)
 * [`dpkg_options`](#-unattended_upgrades--dpkg_options)
+* [`service_ensure`](#-unattended_upgrades--service_ensure)
+* [`service_enable`](#-unattended_upgrades--service_enable)
 
 ##### <a name="-unattended_upgrades--age"></a>`age`
 
@@ -311,6 +313,22 @@ Data type: `Array[String[1]]`
 Array of dpkg options.
 
 Default value: `[]`
+
+##### <a name="-unattended_upgrades--service_ensure"></a>`service_ensure`
+
+Data type: `Enum['running', 'stopped']`
+
+Specifies whether the service should be running.
+
+Default value: `'running'`
+
+##### <a name="-unattended_upgrades--service_enable"></a>`service_enable`
+
+Data type: `Boolean`
+
+Specifies whether the service should be enabled at boot.
+
+Default value: `true`
 
 ### <a name="unattended_upgrades--params"></a>`unattended_upgrades::params`
 
