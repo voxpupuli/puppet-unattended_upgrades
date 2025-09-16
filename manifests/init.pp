@@ -29,7 +29,7 @@
 # @param extra_origins
 #   Array of extra origins to allow automatic upgrades from.
 # @param random_sleep
-#   Maximum random sleep in seconds.
+#   Maximum random sleep in seconds. This parameter is deprecated and will be removed in a future release.
 # @param sender
 #   Email sender address.
 # @param size
@@ -143,5 +143,10 @@ class unattended_upgrades (
     priority      => 20,
     require       => Package['unattended-upgrades'],
     notify_update => $notify_update,
+  }
+
+  # Emit a warning if the deprecated parameter `random_sleep` is used
+  if $random_sleep != undef {
+    warning('The parameter `random_sleep` is deprecated and will be removed in a future release.')
   }
 }
