@@ -168,7 +168,7 @@ Default value: `[]`
 
 Data type: `Optional[Integer[0]]`
 
-Maximum random sleep in seconds.
+Maximum random sleep in seconds. This parameter is deprecated and will be removed in a future release.
 
 Default value: `undef`
 
