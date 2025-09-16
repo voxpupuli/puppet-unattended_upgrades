@@ -190,17 +190,21 @@ Default value: `0`
 
 ##### <a name="-unattended_upgrades--update"></a>`update`
 
-Data type: `Variant[Integer[0], Enum['always']]`
+Data type: `Variant[Integer[0], Enum['always'], Pattern[/^\d+[smh]$/]]`
 
-Run `apt-get update` automatically.
+Run `apt-get update` automatically. Accepts an integer (number of days),
+the string 'always', or a time interval with suffixes ('s' for seconds,
+'m' for minutes, 'h' for hours).
 
 Default value: `1`
 
 ##### <a name="-unattended_upgrades--upgrade"></a>`upgrade`
 
-Data type: `Variant[Integer[0], Enum['always']]`
+Data type: `Variant[Integer[0], Enum['always'], Pattern[/^\d+[smh]$/]]`
 
-Run `apt-get upgrade` automatically.
+Run `apt-get upgrade` automatically. Accepts an integer (number of days),
+the string 'always', or a time interval with suffixes ('s' for seconds,
+'m' for minutes, 'h' for hours).
 
 Default value: `1`
 

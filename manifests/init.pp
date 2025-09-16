@@ -35,9 +35,13 @@
 # @param size
 #   Maximum size of the download in MB.
 # @param update
-#   Run `apt-get update` automatically.
+#   Run `apt-get update` automatically. Accepts an integer (number of days),
+#   the string 'always', or a time interval with suffixes ('s' for seconds,
+#   'm' for minutes, 'h' for hours).
 # @param upgrade
-#   Run `apt-get upgrade` automatically.
+#   Run `apt-get upgrade` automatically. Accepts an integer (number of days),
+#   the string 'always', or a time interval with suffixes ('s' for seconds,
+#   'm' for minutes, 'h' for hours).
 # @param upgradeable_packages
 #   See `Unattended_upgrades::Upgradeable_packages` for details.
 # @param verbose
@@ -82,8 +86,8 @@ class unattended_upgrades (
   Optional[Integer[0]]                      $random_sleep           = undef,
   Optional[String]                          $sender                 = undef,
   Integer[0]                                $size                   = 0,
-  Variant[Integer[0], Enum['always']]       $update                 = 1,
-  Variant[Integer[0], Enum['always']]       $upgrade                = 1,
+  Variant[Integer[0], Enum['always'], Pattern[/^\d+[smh]$/]]       $update                 = 1,
+  Variant[Integer[0], Enum['always'], Pattern[/^\d+[smh]$/]]       $upgrade                = 1,
   Unattended_upgrades::Upgradeable_packages $upgradeable_packages   = {},
   Integer[0]                                $verbose                = 0,
   Boolean                                   $notify_update          = false,

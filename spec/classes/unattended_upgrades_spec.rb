@@ -375,6 +375,120 @@ describe 'unattended_upgrades' do
         end
       end
     end
+
+    describe 'validation for intervals with suffixes' do
+      context 'update supports intervals with suffixes' do
+        let :params do
+          {
+            update: '3h'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            %r{APT::Periodic::Update-Package-Lists "3h";}
+          )
+        end
+      end
+
+      context 'upgrade supports intervals with suffixes' do
+        let :params do
+          {
+            upgrade: '45m'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            %r{APT::Periodic::Unattended-Upgrade "45m";}
+          )
+        end
+      end
+
+      context 'update supports seconds interval' do
+        let :params do
+          {
+            update: '30s'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            %r{APT::Periodic::Update-Package-Lists "30s";}
+          )
+        end
+      end
+
+      context 'update supports minutes interval' do
+        let :params do
+          {
+            update: '15m'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            %r{APT::Periodic::Update-Package-Lists "15m";}
+          )
+        end
+      end
+
+      context 'update supports hours interval' do
+        let :params do
+          {
+            update: '2h'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            %r{APT::Periodic::Update-Package-Lists "2h";}
+          )
+        end
+      end
+
+      context 'upgrade supports seconds interval' do
+        let :params do
+          {
+            upgrade: '45s'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            %r{APT::Periodic::Unattended-Upgrade "45s";}
+          )
+        end
+      end
+
+      context 'upgrade supports minutes interval' do
+        let :params do
+          {
+            upgrade: '10m'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            %r{APT::Periodic::Unattended-Upgrade "10m";}
+          )
+        end
+      end
+
+      context 'upgrade supports hours interval' do
+        let :params do
+          {
+            upgrade: '5h'
+          }
+        end
+
+        it do
+          is_expected.to create_file(file_periodic).with_content(
+            %r{APT::Periodic::Unattended-Upgrade "5h";}
+          )
+        end
+      end
+    end
   end
 
   on_supported_os.each do |os, facts|
