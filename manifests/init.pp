@@ -84,7 +84,10 @@ class unattended_upgrades (
   Boolean                                   $install_on_shutdown    = false,
   Unattended_upgrades::Mail                 $mail                   = {},
   Boolean                                   $minimal_steps          = true,
-  Array[Unattended_upgrades::Origin]        $origins                = $unattended_upgrades::params::origins,
+  Array[Unattended_upgrades::Origin]        $origins                = [
+    'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
+    'origin=Debian,codename=${distro_codename}-security,label=Debian-Security', #lint:ignore:single_quote_string_with_variables
+  ],
   String[1]                                 $package_ensure         = installed,
   Array[Unattended_upgrades::Origin]        $extra_origins          = [],
   Optional[Integer[0]]                      $random_sleep           = undef,
@@ -107,23 +110,41 @@ class unattended_upgrades (
   Array[String[1]]                          $dpkg_options           = [],
   Enum['running', 'stopped']                $service_ensure         = 'running',
   Boolean                                   $service_enable         = true,
-) inherits unattended_upgrades::params {
+) {
   # apt::conf settings require the apt class to work
   include apt
 
-  $_age = $unattended_upgrades::default_age + $age
+  $_age = {
+    'min' => 2,
+    'max' => 0,
+  } + $age
   assert_type(Unattended_upgrades::Age, $_age)
 
-  $_auto = $unattended_upgrades::default_auto + $auto
+  $_auto = {
+    'fix_interrupted_dpkg' => true,
+    'remove' => true,
+    'reboot' => false,
+    'reboot_withusers' => true,
+    'clean' => 0,
+    'reboot_time' => 'now',
+  } + $auto
   assert_type(Unattended_upgrades::Auto, $_auto)
 
-  $_backup = $unattended_upgrades::default_backup + $backup
+  $_backup = {
+    'archive_interval' => 0,
+    'level' => 3,
+  } + $backup
   assert_type(Unattended_upgrades::Backup, $_backup)
 
-  $_mail = $unattended_upgrades::default_mail + $mail
+  $_mail = {
+    'only_on_error' => true,
+  } + $mail
   assert_type(Unattended_upgrades::Mail, $_mail)
 
-  $_upgradeable_packages = $unattended_upgrades::default_upgradeable_packages + $upgradeable_packages
+  $_upgradeable_packages = {
+    'download_only' => 0,
+    'debdelta' => 1,
+  } + $upgradeable_packages
   assert_type(Unattended_upgrades::Upgradeable_packages, $_upgradeable_packages)
 
   package { 'unattended-upgrades':
