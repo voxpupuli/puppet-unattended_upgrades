@@ -191,7 +191,7 @@ altering some of the default settings.
 
 ## Limitations
 
-This module should work across all versions of Debian, Ubuntu, and Linux Mint.
+This module should work across all supported versions of Debian and Ubuntu.
 
 ## License
 

@@ -22,34 +22,25 @@ class unattended_upgrades::params {
   $default_upgradeable_packages = { 'download_only'        => 0, 'debdelta'  => 1, }
 
   case downcase($facts['os']['name']) {
-    'debian', 'raspbian': {
-      if versioncmp($facts['os']['release']['major'], '11') >= 0 {
-        $origins            = [
-          'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
-          'origin=Debian,codename=${distro_codename}-security,label=Debian-Security', #lint:ignore:single_quote_string_with_variables
-        ]
-      } else {
-        $origins            = [
-          'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
-          'origin=Debian,codename=${distro_codename},label=Debian-Security', #lint:ignore:single_quote_string_with_variables
-        ]
-      }
+    'debian': {
+      $origins = [
+        'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
+        'origin=Debian,codename=${distro_codename}-security,label=Debian-Security', #lint:ignore:single_quote_string_with_variables
+      ]
     }
-    'ubuntu', 'neon': {
+
+    'ubuntu': {
       # Ubuntu: https://ubuntu.com/about/release-cycle and https://wiki.ubuntu.com/Releases
-      # Ubuntu 18.04 and up do allow the use of Origins-Pattern; 16.04 is out of support for Vox Pupuli.
-      $origins            = [
+      $origins = [
         'origin=${distro_id},suite=${distro_codename}', #lint:ignore:single_quote_string_with_variables
         'origin=${distro_id},suite=${distro_codename}-security', #lint:ignore:single_quote_string_with_variables
         'origin=${distro_id}ESMApps,suite=${distro_codename}-apps-security', #lint:ignore:single_quote_string_with_variables
         'origin=${distro_id}ESM,suite=${distro_codename}-infra-security', #lint:ignore:single_quote_string_with_variables
       ]
     }
-    'LinuxMint': {
-      $origins = ['origin=${distro_id},suite=${distro_codename}-security',] #lint:ignore:single_quote_string_with_variables
-    }
+
     default: {
-      $origins       = undef
+      $origins = undef
     }
   }
 }
