@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v9.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v9.1.0) (2025-11-27)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v9.0.0...v9.1.0)
+
+**Implemented enhancements:**
+
+- Manage service [\#277](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/277) ([bwitt](https://github.com/bwitt))
+- Allow hour, min, sec suffixes [\#276](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/276) ([bwitt](https://github.com/bwitt))
+
+**Closed issues:**
+
+- `random_sleep` should be deprecated [\#278](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/278)
+- Some classes and type aliases are missing documentation [\#274](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/274)
+- No REFERENCE.md file [\#272](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/272)
+- Relax validation for newer Periodic interval options [\#209](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/209)
+- random\_sleep is ignored on machines using systemd [\#175](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/175)
+
+**Merged pull requests:**
+
+- Convert from `params.pp` to hiera data [\#284](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/284) ([kenyon](https://github.com/kenyon))
+- Drop code for unsupported and untested OSes [\#283](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/283) ([kenyon](https://github.com/kenyon))
+- Deprecate `random_sleep` [\#279](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/279) ([bwitt](https://github.com/bwitt))
+- Add missing docstrings and regenerate REFERENCE.md [\#275](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/275) ([bwitt](https://github.com/bwitt))
+
 ## [v9.0.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v9.0.0) (2025-09-10)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v8.2.0...v9.0.0)
