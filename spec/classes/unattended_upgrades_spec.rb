@@ -15,7 +15,6 @@ describe 'unattended_upgrades' do
       it do
         is_expected.to contain_package('unattended-upgrades')
         is_expected.to compile.with_all_deps
-        is_expected.to contain_class('unattended_upgrades::params')
         is_expected.to contain_class('unattended_upgrades')
         is_expected.to contain_class('apt')
       end

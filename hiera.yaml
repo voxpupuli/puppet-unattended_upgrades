@@ -1,0 +1,5 @@
+version: 5
+
+hierarchy:
+  - name: OS name
+    path: "os/%{facts.os.name}.yaml"

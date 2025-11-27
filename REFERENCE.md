@@ -7,7 +7,6 @@
 ### Classes
 
 * [`unattended_upgrades`](#unattended_upgrades): Installs and configures unattended-upgrades.
-* [`unattended_upgrades::params`](#unattended_upgrades--params): Provides default parameters for the unattended_upgrades module.
 
 ### Data types
 
@@ -148,7 +147,14 @@ Data type: `Array[Unattended_upgrades::Origin]`
 
 Array of origins to allow automatic upgrades from.
 
-Default value: `$unattended_upgrades::params::origins`
+Default value:
+
+```puppet
+[
+    'origin=Debian,codename=${distro_codename},label=Debian', #lint:ignore:single_quote_string_with_variables
+    'origin=Debian,codename=${distro_codename}-security,label=Debian-Security', #lint:ignore:single_quote_string_with_variables
+  ]
+```
 
 ##### <a name="-unattended_upgrades--package_ensure"></a>`package_ensure`
 
@@ -329,10 +335,6 @@ Data type: `Boolean`
 Specifies whether the service should be enabled at boot.
 
 Default value: `true`
-
-### <a name="unattended_upgrades--params"></a>`unattended_upgrades::params`
-
-This class provides default parameters for the unattended_upgrades module.
 
 ## Data types
 

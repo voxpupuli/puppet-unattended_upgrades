@@ -1,0 +1,5 @@
+unattended_upgrades::origins:
+  - origin=${distro_id},suite=${distro_codename}
+  - origin=${distro_id},suite=${distro_codename}-security
+  - origin=${distro_id}ESMApps,suite=${distro_codename}-apps-security
+  - origin=${distro_id}ESM,suite=${distro_codename}-infra-security
