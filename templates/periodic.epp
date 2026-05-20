@@ -1,54 +1,60 @@
-APT::Periodic::Enable "<%= @enable %>";
+<%- |
+  Unattended_upgrades::Age $age,
+  Unattended_upgrades::Auto $auto,
+  Unattended_upgrades::Backup $backup,
+  Unattended_upgrades::Upgradeable_packages $upgradeable_packages,
+| -%>
+APT::Periodic::Enable "<%= $unattended_upgrades::enable %>";
 #  - Enable the update/upgrade script (0=disable)
 #
-APT::Periodic::BackupArchiveInterval "<%= @_backup['archive_interval'] %>";
+APT::Periodic::BackupArchiveInterval "<%= $backup['archive_interval'] %>";
 #  - Backup after n-days if archive contents changed.(0=disable)
 #
-APT::Periodic::BackupLevel "<%= @_backup['level'] %>";
+APT::Periodic::BackupLevel "<%= $backup['level'] %>";
 #  - Backup level.(0=disable), 1 is invalid.
 #
-APT::Periodic::MaxAge "<%= @_age['max'] %>";
+APT::Periodic::MaxAge "<%= $age['max'] %>";
 #  - Set maximum allowed age of a cache package file. If a cache
 #    package file is older it is deleted (0=disable)
 #
-APT::Periodic::MinAge "<%= @_age['min'] %>";
+APT::Periodic::MinAge "<%= $age['min'] %>";
 #  - Set minimum age of a package file. If a file is younger it
 #    will not be deleted (0=disable). Usefull to prevent races
 #    and to keep backups of the packages for emergency.
 #
-APT::Periodic::MaxSize "<%= @size %>";
+APT::Periodic::MaxSize "<%= $unattended_upgrades::size %>";
 #  - Set maximum size of the cache in MB (0=disable). If the cache
 #    is bigger, cached package files are deleted until the size
 #    requirement is met (the biggest packages will be deleted
 #    first).
 #
-APT::Periodic::Update-Package-Lists "<%= @update %>";
+APT::Periodic::Update-Package-Lists "<%= $unattended_upgrades::update %>";
 #  - Do "apt-get update" automatically every n-days (0=disable)
 #
-APT::Periodic::Download-Upgradeable-Packages "<%= @_upgradeable_packages['download_only'] %>";
+APT::Periodic::Download-Upgradeable-Packages "<%= $upgradeable_packages['download_only'] %>";
 #  - Do "apt-get upgrade --download-only" every n-days (0=disable)
 #
-APT::Periodic::Download-Upgradeable-Packages-Debdelta "<%= @_upgradeable_packages['debdelta'] %>";
+APT::Periodic::Download-Upgradeable-Packages-Debdelta "<%= $upgradeable_packages['debdelta'] %>";
 #  - Use debdelta-upgrade to download updates if available (0=disable)
 #
-APT::Periodic::Unattended-Upgrade "<%= @upgrade %>";
+APT::Periodic::Unattended-Upgrade "<%= $unattended_upgrades::upgrade %>";
 #  - Run the "unattended-upgrade" security upgrade script
 #    every n-days (0=disabled)
 #    Requires the package "unattended-upgrades" and will write
 #    a log in /var/log/unattended-upgrades
 #
-APT::Periodic::AutocleanInterval "<%= @_auto['clean'] %>";
+APT::Periodic::AutocleanInterval "<%= $auto['clean'] %>";
 #  - Do "apt-get autoclean" every n-days (0=disable)
 #
-APT::Periodic::Verbose "<%= @verbose %>";
+APT::Periodic::Verbose "<%= $unattended_upgrades::verbose %>";
 #  - Send report mail to root
 #      0:  no report             (or null string)
 #      1:  progress report       (actually any string)
 #      2:  + command outputs     (remove -qq, remove 2>/dev/null, add -d)
 #      3:  + trace on
-<%- unless @random_sleep.nil? -%>
+<%- if $unattended_upgrades::random_sleep != undef { -%>
 #
-APT::Periodic::RandomSleep "<%= @random_sleep %>";
+APT::Periodic::RandomSleep "<%= $unattended_upgrades::random_sleep %>";
 #  - The apt cron job will delay its execution by a random
 #    time span between zero and 'APT::Periodic::RandomSleep'
 #    seconds.
@@ -59,4 +65,4 @@ APT::Periodic::RandomSleep "<%= @random_sleep %>";
 #    do not care about the load spikes.
 #    Note that sleeping in the apt job will be delaying the
 #    execution of all subsequent cron.daily jobs.
-<%- end -%>
+<%- } -%>

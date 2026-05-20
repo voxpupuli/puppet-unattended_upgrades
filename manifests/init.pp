@@ -118,7 +118,6 @@ class unattended_upgrades (
     'min' => 2,
     'max' => 0,
   } + $age
-  assert_type(Unattended_upgrades::Age, $_age)
 
   $_auto = {
     'fix_interrupted_dpkg' => true,
@@ -128,24 +127,20 @@ class unattended_upgrades (
     'clean' => 0,
     'reboot_time' => 'now',
   } + $auto
-  assert_type(Unattended_upgrades::Auto, $_auto)
 
   $_backup = {
     'archive_interval' => 0,
     'level' => 3,
   } + $backup
-  assert_type(Unattended_upgrades::Backup, $_backup)
 
   $_mail = {
     'only_on_error' => true,
   } + $mail
-  assert_type(Unattended_upgrades::Mail, $_mail)
 
   $_upgradeable_packages = {
     'download_only' => 0,
     'debdelta' => 1,
   } + $upgradeable_packages
-  assert_type(Unattended_upgrades::Upgradeable_packages, $_upgradeable_packages)
 
   package { 'unattended-upgrades':
     ensure => $package_ensure,
@@ -153,14 +148,22 @@ class unattended_upgrades (
 
   apt::conf { 'unattended-upgrades':
     priority      => 50,
-    content       => template("${module_name}/unattended-upgrades.erb"),
+    content       => epp("${module_name}/unattended-upgrades.epp", {
+      auto => $_auto,
+      mail => $_mail,
+    }),
     require       => Package['unattended-upgrades'],
     notify_update => $notify_update,
   }
 
   apt::conf { 'periodic':
     priority      => 10,
-    content       => template("${module_name}/periodic.erb"),
+    content       => epp("${module_name}/periodic.epp", {
+      age                  => $_age,
+      auto                 => $_auto,
+      backup               => $_backup,
+      upgradeable_packages => $_upgradeable_packages,
+    }),
     require       => Package['unattended-upgrades'],
     notify_update => $notify_update,
   }

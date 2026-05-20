@@ -1,155 +1,160 @@
+<%- |
+  Unattended_upgrades::Auto $auto,
+  Unattended_upgrades::Mail $mail,
+| -%>
 // Automatically upgrade packages from these (origin:archive) pairs
 //
 // Note that in Ubuntu security updates may pull in new dependencies
 // from non-security sources (e.g. chromium). By allowing the release
 // pocket these get automatically pulled in.
 Unattended-Upgrade::Origins-Pattern {
-<% @origins.each do |origin| -%>
-	"<%= origin %>";
-<% end -%>
-<% @extra_origins.each do |origin| -%>
-	"<%= origin %>";
-<% end -%>
+<% $unattended_upgrades::origins.each |$_origin| { -%>
+	"<%= $_origin %>";
+<% } -%>
+<% $unattended_upgrades::extra_origins.each |$_origin| { -%>
+	"<%= $_origin %>";
+<% } -%>
 };
 
 // List of packages to not update (regexp are supported)
 Unattended-Upgrade::Package-Blacklist {
-<% @blacklist.each do |package| -%>
-	"<%= package %>";
-<% end -%>
+<% $unattended_upgrades::blacklist.each |$_package| { -%>
+	"<%= $_package %>";
+<% } -%>
 };
 
-<% unless @whitelist.empty? -%>
+<% unless $unattended_upgrades::whitelist.empty { -%>
 // List of pacakages to only update
 Unattended-Upgrade::Package-Whitelist {
-<% @whitelist.each do |package| -%>
-	"<%= package %>";
-<% end -%>
+<% $unattended_upgrades::whitelist.each |$_package| { -%>
+	"<%= $_package %>";
+<% } -%>
 };
-<% unless @whitelist_strict.nil? -%>
-Unattended-Upgrade::Package-Whitelist-Strict "<%= @whitelist_strict %>";
-<% end -%>
-<% end -%>
+<% if $unattended_upgrades::whitelist_strict != undef { -%>
+Unattended-Upgrade::Package-Whitelist-Strict "<%= $unattended_upgrades::whitelist_strict %>";
+<% } -%>
+<% } -%>
+
 // List of days in the week that updates should be applied.
 // The days can be specified as localized abbreviated or full names.
 // Or as integers where "0" is Sunday, "1" is Monday etc.
 // Require Unattended-upgrades version >=0.91 to work, else it is ignored
 Unattended-Upgrade::Update-Days {
-<% @days.each do |day| -%>
-	"<%= day.capitalize %>";
-<% end -%>
+<% $unattended_upgrades::days.each |$_day| { -%>
+	"<%= $_day.capitalize %>";
+<% } -%>
 };
 
 // This option allows you to control if on a unclean dpkg exit
 // unattended-upgrades will automatically run
 //   dpkg --force-confold --configure -a
 // The default is true, to ensure updates keep getting installed
-Unattended-Upgrade::AutoFixInterruptedDpkg "<%= @_auto['fix_interrupted_dpkg'].to_s %>";
+Unattended-Upgrade::AutoFixInterruptedDpkg "<%= $auto['fix_interrupted_dpkg'] %>";
 
 // Split the upgrade into the smallest possible chunks so that
 // they can be interrupted with SIGTERM. This makes the upgrade
 // a bit slower but it has the benefit that shutdown while a upgrade
 // is running is possible (with a small delay)
-Unattended-Upgrade::MinimalSteps "<%= @minimal_steps.to_s %>";
+Unattended-Upgrade::MinimalSteps "<%= $unattended_upgrades::minimal_steps %>";
 
 // Install all unattended-upgrades when the machine is shuting down
 // instead of doing it in the background while the machine is running
 // This will (obviously) make shutdown slower
-Unattended-Upgrade::InstallOnShutdown "<%= @install_on_shutdown.to_s %>";
+Unattended-Upgrade::InstallOnShutdown "<%= $unattended_upgrades::install_on_shutdown %>";
 
-<%- unless @_mail['to'].nil? -%>
+<%- unless $mail['to'].empty { -%>
 // Send email to this address for problems or packages upgrades
 // If empty or unset then no email is sent, make sure that you
 // have a working mail setup on your system. A package that provides
 // 'mailx' must be installed. E.g. "user@example.com"
 
-Unattended-Upgrade::Mail "<%= @_mail['to'] %>";
+Unattended-Upgrade::Mail "<%= $mail['to'] %>";
 
-<%- if @_mail['only_on_error'] -%>
+<%- if $mail['only_on_error'] { -%>
 // Set this value to "true" to get emails only on errors. Default
 // is to always send a mail if Unattended-Upgrade::Mail is set
-Unattended-Upgrade::MailOnlyOnError "<%= @_mail['only_on_error'].to_s %>";
-<%- end -%>
-<%- if @_mail['report'] -%>
+Unattended-Upgrade::MailOnlyOnError "<%= $mail['only_on_error'] %>";
+<%- } -%>
+<%- if $mail['report'] { -%>
 // Set this value to one of:
 //    "always", "only-on-error" or "on-change"
 // If this is not set, then any legacy MailOnlyOnError (boolean) value
 // is used to chose between "only-on-error" and "on-change"
-Unattended-Upgrade::MailReport "<%= @_mail['report'] %>";
-<%- end -%>
-<%- end -%>
+Unattended-Upgrade::MailReport "<%= $mail['report'] %>";
+<%- } -%>
+<%- } -%>
 
-<%- if @sender -%>
+<%- if $unattended_upgrades::sender != undef { -%>
 // Use the specified value in the "From" field of outgoing mails.
 // Defaults to "root"
-Unattended-Upgrade::Sender "<%= @sender %>";
+Unattended-Upgrade::Sender "<%= $unattended_upgrades::sender %>";
 
-<%- end -%>
-<%- unless @remove_unused_kernel.nil? -%>
+<%- } -%>
+<%- if $unattended_upgrades::remove_unused_kernel != undef { -%>
 // Remove unused automatically installed kernel-related packages
 // (kernel images, kernel headers and kernel version locked tools).
-Unattended-Upgrade::Remove-Unused-Kernel-Packages "<%= @remove_unused_kernel %>";
-<%- end -%>
+Unattended-Upgrade::Remove-Unused-Kernel-Packages "<%= $unattended_upgrades::remove_unused_kernel %>";
+<%- } -%>
 
-<%- unless @remove_new_unused_deps.nil? -%>
+<%- if $unattended_upgrades::remove_new_unused_deps != undef { -%>
 // Do automatic removal of newly unused dependencies after the upgrade
-Unattended-Upgrade::Remove-New-Unused-Dependencies "<%= @remove_new_unused_deps %>";
-<%- end -%>
+Unattended-Upgrade::Remove-New-Unused-Dependencies "<%= $unattended_upgrades::remove_new_unused_deps %>";
+<%- } -%>
 
 // Do automatic removal of new unused dependencies after the upgrade
 // (equivalent to apt-get autoremove)
-Unattended-Upgrade::Remove-Unused-Dependencies "<%= @_auto['remove'].to_s %>";
+Unattended-Upgrade::Remove-Unused-Dependencies "<%= $auto['remove'] %>";
 
 // Automatically reboot *WITHOUT CONFIRMATION*
 // if the file /var/run/reboot-required is found after the upgrade
-Unattended-Upgrade::Automatic-Reboot "<%= @_auto['reboot'].to_s %>";
+Unattended-Upgrade::Automatic-Reboot "<%= $auto['reboot'] %>";
 
 // Automatically reboot even if there are users currently logged in
 // when Unattended-Upgrade::Automatic-Reboot is set to true
-Unattended-Upgrade::Automatic-Reboot-WithUsers "<%= @_auto['reboot_withusers'].to_s %>";
+Unattended-Upgrade::Automatic-Reboot-WithUsers "<%= $auto['reboot_withusers'] %>";
 
 // If automatic reboot is enabled and needed, reboot at the specific
 // time instead of immediately
 //  Default: "now"
-Unattended-Upgrade::Automatic-Reboot-Time "<%= @_auto['reboot_time'].to_s %>";
+Unattended-Upgrade::Automatic-Reboot-Time "<%= $auto['reboot_time'] %>";
 
-<%- unless @dl_limit.nil? -%>
+<%- if $unattended_upgrades::dl_limit != undef { -%>
 // Use apt bandwidth limit feature, this example limits the download
 // speed to 70kb/sec
-Acquire::http::Dl-Limit "<%= @dl_limit %>";
-<%- end -%>
+Acquire::http::Dl-Limit "<%= $unattended_upgrades::dl_limit %>";
+<%- } -%>
 
-<%- unless @syslog_enable.nil? -%>
+<%- if $unattended_upgrades::syslog_enable != undef { -%>
 // Enable logging to syslog. Default is False
-Unattended-Upgrade::SyslogEnable "<%= @syslog_enable %>";
-<%- end -%>
+Unattended-Upgrade::SyslogEnable "<%= $unattended_upgrades::syslog_enable %>";
+<%- } -%>
 
-<%- unless @syslog_facility.nil? -%>
+<%- if $unattended_upgrades::syslog_facility { -%>
 // Specify syslog facility. Default is daemon
-Unattended-Upgrade::SyslogFacility "<%= @syslog_facility %>";
-<%- end -%>
+Unattended-Upgrade::SyslogFacility "<%= $unattended_upgrades::syslog_facility %>";
+<%- } -%>
 
-<%- unless @only_on_ac_power.nil? -%>
+<%- if $unattended_upgrades::only_on_ac_power != undef { -%>
 // Download and install upgrades only on AC power
 // (i.e. skip or gracefully stop updates on battery)
-Unattended-Upgrade::OnlyOnACPower "<%= @only_on_ac_power %>";
-<%- end -%>
+Unattended-Upgrade::OnlyOnACPower "<%= $unattended_upgrades::only_on_ac_power %>";
+<%- } -%>
 
-<%- unless @skip_updates_on_metered_connection.nil? -%>
+<%- if $unattended_upgrades::skip_updates_on_metered_connection != undef { -%>
 // Download and install upgrades only on non-metered connection
 // (i.e. skip or gracefully stop updates on a metered connection)
-Unattended-Upgrade::Skip-Updates-On-Metered-Connections "<%= @skip_updates_on_metered_connection %>";
-<%- end -%>
+Unattended-Upgrade::Skip-Updates-On-Metered-Connections "<%= $unattended_upgrades::skip_updates_on_metered_connection %>";
+<%- } -%>
 
-<%- unless @allow_downgrade.nil? -%>
+<%- if $unattended_upgrades::allow_downgrade != undef { -%>
 // Allow package downgrade if Pin-Priority exceeds 1000
-Unattended-Upgrade::Allow-downgrade "<%= @allow_downgrade %>";
-<%- end -%>
+Unattended-Upgrade::Allow-downgrade "<%= $unattended_upgrades::allow_downgrade %>";
+<%- } -%>
 
-<%- unless @dpkg_options.empty? -%>
+<%- unless $unattended_upgrades::dpkg_options.empty { -%>
 DPkg::Options {
-<% @dpkg_options.each do |opt| -%>
-    "<%= opt %>";
-<%- end -%>
+<% $unattended_upgrades::dpkg_options.each |$_opt| { -%>
+    "<%= $_opt %>";
+<%- } -%>
 };
-<%- end -%>
+<%- } -%>
