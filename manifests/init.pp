@@ -146,7 +146,9 @@ class unattended_upgrades (
     ensure => $package_ensure,
   }
 
+   $ensure_status = $enable ? { 0 => 'absent',  default  => 'present' }
   apt::conf { 'unattended-upgrades':
+    ensure        => $ensure_status,
     priority      => 50,
     content       => epp("${module_name}/unattended-upgrades.epp", {
       auto => $_auto,
@@ -157,6 +159,7 @@ class unattended_upgrades (
   }
 
   apt::conf { 'periodic':
+    ensure        => $ensure_status,
     priority      => 10,
     content       => epp("${module_name}/periodic.epp", {
       age                  => $_age,
