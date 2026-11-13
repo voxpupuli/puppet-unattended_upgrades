@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v9.2.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v9.2.0) (2026-11-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v9.1.0...v9.2.0)
+
+**Implemented enhancements:**
+
+- Please allow setting allow-releaseinfo-change Debian/Ubuntu [\#203](https://github.com/voxpupuli/puppet-unattended_upgrades/issues/203)
+- puppetlabs/stdlib: Allow 10.x [\#294](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/294) ([bastelfreak](https://github.com/bastelfreak))
+- add Ubuntu 26.04 support [\#293](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/293) ([marcusdots](https://github.com/marcusdots))
+- Update requirements to allow OpenVox 9 [\#292](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/292) ([sebastianrakel](https://github.com/sebastianrakel))
+- Migrate templates from erb to epp [\#290](https://github.com/voxpupuli/puppet-unattended_upgrades/pull/290) ([Dan33l](https://github.com/Dan33l))
+
 ## [v9.1.0](https://github.com/voxpupuli/puppet-unattended_upgrades/tree/v9.1.0) (2025-11-27)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-unattended_upgrades/compare/v9.0.0...v9.1.0)
